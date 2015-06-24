@@ -1,0 +1,42 @@
+To download all necessary resources to run and generate the workflow output:
+
+1. Fork the repository spidasoftware/min/scripts/flowdocument.
+2. Create a google drive if you do not already have one.
+3. Open a new document in google docs.
+4. Click on the "Add-ons" tab, then "Get add-ons...".
+5. Inside the web store, find the add-on titled "Document Workflow", and install it.
+   Alternatively, go to https://chrome.google.com/webstore/detail/document-workflow/lhffgpnhgkohngaplfphaihbapakkchl
+6. The add on is not ready to use in any file you wish to implement it.
+
+
+To run this gradle app:
+
+1. Go to the spidasoftware.com/projectManager page where you created your WorkFlow.
+2. Note the exact syntax of the company name you log into to get to the flow.
+   If you do not have to change companies, then the company name is 'SPIDA'.
+3. Press download on your workflow, and note the name of the file that gets downloaded.
+   For example, if the flow name was 'North Carolina Make Ready Process' then the file download
+   name would be 'North-Carolina-Make-Ready-Process.flow'.  You will need this in an upcoming step.
+
+4. Open up a terminal window.
+5. Change directory on to the directory containing the 'flowdocument' folder.
+6. Type on the commandline 'gradle runMain'
+7. When prompted for "flow name: ", enter the downloaded file name from step 3,
+   with or without the .flow extension.
+8. When prompted for "Company Name: ", enter the name you logged in as on spidasoftware.com.
+   This is Case-sensitive.
+9. The flow will then go and gather all the proper resources and after anywhere from 1-10 minutes
+   (depending on the size of the flow, but usually around 3-4) a folder called "ExportToGoogleDrive"
+   will appear on your desktop, and a local html page will appear in your browser.
+
+10. Go to your google drive
+11. Inside of "My Drive" create a new folder for the workflow, and name it whatever you like.
+	Do not name it something that is already in your MyDrive folder however.  This name will
+	be prompted later, so remember it.
+12. Click into this folder and then open up the "ExportToGoogleDrive" folder on your desktop
+    and drag the "Resources" folder into the newly created folder in your google drive.
+13. This upload will take a while, because Google apparently has severely limited upload
+    speed inside google drive.
+14. Once the folder is uploaded fully, open up a new google doc, and use the previously installed
+    google doc add-on to create the Event, Action, and Form document templates. When prompted for
+	folder name, it is whatever you named it in step 11.

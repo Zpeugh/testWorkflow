@@ -1,0 +1,474 @@
+
+  <link href="flow.css" rel="stylesheet" type="text/css" /><h1>Asset Information</h1>
+
+  <div id="tabs" style="max-width:1100px" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+      <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#previewtab">Preview</a></li>
+      <li class="ui-state-default ui-corner-top"><a href="#edittab">Edit</a></li>
+    </ul>
+
+    <div id="edittab" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+
+
+<div class="dialog edit_area" id="FormEditor">
+  <div class="main_object">
+
+
+
+
+<table>
+  <thead class="tblheadcolor">
+  <tr>
+    <th>
+      <form action="/projectmanager/formTemplate/index" method="post">
+        <input type="hidden" name="id" value="6438" id="id">
+        <input type="hidden" name="version" value="9" id="version">
+        <table style="width:70%;border:none;float:left">
+          <tbody>
+          <tr>
+            <th>Name</th>
+            <td><input type="text" style="width:225px" name="name" maxlength="72" value="Asset Information" id="name"></td>
+          </tr>
+
+            <tr>
+              <th>Owner</th>
+              <td>
+
+                <select name="companyId" style="width:225px" id="companyId">
+<option value="1">SPIDA</option>
+<option value="59790">TECO</option>
+<option value="88791">JPO</option>
+<option value="69771">Fibertech</option>
+<option value="69148">SCE_Demo</option>
+<option value="73021">ACME Power Co.</option>
+<option value="61802">Power Engineers</option>
+<option value="6266">Duke Energy</option>
+<option value="67755">DLC</option>
+<option value="69968">Duquesne Light</option>
+<option value="69852">Sunesys</option>
+<option value="43" selected="selected">American Electric Power</option>
+<option value="69933">Comcast</option>
+<option value="69668">Verizon</option>
+<option value="95182">DG</option>
+<option value="59">IJUS</option>
+<option value="96828">DG2</option>
+</select>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <div style="float:right">
+          <span class="bottom_button">
+            <input type="image" name="_action_update" title="Update" src="images/save.png" id="Update">
+            <input type="image" name="_action_copy" title="Copy" src="images/library.png" id="Copy">
+            <input type="image" name="_action_delete" title="Delete" src="images/minus.png" id="Delete" onclick="return confirm('Are you sure you wish to delete Asset Information?');">
+          </span>
+        </div>
+      </form>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+      <tr class="odd">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6439" id="id">
+            <label><strong>1.</strong> Attachment Type Code</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the Attachment Type Code field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="tblevenrowcolor">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6440" id="id">
+            <label><strong>2.</strong> Change Flag Code</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the Change Flag Code field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="odd">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6441" id="id">
+            <label><strong>3.</strong> Pole Location</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the Pole Location field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="tblevenrowcolor">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6442" id="id">
+            <label><strong>4.</strong> NJUNS</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the NJUNS field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="odd">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6443" id="id">
+            <label><strong>5.</strong> Engineering Cost</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the Engineering Cost field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="tblevenrowcolor">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6444" id="id">
+            <label><strong>6.</strong> MakeReady Cost</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the MakeReady Cost field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="odd">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6445" id="id">
+            <label><strong>7.</strong> Lead ID</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the Lead ID field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="tblevenrowcolor">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6446" id="id">
+            <label><strong>8.</strong> Transmission</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the Transmission field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+
+      <tr class="odd">
+        <td width="30%">
+          <form action="/projectmanager/fieldTemplate/index" method="post" name="simpleFieldEdit" id="simpleFieldEdit">
+            <input type="hidden" name="formId" value="6438" id="formId">
+            <input type="hidden" name="id" value="6447" id="id">
+            <label><strong>9.</strong> Lead-Location</label>
+
+            <div class="buttons" style="float:right; border:none;">
+              <span class="bottom_button">
+
+                  <input type="image" name="_action_edit" title="Edit" src="images/pencil.png" onclick="editField($(this));
+                         return false;">
+
+                <input type="image" name="_action_delete" title="Delete" src="images/minus.png" onclick="return confirm('Are you sure you wish to delete the Lead-Location field?');">
+              </span>
+            </div>
+          </form>
+        </td>
+      </tr>
+
+
+  <tr class="buttons">
+    <td style="padding:0px">
+      <form action="/projectmanager/formTemplate/add_field" method="post" name="addNewFields" id="addNewFields">
+
+        <input type="hidden" name="formId" value="6438" id="formId">
+        <select name="type" id="type">
+<option value="DATE" selected="selected">Date</option>
+<option value="FILE">File Selection</option>
+<option value="GPS_POINT">GPS Point</option>
+<option value="GROUP">Group of Fields</option>
+<option value="MEASUREMENT_TEXTBOXES">Measurement</option>
+<option value="LISTBOX">Multiple-Choice Selection</option>
+<option value="SPINNER">Number Selection</option>
+<option value="CHECKBOX">Option Field</option>
+<option value="RADIO_BUTTONS">Single-Choice Selection</option>
+<option value="TABLE">Table</option>
+<option value="TEXTAREA">Text Area</option>
+<option value="TEXTFIELD">Text Field</option>
+</select>
+        <div class="bottom_button" style="float:right;padding-top:3px">
+          <input type="button" title="Add" name="add" class="add" value="Add" style="background: url(images/plus.png) 5px 50% no-repeat;padding-left:26px" onclick="return addField($(this));">
+        </div>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+
+  <div class="second_object" style="width:34%" id="editFieldArea">
+
+  </div>
+
+  <div class="second_object" style="width:35%" id="editFieldPropertiesArea">
+  </div>
+</div>
+    </div>
+
+    <div id="previewtab" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+      <div class="dialog" id="FormPreview" style="padding-top:10px">
+  <table style="border:0">
+    <tbody>
+    <tr>
+      <td style="padding:10px">
+
+
+            <div name="Field_0_Preview" style="padding-top:8px">
+              <div name="Field_0_Title">
+  <strong>Attachment Type Code</strong>
+</div>
+
+              <select name="PreviewField_6439" id="PreviewField_6439" style="display: none; ">
+
+    <option value="N-New">N-New</option>
+
+    <option value="E-Existing">E-Existing</option>
+
+    <option value="W-Remove">W-Remove</option>
+
+</select><div class="chosen-container chosen-container-single" style="width: 200px;" title="" id="PreviewField_6439_chosen"><a class="chosen-single" tabindex="-1"><span>N-New</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+<script type="text/javascript">
+
+  $("#PreviewField_6439").chosen();
+
+</script>
+
+
+            </div>
+
+
+
+            <div name="Field_1_Preview" style="padding-top:8px">
+              <div name="Field_1_Title">
+  <strong>Change Flag Code</strong>
+</div>
+
+              <select name="PreviewField_6440" id="PreviewField_6440" style="display: none; ">
+
+    <option value="A - Added">A - Added</option>
+
+    <option value="D- Deleted">D- Deleted</option>
+
+</select><div class="chosen-container chosen-container-single" style="width: 200px;" title="" id="PreviewField_6440_chosen"><a class="chosen-single" tabindex="-1"><span>A - Added</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+<script type="text/javascript">
+
+  $("#PreviewField_6440").chosen();
+
+</script>
+
+
+            </div>
+
+
+
+            <div name="Field_2_Preview" style="padding-top:8px">
+              <div name="Field_2_Title">
+  <strong>Pole Location</strong>
+</div>
+
+              <input type="text" name="PreviewField_2" value="na">
+
+            </div>
+
+
+
+            <div name="Field_3_Preview" style="padding-top:8px">
+              <div name="Field_3_Title">
+  <strong>NJUNS</strong>
+</div>
+
+              <input type="text" name="PreviewField_3" value="">
+
+            </div>
+
+
+
+            <div name="Field_4_Preview" style="padding-top:8px">
+              <div name="Field_4_Title">
+  <strong>Engineering Cost</strong>
+</div>
+
+              <input type="text" name="PreviewField_4" value="0">
+
+            </div>
+
+
+
+            <div name="Field_5_Preview" style="padding-top:8px">
+              <div name="Field_5_Title">
+  <strong>MakeReady Cost</strong>
+</div>
+
+              <input type="text" name="PreviewField_5" value="0">
+
+            </div>
+
+
+
+            <div name="Field_6_Preview" style="padding-top:8px">
+              <div name="Field_6_Title">
+  <strong>Lead ID</strong>
+</div>
+
+              <input type="text" name="PreviewField_6" value="0">
+
+            </div>
+
+
+
+            <div name="Field_7_Preview" style="padding-top:8px">
+              <div name="Field_7_Title">
+  <strong>Transmission</strong>
+</div>
+
+              <select name="PreviewField_6446" id="PreviewField_6446" style="display: none; ">
+
+    <option value="No">No</option>
+
+    <option value="Yes">Yes</option>
+
+</select><div class="chosen-container chosen-container-single" style="width: 200px;" title="" id="PreviewField_6446_chosen"><a class="chosen-single" tabindex="-1"><span>No</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
+<script type="text/javascript">
+
+  $("#PreviewField_6446").chosen();
+
+</script>
+
+
+            </div>
+
+        
+
+            <div name="Field_8_Preview" style="padding-top:8px">
+              <div name="Field_8_Title">
+  <strong>Lead-Location</strong>
+</div>
+
+              <input type="text" name="PreviewField_8" value="0">
+
+            </div>
+
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script type="text/javascript">
+
+  $("#dev_button").click(function(){
+      jQuery.ajax({
+        type:'GET',
+        async:true,
+        data:"id="+6438,
+        url:getAppRoot()+'/formTemplate/toCSV'
+      });
+  })
+
+</script>
+
+    </div>
+  </div>
