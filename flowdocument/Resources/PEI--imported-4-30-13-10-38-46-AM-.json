@@ -1,0 +1,1869 @@
+{
+ "conditions": [],
+ "id": 61993,
+ "formParameters": [],
+ "formTemplates": [
+  {
+   "id": 61994,
+   "name": "Construction Coordination Tracking",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 61802,
+   "fieldTemplates": [
+    {
+     "id": 61995,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Pole Owner",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61996,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "AEP District",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61997,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Contact Name",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61998,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Contact Name 2",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61999,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Contact Phone #",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62000,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Contact Email",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62001,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "WO #",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62002,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "WR #",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62003,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Work Order Processed",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62004,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Detailed Estimate Cost",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62005,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Detailed Estimate to PEI",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62006,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Returned to AEP",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62007,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Forecasted Completion",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62008,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Actual Completion",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62009,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Options",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 62059,
+   "name": "ROW",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 61802,
+   "fieldTemplates": [
+    {
+     "id": 62060,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N/A,Yes,No",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "AEP Work on St Rt?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62061,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Name",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62062,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N/A,Owner,Employee,Tenant",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Status",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62063,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Address or Nearest Address/Intersection",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62064,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "City/TWP",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62065,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "County",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62066,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "OH,WV,VA,IN,MI,KY,PA",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "State",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62067,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "If Applicable, Property Owner Name and Address",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62068,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Owner's Phone Number",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62069,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Owner's Other Phone Number",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62070,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Owner's Email",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62071,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Other Contact Person",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 62043,
+   "name": "Engineering Fix Classification",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 61802,
+   "fieldTemplates": [{
+    "id": 62044,
+    "readOnly": false,
+    "parent": null,
+    "commaSeparatedChoices": "N/A,C1,C2,C3,C4",
+    "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+    "label": "Fix Classification",
+    "formTemplate": {
+     "_ref": "../..",
+     "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+    },
+    "type": {
+     "name": "RADIO_BUTTONS",
+     "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+    },
+    "required": false,
+    "additionalFields": []
+   }]
+  },
+  {
+   "id": 62018,
+   "name": "Cost",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 61802,
+   "fieldTemplates": [
+    {
+     "id": 62019,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Functional Engineering Cost",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62020,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Functional Estimate Material",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62021,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Functional Estimate Labor",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 62022,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Functional Estimate Amount",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 61822,
+   "name": "Detailed Engineering Tracking Information",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 61802,
+   "fieldTemplates": [
+    {
+     "id": 61823,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "IJUS Received Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61824,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "ROW Requested Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61825,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "ROW Received Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61826,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Permit Submittal Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61827,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Permit Denial Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61828,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Permit Resubmittal Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61829,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Permit Approved Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61830,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Work Scope Submittal Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61831,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Preliminary Estimate Due Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61832,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Preliminary Design Submittal Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61833,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Covermap Complete Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61834,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Work Order Complete Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61835,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Review Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61836,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Reviewing Engineer",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61837,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correction Completion Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61838,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Due Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61839,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Returned to Client Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61840,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Secondary Returned to Client Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 61841,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Billing Complete Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "plans": [],
+   "leftPixelPosition": 5824,
+   "possibleNextEvents": [{
+    "id": 62050,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62036,
+   "topPixelPosition": 2500,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Third Party to Engineer",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [{
+    "id": 62074,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [61994],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62010,
+   "topPixelPosition": 2074,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Admin Report Preparation",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [{
+    "id": 62072,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 3,
+   "id": 62075,
+   "topPixelPosition": 1450,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [
+    {
+     "id": 62054,
+     "label": "Possible"
+    },
+    {
+     "id": 62073,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62031,
+   "topPixelPosition": 1400,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Evaluate Cost of Fix",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4800,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "FinishEvent",
+   "flow": 61993,
+   "version": 1,
+   "id": 62024,
+   "topPixelPosition": 3574,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Finish",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5024,
+   "possibleNextEvents": [
+    {
+     "id": 62013,
+     "label": "Possible"
+    },
+    {
+     "id": 62029,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [62047],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62048,
+   "topPixelPosition": 2574,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Third Party Negotiations",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5250,
+   "possibleNextEvents": [{
+    "id": 62011,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62034,
+   "topPixelPosition": 3174,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "IJUS Task Order Received",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4824,
+   "possibleNextEvents": [
+    {
+     "id": 62033,
+     "label": "Possible"
+    },
+    {
+     "id": 62052,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62049,
+   "topPixelPosition": 2050,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Assess Ownership",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5224,
+   "possibleNextEvents": [{
+    "id": 62029,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62037,
+   "topPixelPosition": 2100,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Transmission Fix",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5250,
+   "possibleNextEvents": [{
+    "id": 62034,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62040,
+   "topPixelPosition": 2974,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "IJUS Work Scope Estimate",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4800,
+   "possibleNextEvents": [{
+    "id": 62012,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62029,
+   "topPixelPosition": 2800,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Project Construction",
+   "locationType": "ONLINE",
+   "onFinishActions": [62028]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5250,
+   "possibleNextEvents": [{
+    "id": 62056,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62011,
+   "topPixelPosition": 3424,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Detailed Engineering",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5224,
+   "possibleNextEvents": [
+    {
+     "id": 62037,
+     "label": "Possible"
+    },
+    {
+     "id": 62025,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62013,
+   "topPixelPosition": 1824,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "AEP Approval Needed",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5250,
+   "possibleNextEvents": [{
+    "id": 62040,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62026,
+   "topPixelPosition": 2750,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "IJUS to Engineer",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 62042,
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "automatic": false,
+   "class": "StartEvent",
+   "flow": 61993,
+   "version": 1,
+   "id": 62046,
+   "topPixelPosition": 200,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Start",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": [61869]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [
+    {
+     "id": 62039,
+     "label": "Possible"
+    },
+    {
+     "id": 62031,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62035,
+   "topPixelPosition": 1000,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "AdministrativeWork",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 62035,
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 61993,
+   "version": 2,
+   "id": 62015,
+   "topPixelPosition": 800,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Locations Added to Project",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Sub Status Action",
+   "onFinishActions": [62014]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5024,
+   "possibleNextEvents": [{
+    "id": 62048,
+    "label": "Possible"
+   }],
+   "onStartActions": [62032],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62033,
+   "topPixelPosition": 2300,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Third Party",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ClearEvent",
+   "flow": 61993,
+   "version": 0,
+   "id": 62057,
+   "topPixelPosition": 3750,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "LOC Fix completed",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4650,
+   "possibleNextEvents": [{
+    "id": 62029,
+    "label": "Possible"
+   }],
+   "onStartActions": [62051],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62052,
+   "topPixelPosition": 2300,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "AEP",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [{
+    "id": 62023,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [62059],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 3,
+   "id": 62072,
+   "topPixelPosition": 1674,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "ROW",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5524,
+   "possibleNextEvents": [{
+    "id": 62056,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62027,
+   "topPixelPosition": 2974,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "AEP Processing",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5224,
+   "possibleNextEvents": [{
+    "id": 62013,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 3,
+   "id": 62073,
+   "topPixelPosition": 1600,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Over 25k",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [{
+    "id": 62015,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62058,
+   "topPixelPosition": 600,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Task Order Received",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5400,
+   "possibleNextEvents": [
+    {
+     "id": 62026,
+     "label": "Possible"
+    },
+    {
+     "id": 62041,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62053,
+   "topPixelPosition": 2500,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "AEP Responsibility",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5824,
+   "possibleNextEvents": [{
+    "id": 62055,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62050,
+   "topPixelPosition": 2724,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Negotiations",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [{
+    "id": 62058,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62042,
+   "topPixelPosition": 400,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Work Scope Estimate",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [{
+    "id": 62075,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [62043],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62045,
+   "topPixelPosition": 1224,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Data Collection",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4824,
+   "possibleNextEvents": [{
+    "id": 62025,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62054,
+   "topPixelPosition": 1600,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Under 25k",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [{
+    "id": 62010,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [62018],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62023,
+   "topPixelPosition": 1874,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Estimating",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5824,
+   "possibleNextEvents": [{
+    "id": 62056,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62055,
+   "topPixelPosition": 2950,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Thrid Party Processing",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5274,
+   "possibleNextEvents": [{
+    "id": 62031,
+    "label": "Possible"
+   }],
+   "onStartActions": [62038],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62039,
+   "topPixelPosition": 1200,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Change in Rating",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5524,
+   "possibleNextEvents": [{
+    "id": 62027,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62041,
+   "topPixelPosition": 2750,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "AEP to Engineer",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [{
+    "id": 62057,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62056,
+   "topPixelPosition": 3450,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Construction",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 62024,
+   "plans": [],
+   "leftPixelPosition": 4800,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 61993,
+   "version": 2,
+   "id": 62017,
+   "topPixelPosition": 3324,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Proposal Complete",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Sub Status Action",
+   "onFinishActions": [62016]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [{
+    "id": 62045,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [61822],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62030,
+   "topPixelPosition": 1000,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Admin",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4824,
+   "possibleNextEvents": [{
+    "id": 62049,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62025,
+   "topPixelPosition": 1824,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Proceed with Fix",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4800,
+   "possibleNextEvents": [{
+    "id": 62017,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 4,
+   "id": 62012,
+   "topPixelPosition": 3074,
+   "projectLevel": "PROJECT",
+   "color": "f0ad74",
+   "name": "Construction Complete",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5600,
+   "possibleNextEvents": [
+    {
+     "id": 62036,
+     "label": "Possible"
+    },
+    {
+     "id": 62053,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 61993,
+   "version": 3,
+   "id": 62074,
+   "topPixelPosition": 2274,
+   "projectLevel": "STATION",
+   "color": "6debbe",
+   "name": "Deliverable Submission",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  }
+ ],
+ "name": "PEI (imported 4/30/13 10:38:46 AM)",
+ "coreForm": null,
+ "companyId": 61802,
+ "actions": [
+  {
+   "id": 62047,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Negotiations",
+   "parameters": {
+    "status name": "Negotiations",
+    "project level": "Station"
+   },
+   "companyId": 61802,
+   "version": 0
+  },
+  {
+   "id": 62028,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Construction",
+   "parameters": {
+    "status name": "Construction",
+    "project level": "Station"
+   },
+   "companyId": 61802,
+   "version": 0
+  },
+  {
+   "id": 61869,
+   "scriptFilePrefix": "AssignToRole",
+   "name": "CreatorAsManager",
+   "parameters": {
+    "role": "Creator",
+    "remove others?": "Yes",
+    "type": "Manager"
+   },
+   "companyId": 61802,
+   "version": 0
+  },
+  {
+   "id": 62014,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Admin",
+   "parameters": {
+    "status name": "Admin",
+    "project level": "Station"
+   },
+   "companyId": 61802,
+   "version": 0
+  },
+  {
+   "id": 62032,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Third Party to Engineer",
+   "parameters": {
+    "status name": "Third Party to Engineer",
+    "project level": "Station"
+   },
+   "companyId": 61802,
+   "version": 0
+  },
+  {
+   "id": 62051,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "AEP Responsibility",
+   "parameters": {
+    "status name": "AEP Responsibility",
+    "project level": "Station"
+   },
+   "companyId": 61802,
+   "version": 0
+  },
+  {
+   "id": 62038,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Remediation",
+   "parameters": {
+    "status name": "Remediation",
+    "project level": "Station"
+   },
+   "companyId": 61802,
+   "version": 0
+  },
+  {
+   "id": 62016,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "LOC Fix completed",
+   "parameters": {
+    "status name": "LOC Fix completed",
+    "project level": "Station"
+   },
+   "companyId": 61802,
+   "version": 0
+  }
+ ],
+ "version": 12
+}

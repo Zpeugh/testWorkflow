@@ -1,0 +1,648 @@
+{
+ "conditions": [{
+  "id": 4430,
+  "scriptFilePrefix": "Address",
+  "name": "Condition",
+  "parameters": {
+   "criteria": "Asset City Equals",
+   "value": ""
+  },
+  "companyId": 2,
+  "version": 0
+ }],
+ "id": 4426,
+ "formParameters": [],
+ "formTemplates": [
+  {
+   "id": 4406,
+   "name": "TestSetRequired",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 2,
+   "fieldTemplates": [{
+    "id": 4407,
+    "readOnly": false,
+    "parent": null,
+    "commaSeparatedChoices": "",
+    "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+    "label": "TextField",
+    "formTemplate": {
+     "_ref": "../..",
+     "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+    },
+    "type": {
+     "name": "TEXTFIELD",
+     "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+    },
+    "required": false,
+    "additionalFields": []
+   }]
+  },
+  {
+   "id": 1161,
+   "name": "Table",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 2,
+   "fieldTemplates": [
+    {
+     "id": 1162,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Table",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TABLE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": [
+      {
+       "id": 1163,
+       "readOnly": false,
+       "parent": {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       },
+       "commaSeparatedChoices": ",Option 1,Option 2",
+       "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+       "label": "Field",
+       "formTemplate": {
+        "_ref": "../../../..",
+        "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+       },
+       "type": {
+        "name": "RADIO_BUTTONS",
+        "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+       },
+       "required": false,
+       "additionalFields": []
+      },
+      {
+       "id": 1164,
+       "readOnly": false,
+       "parent": {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       },
+       "commaSeparatedChoices": null,
+       "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+       "label": "Field 2",
+       "formTemplate": {
+        "_ref": "../../../..",
+        "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+       },
+       "type": {
+        "name": "TEXTFIELD",
+        "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+       },
+       "required": false,
+       "additionalFields": []
+      }
+     ]
+    },
+    {
+     "id": 1163,
+     "readOnly": false,
+     "parent": {
+      "id": 1162,
+      "readOnly": false,
+      "parent": null,
+      "commaSeparatedChoices": null,
+      "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+      "label": "Table",
+      "formTemplate": {
+       "_ref": "../../..",
+       "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+      },
+      "type": {
+       "name": "TABLE",
+       "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+      },
+      "required": false,
+      "additionalFields": [
+       {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       },
+       {
+        "id": 1164,
+        "readOnly": false,
+        "parent": {
+         "_ref": "../..",
+         "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+        },
+        "commaSeparatedChoices": null,
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+        "label": "Field 2",
+        "formTemplate": {
+         "_ref": "../../../../..",
+         "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+        },
+        "type": {
+         "name": "TEXTFIELD",
+         "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+        },
+        "required": false,
+        "additionalFields": []
+       }
+      ]
+     },
+     "commaSeparatedChoices": ",Option 1,Option 2",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Field",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 1164,
+     "readOnly": false,
+     "parent": {
+      "id": 1162,
+      "readOnly": false,
+      "parent": null,
+      "commaSeparatedChoices": null,
+      "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+      "label": "Table",
+      "formTemplate": {
+       "_ref": "../../..",
+       "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+      },
+      "type": {
+       "name": "TABLE",
+       "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+      },
+      "required": false,
+      "additionalFields": [
+       {
+        "id": 1163,
+        "readOnly": false,
+        "parent": {
+         "_ref": "../..",
+         "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+        },
+        "commaSeparatedChoices": ",Option 1,Option 2",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+        "label": "Field",
+        "formTemplate": {
+         "_ref": "../../../../..",
+         "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+        },
+        "type": {
+         "name": "RADIO_BUTTONS",
+         "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+        },
+        "required": false,
+        "additionalFields": []
+       },
+       {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       }
+      ]
+     },
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Field 2",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 1780,
+   "name": "Table ID",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 2,
+   "fieldTemplates": [
+    {
+     "id": 1781,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Table",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TABLE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": [
+      {
+       "id": 1782,
+       "readOnly": false,
+       "parent": {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       },
+       "commaSeparatedChoices": "",
+       "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+       "label": "ID",
+       "formTemplate": {
+        "_ref": "../../../..",
+        "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+       },
+       "type": {
+        "name": "TEXTFIELD",
+        "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+       },
+       "required": false,
+       "additionalFields": []
+      },
+      {
+       "id": 4159,
+       "readOnly": false,
+       "parent": {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       },
+       "commaSeparatedChoices": ",test1,test2",
+       "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+       "label": "test",
+       "formTemplate": {
+        "_ref": "../../../..",
+        "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+       },
+       "type": {
+        "name": "RADIO_BUTTONS",
+        "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+       },
+       "required": true,
+       "additionalFields": []
+      }
+     ]
+    },
+    {
+     "id": 1782,
+     "readOnly": false,
+     "parent": {
+      "id": 1781,
+      "readOnly": false,
+      "parent": null,
+      "commaSeparatedChoices": "",
+      "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+      "label": "Table",
+      "formTemplate": {
+       "_ref": "../../..",
+       "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+      },
+      "type": {
+       "name": "TABLE",
+       "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+      },
+      "required": false,
+      "additionalFields": [
+       {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       },
+       {
+        "id": 4159,
+        "readOnly": false,
+        "parent": {
+         "_ref": "../..",
+         "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+        },
+        "commaSeparatedChoices": ",test1,test2",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+        "label": "test",
+        "formTemplate": {
+         "_ref": "../../../../..",
+         "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+        },
+        "type": {
+         "name": "RADIO_BUTTONS",
+         "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+        },
+        "required": true,
+        "additionalFields": []
+       }
+      ]
+     },
+     "commaSeparatedChoices": "",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "ID",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 4159,
+     "readOnly": false,
+     "parent": {
+      "id": 1781,
+      "readOnly": false,
+      "parent": null,
+      "commaSeparatedChoices": "",
+      "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+      "label": "Table",
+      "formTemplate": {
+       "_ref": "../../..",
+       "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+      },
+      "type": {
+       "name": "TABLE",
+       "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+      },
+      "required": false,
+      "additionalFields": [
+       {
+        "id": 1782,
+        "readOnly": false,
+        "parent": {
+         "_ref": "../..",
+         "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+        },
+        "commaSeparatedChoices": "",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+        "label": "ID",
+        "formTemplate": {
+         "_ref": "../../../../..",
+         "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+        },
+        "type": {
+         "name": "TEXTFIELD",
+         "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+        },
+        "required": false,
+        "additionalFields": []
+       },
+       {
+        "_ref": "../..",
+        "class": "com.spidasoftware.projectmanager.forms.FieldTemplate"
+       }
+      ]
+     },
+     "commaSeparatedChoices": ",test1,test2",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "test",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "plans": [],
+   "leftPixelPosition": 5660,
+   "onStartActions": [],
+   "formTemplates": [4406],
+   "class": "ClearEvent",
+   "flow": 4426,
+   "version": 1,
+   "id": 4437,
+   "topPixelPosition": 800,
+   "projectLevel": "STATION",
+   "color": "FFFFFF",
+   "name": "Clear",
+   "locationType": "ONLINE",
+   "onFinishActions": [1151]
+  },
+  {
+   "nextEvent": 4437,
+   "plans": [],
+   "leftPixelPosition": 5660,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 4426,
+   "version": 2,
+   "id": 4436,
+   "topPixelPosition": 600,
+   "projectLevel": "STATION",
+   "color": "FFFFFF",
+   "name": "Nothing great",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 4429,
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [1161],
+   "automatic": false,
+   "class": "StartEvent",
+   "flow": 4426,
+   "version": 2,
+   "id": 4428,
+   "topPixelPosition": 200,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Start",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5330,
+   "onStartActions": [],
+   "formTemplates": [],
+   "automatic": true,
+   "class": "CancelEvent",
+   "flow": 4426,
+   "version": 0,
+   "id": 4435,
+   "topPixelPosition": 1000,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Cancel",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "condition": 4430,
+   "notMetEvent": 4436,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 4426,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 4,
+   "id": 4429,
+   "topPixelPosition": 400,
+   "projectLevel": "STATION",
+   "color": "FFFFFF",
+   "name": "Conditional Event",
+   "locationType": "ONLINE",
+   "metEvent": 4432,
+   "onFinishActions": [4412]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "FinishEvent",
+   "flow": 4426,
+   "version": 0,
+   "id": 4427,
+   "topPixelPosition": 9600,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Finish",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": null,
+   "plans": [],
+   "leftPixelPosition": 5330,
+   "onStartActions": [],
+   "formTemplates": [1780],
+   "class": "AutomaticEvent",
+   "flow": 4426,
+   "version": 1,
+   "id": 4433,
+   "topPixelPosition": 800,
+   "projectLevel": "ASSET",
+   "color": "FFFFFF",
+   "name": "Meet the President",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": [4434]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "HoldEvent",
+   "flow": 4426,
+   "version": 0,
+   "id": 4431,
+   "topPixelPosition": 600,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Hold",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5330,
+   "possibleNextEvents": [{
+    "id": 4433,
+    "label": "Possible"
+   }],
+   "onStartActions": [1153],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 4426,
+   "version": 5,
+   "id": 4432,
+   "topPixelPosition": 600,
+   "projectLevel": "STATION",
+   "color": "FFFFFF",
+   "name": "Anything goes",
+   "locationType": "ONLINE",
+   "onFinishActions": [3052]
+  }
+ ],
+ "name": "Friday",
+ "coreForm": null,
+ "companyId": 2,
+ "actions": [
+  {
+   "id": 1151,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Set Station",
+   "parameters": {
+    "Status Name": "Station",
+    "Project Level": "Station"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 4412,
+   "scriptFilePrefix": "SetFormFieldsRequired",
+   "name": "TestSetRequired",
+   "parameters": {
+    "Fields (leave Blank If All, Comma-separated If Multiple)": "",
+    "Form": "TestSetRequired",
+    "Require Form": "on"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 4434,
+   "scriptFilePrefix": "CSVToForm",
+   "name": "Comment on Policy",
+   "parameters": {
+    "Form": "",
+    "Project Level": "Project"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 1153,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Set Station 2",
+   "parameters": {
+    "Status Name": "Check Conflicting Permits",
+    "Project Level": "Station"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 3052,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "V1AttachDetail",
+   "parameters": {
+    "Status Name": "AttachDetail",
+    "Project Level": "Station"
+   },
+   "companyId": 2,
+   "version": 0
+  }
+ ],
+ "version": 1
+}

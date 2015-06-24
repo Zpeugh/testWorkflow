@@ -1,0 +1,679 @@
+{
+ "conditions": [
+  {
+   "id": 1155,
+   "scriptFilePrefix": "Event",
+   "name": "Conflicting Permit",
+   "parameters": {
+    "criteria": "Event Exists",
+    "value": "Conflicting Permit"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 1154,
+   "scriptFilePrefix": "DataFieldValue",
+   "name": "Check Station Statuses",
+   "parameters": {
+    "field criteria": "Field Value Equals",
+    "field value": "Yes",
+    "form name": "Station",
+    "require one or all forms (if station level forms)": "one",
+    "field name": "Conflicting Permits?",
+    "require one or all rows (if table column)": "one"
+   },
+   "companyId": 2,
+   "version": 1
+  },
+  {
+   "id": 1156,
+   "scriptFilePrefix": "DataFieldValue",
+   "name": "Table Condition Check",
+   "parameters": {
+    "field criteria": "Field Value Equals",
+    "field value": "test1",
+    "form name": "Table ID",
+    "require one or all forms (if station level forms)": "one",
+    "field name": "test",
+    "require one or all rows (if table column)": "all"
+   },
+   "companyId": 2,
+   "version": 3
+  }
+ ],
+ "id": 4473,
+ "formParameters": [],
+ "formTemplates": [
+  {
+   "id": 4406,
+   "name": "TestSetRequired",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 2,
+   "fieldTemplates": [{
+    "id": 4407,
+    "readOnly": false,
+    "parent": null,
+    "commaSeparatedChoices": "",
+    "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+    "label": "TextField",
+    "formTemplate": {
+     "_ref": "../..",
+     "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+    },
+    "type": {
+     "name": "TEXTFIELD",
+     "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+    },
+    "required": false,
+    "additionalFields": []
+   }]
+  },
+  {
+   "id": 1157,
+   "name": "Station",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 2,
+   "fieldTemplates": [
+    {
+     "id": 1158,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "No,Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Conflicting Permits?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 1159,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Comments",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTAREA",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 1160,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Field Within a Table?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 4498,
+   "name": "Worthless Form",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 2,
+   "fieldTemplates": [
+    {
+     "id": 4499,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Money",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "GROUP",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 4500,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0.0,10.0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Value",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "SPINNER",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "nextEvent": 4476,
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "automatic": false,
+   "class": "StartEvent",
+   "flow": 4473,
+   "version": 1,
+   "id": 4475,
+   "topPixelPosition": 200,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Start",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5330,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ClearEvent",
+   "flow": 4473,
+   "version": 1,
+   "id": 4488,
+   "topPixelPosition": 2200,
+   "projectLevel": "STATION",
+   "color": "FFFFFF",
+   "name": "Event with _ underscore",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [{
+    "id": 4486,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 4473,
+   "version": 14,
+   "id": 4485,
+   "topPixelPosition": 1800,
+   "projectLevel": "STATION",
+   "color": "FFFFFF",
+   "name": "Normal Event: colon",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "FinishEvent",
+   "flow": 4473,
+   "version": 0,
+   "id": 4474,
+   "topPixelPosition": 9600,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Finish",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [4444],
+   "condition": 1155,
+   "notMetEvent": 4492,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 4473,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 4,
+   "id": 4478,
+   "topPixelPosition": 800,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Condition",
+   "locationType": "ONLINE",
+   "metEvent": 4479,
+   "onFinishActions": [4493]
+  },
+  {
+   "nextEvent": 4485,
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 4473,
+   "version": 3,
+   "id": 4482,
+   "topPixelPosition": 1600,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Yup",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": [4444]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [{
+    "id": 4477,
+    "label": "Possible"
+   }],
+   "onStartActions": [3052],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 4473,
+   "version": 14,
+   "id": 4476,
+   "topPixelPosition": 400,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Download",
+   "locationType": "ONLINE",
+   "onFinishActions": [1783]
+  },
+  {
+   "nextEvent": 4490,
+   "plans": [{
+    "id": 4496,
+    "durationUnit": "days",
+    "event": 4480,
+    "metEvents": [4484],
+    "plannedAction": 4434,
+    "recurring": true,
+    "durationValue": 45,
+    "version": 0
+   }],
+   "leftPixelPosition": 5000,
+   "onStartActions": [4497],
+   "formTemplates": [4406],
+   "class": "AutomaticEvent",
+   "flow": 4473,
+   "version": 7,
+   "id": 4480,
+   "topPixelPosition": 1200,
+   "projectLevel": "STATION",
+   "color": "FFFFFF",
+   "name": "Arbitrary Event",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "HoldEvent",
+   "flow": 4473,
+   "version": 0,
+   "id": 4487,
+   "topPixelPosition": 2200,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Hold",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [
+    {
+     "id": 4484,
+     "label": "Possible"
+    },
+    {
+     "id": 4482,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 4473,
+   "version": 25,
+   "id": 4481,
+   "topPixelPosition": 1400,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Event 3",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 4478,
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [4412],
+   "formTemplates": [1157],
+   "class": "AutomaticEvent",
+   "flow": 4473,
+   "version": 3,
+   "id": 4477,
+   "topPixelPosition": 600,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Properties",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": [1153]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5660,
+   "onStartActions": [],
+   "condition": 1154,
+   "notMetEvent": null,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 4473,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 2,
+   "id": 4489,
+   "topPixelPosition": 1400,
+   "projectLevel": "ASSET",
+   "color": "FFFFFF",
+   "name": "Wouldn't matter",
+   "locationType": "ONLINE",
+   "metEvent": null,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5330,
+   "onStartActions": [1152],
+   "condition": 1154,
+   "notMetEvent": null,
+   "formTemplates": [4498],
+   "class": "ConditionalEvent",
+   "flow": 4473,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 2,
+   "id": 4484,
+   "topPixelPosition": 1600,
+   "projectLevel": "ASSET",
+   "color": "FFFFFF",
+   "name": "Incredible things here",
+   "locationType": "ONLINE",
+   "metEvent": null,
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 4491,
+   "plans": [],
+   "leftPixelPosition": 5990,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 4473,
+   "version": 2,
+   "id": 4490,
+   "topPixelPosition": 1400,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Alright",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5330,
+   "onStartActions": [],
+   "condition": 1156,
+   "notMetEvent": null,
+   "formTemplates": [1157],
+   "class": "ConditionalEvent",
+   "flow": 4473,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 2,
+   "id": 4483,
+   "topPixelPosition": 1400,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Delete",
+   "locationType": "ONLINE",
+   "metEvent": null,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "possibleNextEvents": [{
+    "id": 4480,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 4473,
+   "version": 15,
+   "id": 4479,
+   "topPixelPosition": 1000,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Actions",
+   "locationType": "ONLINE",
+   "onFinishActions": [4494]
+  },
+  {
+   "nextEvent": 4488,
+   "plans": [],
+   "leftPixelPosition": 5000,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 4473,
+   "version": 2,
+   "id": 4486,
+   "topPixelPosition": 2000,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "possibleBug.html",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": null,
+   "plans": [],
+   "leftPixelPosition": 5990,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 4473,
+   "version": 1,
+   "id": 4491,
+   "topPixelPosition": 1600,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Update",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": null,
+   "plans": [],
+   "leftPixelPosition": 5330,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 4473,
+   "version": 2,
+   "id": 4492,
+   "topPixelPosition": 1000,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Cancel",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  }
+ ],
+ "name": "ActionsGalore",
+ "coreForm": null,
+ "companyId": 2,
+ "actions": [
+  {
+   "id": 4444,
+   "scriptFilePrefix": "SetFormFieldsReadOnly",
+   "name": "MultipleSelectReadOnly",
+   "parameters": {
+    "Fields (leave Blank If All, Comma-separated If Multiple)": "MultipleSelect",
+    "Form": "MultipleSelect",
+    "Read Only": "Yes"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 4493,
+   "scriptFilePrefix": "EmailRole",
+   "name": "Dummy Action",
+   "parameters": {
+    "Body": "",
+    "Subject": "",
+    "Role": "Creator"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 3052,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "V1AttachDetail",
+   "parameters": {
+    "Status Name": "AttachDetail",
+    "Project Level": "Station"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 1783,
+   "scriptFilePrefix": "PopulateFormTableWithPrimaryAssetTags",
+   "name": "Populate Table ID Test",
+   "parameters": {
+    "Form": "Table ID",
+    "Prevent Addition And Removal Of Rows?": "on",
+    "Table": "Table",
+    "Column": "ID"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 4497,
+   "scriptFilePrefix": "Assign",
+   "name": "Me",
+   "parameters": {
+    "Do": "Assign a User",
+    "Email": "",
+    "Type": "Creator",
+    "Remove Others?": "Yes",
+    "Notify Assignees(s)?": "on"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 4434,
+   "scriptFilePrefix": "CSVToForm",
+   "name": "Comment on Policy",
+   "parameters": {
+    "Form": "",
+    "Project Level": "Project"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 4412,
+   "scriptFilePrefix": "SetFormFieldsRequired",
+   "name": "TestSetRequired",
+   "parameters": {
+    "Fields (leave Blank If All, Comma-separated If Multiple)": "",
+    "Form": "TestSetRequired",
+    "Require Form": "on"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 1153,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Set Station 2",
+   "parameters": {
+    "Status Name": "Check Conflicting Permits",
+    "Project Level": "Station"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 1152,
+   "scriptFilePrefix": "PopulateFormTableWithPrimaryAssetTags",
+   "name": "Populate Pole IDS",
+   "parameters": {
+    "Form": "Table",
+    "Prevent Addition And Removal Of Rows?": "on",
+    "Table": "Table",
+    "Column": "Field 2"
+   },
+   "companyId": 2,
+   "version": 0
+  },
+  {
+   "id": 4494,
+   "scriptFilePrefix": "SetAPIClientUpdatePermissions",
+   "name": "Anything",
+   "parameters": {
+    "Api Clients": ["SPIDACalc"],
+    "Lock Or Unlock For Api Updates": "unlock"
+   },
+   "companyId": 2,
+   "version": 0
+  }
+ ],
+ "version": 1
+}

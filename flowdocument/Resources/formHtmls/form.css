@@ -1,0 +1,44 @@
+<style type="text/css">
+html{
+    font-family: Sawasdee !important;
+}
+img {
+    border : 1px;
+    box-shadow: 5px 5px 5px #7C7C7C;
+}
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+h2{
+
+    font-family: Sawasdee;
+}
+
+li {
+    font-family: Sawasdee;
+}
+
+.form{
+font-family : Sawasdee !important;
+}
+
+.underline{
+    text-decoration: underline;
+    margin-bottom: 0px;
+}
+
+h2{
+font-size: 14pt;
+-webkit-margin-before: 0.2em;
+-webkit-margin-after: 0.2em;
+
+}
+
+.header {
+	color : #681515;
+}
+</style>
