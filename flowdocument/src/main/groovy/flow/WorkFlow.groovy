@@ -204,7 +204,7 @@ public class WorkFlow {
 		def order = eventList.tokenize('~');
 
 		for (int i = 0; i < order.size(); i++){
-			events << ('\n\t\t<li><a href=\"' + "${order[i].replaceAll(':', '[colon]')}" +
+			events << ('\n\t\t<li><a href=\"' + "${order[i]}" +
 				'.html\">' + "${order[i]}" + '</a></li>')
 		}
 		events = events.join("").toString()
@@ -230,28 +230,28 @@ public class WorkFlow {
 		File flowInfo = new File('Resources/flowInfo.txt')
 
 		flowInfo.write(newFlow.flowName + '\n')
-		flowInfo.append(companyName)
+		flowInfo.append(companyName.replaceAll('~', ' '))
 
 		def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + sampleFlow.formArguments).execute()
 		getForms.waitForProcessOutput(System.out, System.err)
 
-		// def formatFormHtml = ('casperjs generateformhtml.js ' +  sampleFlow.formArguments).execute()
-		// formatFormHtml.waitForProcessOutput(System.out, System.err)
-		//
-		// def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js ' + companyName + ' ' + sampleFlow.flowName + ' ' + sampleFlow.actionArguments).execute()
-		// getActions.waitForProcessOutput(System.out, System.err)
-		//
-		// def formatActionHtml = ('casperjs generateactionhtml.js ' + sampleFlow.actionArguments).execute()
-		// formatActionHtml.waitForProcessOutput(System.out, System.err)
-		//
-		// newFlow.events.each{k,v -> v.printEventPage(new File('Resources/Events/' + v.eventName + '.html'))}
-		//
-		// newFlow.printEventIndexPage(new File('Resources/Events/EventIndex.html') )
-		//
-		// newFlow.events.each{k,v ->
-		// 	File eventPage = new File('Resources/Events/texts/' + v.eventName + '.txt')
-		// 	v.printEventInfoPage(eventPage)
-		// }
+		def formatFormHtml = ('casperjs generateformhtml.js ' +  sampleFlow.formArguments).execute()
+		formatFormHtml.waitForProcessOutput(System.out, System.err)
+
+		def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js ' + companyName + ' ' + sampleFlow.flowName + ' ' + sampleFlow.actionArguments).execute()
+		getActions.waitForProcessOutput(System.out, System.err)
+
+		def formatActionHtml = ('casperjs generateactionhtml.js ' + sampleFlow.actionArguments).execute()
+		formatActionHtml.waitForProcessOutput(System.out, System.err)
+
+		newFlow.events.each{k,v -> v.printEventPage(new File('Resources/Events/' + v.eventName + '.html'))}
+
+		newFlow.printEventIndexPage(new File('Resources/Events/EventIndex.html') )
+
+		newFlow.events.each{k,v ->
+			File eventPage = new File('Resources/Events/texts/' + v.eventName + '.txt')
+			v.printEventInfoPage(eventPage)
+		}
 
 		// Asynchronizer.doParallel() {
 		//

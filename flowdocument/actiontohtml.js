@@ -1,9 +1,7 @@
-
-
 //globally defined username and password for logging in.
 var USERNAME = 'admin@spidasoftware.com';
 var PASSWORD = 'defaultADMIN321';
-var WEBSITE = 'www.spidasoftware';
+var WEBSITE = 'www.spidasoftware'; //or demo.spidastudio
 var actionNameArray = [];
 var re = new RegExp('~', 'g');
 var START_ON_TAB = 0; //tab to begin looking for forms on.
@@ -16,8 +14,8 @@ var casper = require('casper').create({
 
     stepTimeout: 8000,
     timeout : 10000,
-    verbose: false,
-    logLevel: 'error',
+    verbose: true,
+    logLevel: 'debug',
     pageSettings: {
       userAgent : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36",
       localToRemoteUrlAccessEnabled : true
@@ -94,11 +92,13 @@ casper.getAction = function(j, actionName, actionValue){
         this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){
             this.capture('pngs/'+actionName+'.png');
             var html = this.getHTML('#action');
-            html = html.replace("<form", "<html><link href=\"flow.css\" rel=\"stylesheet\" " +
+            html = html.replace("<form", "<html><link href=\"../flow.css\" rel=\"stylesheet\" " +
             "type=\"text/css\" /><div class=\"row\"><div id=\"action\" class=\"small-12 columns\"><form" );
             html = html.replace("</form>", "</div></div></form></html>");
+            var imageRE = new RegExp('images', 'g');
+            html = html.replace(imageRE,'../images');
             fs.write('Resources/actionHtmls/' + actionName + '.html', html, 'w');
-            console.log("Captured action: " + actionName);
+            console.log("Captured action: " + actionName + "value: " + actionValue);
 
         }, function(){
             console.log('Missed action: ' + actionName);

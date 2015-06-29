@@ -27,6 +27,7 @@ var counter = 0;
 var actionNameArray = [];
 var fs = require('fs');
 var re = new RegExp('~', 'g');
+var reUnder = new RegExp('_', 'g');
 console.log("Actions to capture: ");
 
 while ( casper.cli.has(counter) ){
@@ -54,8 +55,9 @@ casper.getActionLabels = function(actionName){
               if (label.charAt(0) === label.charAt(0).toLowerCase()){
                 actionFormValues[x] = label.charAt(0).toUpperCase() + label.substr(1,label.length) ;
               };
+
               actionFormValues[x] = actionFormValues[x].replace('Pm_', '');
-              actionFormValues[x] = actionFormValues[x].replace(re, ' ');
+              actionFormValues[x] = actionFormValues[x].replace(reUnder, ' ');
           };
           this.createActionHTML(actionName, actionFormValues);
     });

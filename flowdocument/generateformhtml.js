@@ -1,38 +1,33 @@
 var casper = require('casper').create({
-  //waitTimeout: 15000,
-  //    viewPortSize : {width : '5000',
-  //                   height : '3000'},
-  stepTimeout: 8000,
-  timeout: 12000,
-  verbose: true,
-  logLevel: 'debug',
-  pageSettings: {
-    userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36",
+    waitTimeout: 8000,    
+    stepTimeout: 8000,
+    timeout: 12000,
+    verbose: true,
+    logLevel: 'debug',
+    pageSettings: {
     localToRemoteUrlAccessEnabled: true
-  },
-  onStepTimeout: function() {
+    },
+    onStepTimeout: function() {
     console.log("step timed out");
     this.navigationRequested = false;
     this.loadInProgress = false;
-  },
-  onTimeout: function() {
+    },
+    onTimeout: function() {
     console.log("script timed out");
     this.navigationRequested = false;
     this.loadInProgress = false;
-  },
-  onWaitTimeout: function() {
+    },
+    onWaitTimeout: function() {
     console.log("wait timed out");
     this.navigationRequested = false;
     this.loadInProgress = false;
-  }
+    }
 });
 
 
 casper.on('remote.message', function(msg) {
-  this.echo('remote message caught: ' + msg);
+    this.echo('remote message caught: ' + msg);
 });
-
-
 
 //Take the arguments from the commandline and store them as the names of the actions
 //in the formName array
@@ -45,13 +40,13 @@ console.log('Forms to generate: ');
 
 while (casper.cli.has(counter)) {
 
-  formNameArray[counter] = casper.cli.get(counter).replace(re, ' ');
-  console.log(counter + ': ' + formNameArray[counter] );
-  counter++;
+    formNameArray[counter] = casper.cli.get(counter).replace(re, ' ');
+    console.log(counter + ': ' + formNameArray[counter] );
+    counter++;
 };
 
 if (formNameArray.length === 0) {
-  casper.exit();
+    casper.exit();
 };
 
 
@@ -96,28 +91,24 @@ casper.createFormHTML = function(formName, formValues) {
 
 casper.getFormLabels = function(formName) {
 
-//store a screenshot as a png
+    var formValues = ["temp"];
+    var finalFormValues = [];
+    var count = 0;
+    do  {
+        formValues[count] = this.evaluate(function(count) {
+            var strongValues = document.getElementsByTagName('strong');
+            return strongValues[count].valueOf().innerHTML;
+        }, count);
+        count++;
+    }while (formValues[count-1]);
 
-
-var formValues = ["temp"];
-var finalFormValues = [];
-var count = 0;
-do  {
-    formValues[count] = this.evaluate(function(count) {
-        var strongValues = document.getElementsByTagName('strong');
-        return strongValues[count].valueOf().innerHTML;
-
-    }, count);
-    count++;
-}while (formValues[count-1]);
-
-for (var i = 0; i < formValues.length; i++){
-    if (isNaN(formValues[i])){
-        finalFormValues.push(formValues[i]);
+    for (var i = 0; i < formValues.length; i++){
+        if (isNaN(formValues[i])){
+            finalFormValues.push(formValues[i]);
+        };
     };
-};
 
-this.createFormHTML(formName, finalFormValues);
+    this.createFormHTML(formName, finalFormValues);
 };
 
 //*****************************BEGIN THE SCRIPT*******************************//
@@ -127,8 +118,9 @@ casper.start();
 casper.each(formNameArray, function(casper, formName) {
     this.thenOpen('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', function(){
         this.capturePNG(formName);
-        this.waitForUrl('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName)
-    )});
+        //this.capture('Resources/formHtmls/formPNGs/' + formName + '.png');
+        this.waitForUrl('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName));
+    });
 });
 
 casper.run(function() {

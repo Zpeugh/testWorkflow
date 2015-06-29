@@ -133,7 +133,7 @@ class Event {
 			String sActions = ""
 			String pActions = ""
 			String fActions = ""
-			String forms = ""			
+			String forms = ""
 
 			if (this.eventClass == "Conditional"){
 				thisCondition = this.condition.conditionName

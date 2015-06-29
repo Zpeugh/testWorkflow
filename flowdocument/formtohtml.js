@@ -14,10 +14,9 @@ var re = new RegExp('~', 'g');
 var casper = require('casper').create({
     stepTimeout: 8000,
     timeout : 10000,
-    verbose: false,
-    logLevel: 'error',
+    verbose: true,
+    logLevel: 'debug',
     pageSettings: {
-      userAgent : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36",
       localToRemoteUrlAccessEnabled : true
     },
     onStepTimeout : function () {
@@ -38,7 +37,6 @@ var casper = require('casper').create({
 });
 
 
-
 casper.on('resource.received', function(resource) {
 
     if (resource.url.indexOf('Atmosphere-tracking-') > -1) {
@@ -46,6 +44,7 @@ casper.on('resource.received', function(resource) {
         this.loadInProgress = false;
     }
 });
+
 
 //Take the arguments from the commandline and store them as the names of the forms
 //in the formName array
@@ -93,7 +92,6 @@ casper.nextTab = function(tab) {
             };
         }, 6000);
     });
-
 };
 
 /*
@@ -110,7 +108,6 @@ casper.matchFormNames = function(childNumber){
         //console.log('inner: ' + count);
         if(formName === this.fetchText('tr:nth-child(' + childNumber + ')>td>a')){
 
-
             //click on the form
             casper.then( function clickForm(){
                 this.clickLabel(formName);
@@ -118,8 +115,8 @@ casper.matchFormNames = function(childNumber){
             casper.waitForSelector('#wrap>div.wide-body', function() {
                 this.evaluate(function(formName){
                     var elem = document.querySelector('#tabs>ul');
-                    elem.setAttribute('class', '');
-                    elem.innerHTML = '<h2>' + formName + '</h2>';
+                    elem.style.minHeight = "35px";
+                    elem.innerHTML = "";
                 }, formName);
             }, function() {
                 console.log("Missing Form.");
@@ -131,9 +128,10 @@ casper.matchFormNames = function(childNumber){
                 //console.log(formName + ':\n\n' + html);
 
                 html = html.replace('<h1>Form Template Editor : ' + formName + '</h1>', "<link href=\"flow.css\" rel=\"stylesheet\" type=\"text/css\" />" );
-                html = html.replace("style=\"min-width:1100px\"", "style=\"max-width:1100px\"");
+                html = html.replace("style=\"min-width:1100px\"", "style=\"min-width:800px\"");
                 urlRE = new RegExp('/projectmanager/plugins/layout-3.7/images/16', 'g');
-                html = html.replace(urlRE, 'images');
+                html = html.replace(urlRE, '../images');
+
                 fs.write('Resources/formHtmls/' + formName + '.html', html, 'w');
             });
             //navigate back to the form list page
@@ -142,11 +140,8 @@ casper.matchFormNames = function(childNumber){
             });
 
             casper.waitForSelector('#wrap>div.body>div:nth-child(2)>span>a', function() {
-                        //console.log("headed back to forms page");
             }, function() {}, 6000);
-
             console.log("Stored screenshot of form: " + formName);
-
         };
     });
 };
@@ -167,14 +162,10 @@ casper.then(function login(){
 });
 
 
-/*
-* Wait 8 seconds for the form to be submitted and the page is done redirecting
-*/
 casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/', function afterLogin(){
 }, function onUrlTimeout(){
     casper.logIntoSpida();
 }, 6000);
-
 
 
 casper.waitForSelector('#mainnav>ul>li>div>div', function(){
@@ -199,7 +190,7 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', 
 
 
 /*
-* Navigate to the form list
+* Navigate to the flow list
 */
 casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/formTemplate/list', function openFormList(){
     console.log("Navigating to Flow Form List");
@@ -221,12 +212,12 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/formTemplate/list'
 *from the given array (formNameArray) on each page.
 */
 casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrough() {
-  var numberOfTabs = this.evaluate(function() {
+    var numberOfTabs = this.evaluate(function() {
       return document.querySelector('#wrap>div.body>div.paginate_buttons').childNodes.length;
-  },6000);
+    },6000);
 
-  //set tabs to number of children minus the current, previous, and next children
-  numberOfTabs = numberOfTabs - 3;
+    //set tabs to number of children minus the current, previous, and next children
+    numberOfTabs = numberOfTabs - 3;
 
     if (numberOfTabs < 1){
         this.nextTab(0);
@@ -235,9 +226,7 @@ casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrou
             this.nextTab(tab);
         };
     };
-
 });
-
 
 /*
 * Execute the script

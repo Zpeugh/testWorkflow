@@ -46,7 +46,7 @@ task runMain( dependsOn: 'classes', type: JavaExec) {
     doFirst{
 
         tasks.unzip.execute()
-        tasks.cleanResources.execute()
+        //tasks.cleanResources.execute()
 
         main = 'flow.WorkFlow'
         classpath = sourceSets.main.runtimeClasspath
@@ -63,8 +63,8 @@ task runMain( dependsOn: 'classes', type: JavaExec) {
     }
 
     doLast{
-        tasks.showInBrowser.execute()
-        tasks.exportWorkflow.execute()
+        //tasks.showInBrowser.execute()
+        //tasks.exportWorkflow.execute()
     }
 }
 
@@ -106,20 +106,15 @@ task exportWorkflow()  {
         mkdir(actionHtmlsFolder.toString() + '/actionPNGs/');
         mkdir(formHtmlsFolder.toString() + '/formPNGs/');
         mkdir(eventsFolder.toString() + '/texts/');
-        def fileString
-        def extension
+        def fileString, noColonFileString, extension, myCopySpec
         String baseName
-        def myCopySpec
-
 
         resources.each{File file ->
 
-            fileString = file.toString().replaceAll(':', '[colon]')
-            file.renameTo(fileString);
-            extension = file.name.split('\\.');
-            extension = extension.last()
-            baseName = file.name.replaceFirst(~/\.[^\.]+$/, '')
-            baseName =  baseName + '.' + extension
+            fileString = file.toString()
+            extension = file.name.split('\\.')
+            baseName = file.name.replaceFirst(~/\.[^\.]+$/, '') + '.' + extension[-1]
+            noColonFileString = baseName.replaceAll(':', '[colon]')
 
             myCopySpec = project.copySpec {
                into folderString
@@ -127,6 +122,7 @@ task exportWorkflow()  {
                copy{
                    from fileString
                    into folderString + (fileString - absolutePath) - baseName
+                   rename( baseName, noColonFileString )
                }
             }
         }
@@ -138,8 +134,7 @@ task cleanResources() {
 
     doFirst{
         FileTree resources = fileTree(dir: 'Resources')
-        FileTree actionImages = fileTree(dir: 'Resources/actionHtmls/images')
-        FileTree formImages = fileTree(dir: 'Resources/formHtmls/images')
+        FileTree images = fileTree(dir: 'Resources/images')
 
         resources.exclude('.DS_Store')
         resources.exclude('**/*.css')
@@ -147,8 +142,7 @@ task cleanResources() {
         resources.exclude('SpidaEmblem.png')
         resources.exclude('projectmanager')
 
-        resources = resources.minus(actionImages).getAsFileTree()
-        resources = resources.minus(formImages).getAsFileTree()
+        resources = resources.minus(images).getAsFileTree()
 
         delete resources
         delete 'actions/'
