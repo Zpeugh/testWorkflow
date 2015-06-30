@@ -23,23 +23,42 @@ dependencies {
 
 String flowName
 
-task unzip(type: Exec) {
-
+task unzip() {
     doFirst{
-
         def dir = System.properties['user.home'] + '/Downloads/'
         flowName = System.console().readLine("\nFlow name: ")
         flowName = flowName.replace('.flow', '')
-        def fileString = dir + flowName + '.flow'
+        def fileString = flowName + '.flow'
+        def myCopySpec
+        def srcDir = "${buildDir}/Resources".replace('build/','')
+        def outputDir = file(srcDir)
 
-        commandLine 'jar', 'xvf', fileString
+        copy{
+            from {
+                println ("Unzipping file: " + dir + fileString)
+                zipTree(dir + fileString)
+            }
+            into {
+                println ("Into: " + outputDir)
+                outputDir
+            }
+        }
     }
+
     doLast{
 
-        def jsonFile = file('Flow.json')
+        def jsonFile = file('Resources/Flow.json')
         jsonFile.renameTo('Resources/' + flowName + '.json' )
+        FileTree actions = fileTree(dir: 'Resources/actions')
+        FileTree conditions = fileTree(dir: 'Resources/conditions')
+
+        delete actions
+        delete conditions
     }
 }
+
+
+
 
 task runMain( dependsOn: 'classes', type: JavaExec) {
 
@@ -55,6 +74,8 @@ task runMain( dependsOn: 'classes', type: JavaExec) {
 
         def company = System.console().readLine("\nCompany name: ")
 
+
+
         def arguments = new ArrayList<>()
         arguments << company.replaceAll(' ', '~')
         arguments << flowName + '.json'
@@ -63,8 +84,8 @@ task runMain( dependsOn: 'classes', type: JavaExec) {
     }
 
     doLast{
-        //tasks.showInBrowser.execute()
-        //tasks.exportWorkflow.execute()
+        tasks.showInBrowser.execute()
+        tasks.exportWorkflow.execute()
     }
 }
 
@@ -85,7 +106,7 @@ task exportWorkflow()  {
     doLast{
 
         FileTree resources = fileTree(dir: 'Resources')
-        FileTree actionImages = fileTree(dir: 'Resources/actionHtmls/images')
+        FileTree actionImages = fileTree(dir: 'Resources/images')
         FileTree formImages = fileTree(dir: 'Resources/formHtmls/images')
 
         resources.exclude('.DS_Store')
@@ -140,7 +161,7 @@ task cleanResources() {
         resources.exclude('**/*.css')
         resources.exclude('**/*.json')
         resources.exclude('SpidaEmblem.png')
-        resources.exclude('projectmanager')
+        resources.exclude('formHtmls/images')
 
         resources = resources.minus(images).getAsFileTree()
 

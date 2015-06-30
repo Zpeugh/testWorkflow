@@ -19,14 +19,14 @@ class TestWorkFlow extends Specification{
 	def ejuflow = new SampleWorkFlow('EJU.json')
 	def overlashFlow = new SampleWorkFlow('Overlash--imported-4-9-13-11-11-07-PM-.json')
 	def dgPermitFlow = new SampleWorkFlow('DGPermitOLD.json')
-	def ncmrpFlow = new SampleWorkFlow('North-Carolina-Make-Ready-Process (1).json')
-	def juPermittingFlow = new SampleWorkFlow('JU-Permitting.json')
+	def ncmrpFlow = new SampleWorkFlow('North-Carolina-Make-Ready-Process (2).json')
+	def juPermittingFlow = new SampleWorkFlow('JU-Permitting (1).json')
 	def jpaFlow = new SampleWorkFlow('JPA--1-.json')
 	def rfaFlow = new SampleWorkFlow('RFA--10-.json')
 	def peiFlow = new SampleWorkFlow('PEI--imported-4-30-13-10-38-46-AM-.json')
 	def poleLoadFlow = new SampleWorkFlow('Pole-Load-Analysis.json')
 	def oldJPAflow = new SampleWorkFlow('JPA-old.json')
-	def juFlow = new SampleWorkFlow('JU--UPDATED.json')
+	def juFlow = new SampleWorkFlow('JU--PCI-Short.json')
 
 
 	def '1: SPIDA: Test-Flow: Captured all forms'() {
@@ -1285,7 +1285,7 @@ class TestWorkFlow extends Specification{
 
 
 	//Testing TECO: JU- UPDATED flow
-	def 'TECO: JU- UPDATED: Captured all forms'() {
+	def 'TECO: JU- PCI: Captured all forms'() {
 
 		def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js TECO ' + juFlow.formArguments).execute()
 		getForms.waitForProcessOutput(System.out, System.err)
@@ -1306,7 +1306,7 @@ class TestWorkFlow extends Specification{
 
 	}
 
-	def 'TECO: JU- UPDATED: Generated all forms'() {
+	def 'TECO: JU- PCI: Generated all forms'() {
 
 		def formatFormHtml = ('casperjs generateformhtml.js ' +  juFlow.formArguments).execute()
 		formatFormHtml.waitForProcessOutput(System.out, System.err)
@@ -1329,7 +1329,7 @@ class TestWorkFlow extends Specification{
 	}
 
 
-	def 'TECO: JU- UPDATED: Captured all actions'() {
+	def 'TECO: JU- PCI: Captured all actions'() {
 
 		def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js TECO ' + juFlow.flowName + ' ' + juFlow.actionArguments).execute()
 		getActions.waitForProcessOutput(System.out, System.err)
@@ -1349,7 +1349,7 @@ class TestWorkFlow extends Specification{
 		missedList.size() == 0
 	}
 
-	def 'TECO: JU- UPDATED: Generated all actions'() {
+	def 'TECO: JU- PCI: Generated all actions'() {
 
 		println "args: " + juFlow.actionArguments
 		def generateActions = ('casperjs generateactionhtml.js ' + juFlow.actionArguments).execute()

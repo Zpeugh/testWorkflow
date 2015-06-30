@@ -89,8 +89,7 @@ casper.getAction = function(j, actionName, actionValue){
     });
 
     casper.wait(2000, function printPage(){
-        this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){
-            this.capture('pngs/'+actionName+'.png');
+        this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){            
             var html = this.getHTML('#action');
             html = html.replace("<form", "<html><link href=\"../flow.css\" rel=\"stylesheet\" " +
             "type=\"text/css\" /><div class=\"row\"><div id=\"action\" class=\"small-12 columns\"><form" );

@@ -20,12 +20,13 @@ To run this gradle app:
 
 4. Open up a terminal window.
 5. Change directory on to the directory containing the 'flowdocument' folder.
-6. Type on the commandline 'gradle runMain'
+6. Type on the commandline 'gradle runMain' for Mac OSx users.
+   For Windows users, type 'gradlew runMain'. 
 7. When prompted for "flow name: ", enter the downloaded file name from step 3,
    with or without the .flow extension.
 8. When prompted for "Company Name: ", enter the name you logged in as on spidasoftware.com.
-   This is Case-sensitive.
-9. The flow will then go and gather all the proper resources and after anywhere from 1-10 minutes
+   This is case-sensitive.
+9. The program will then go and gather all the proper resources and after between 1-10 minutes
    (depending on the size of the flow, but usually around 3-4) a folder called "ExportToGoogleDrive"
    will appear on your desktop, and a local html page will appear in your browser.
 
@@ -40,3 +41,14 @@ To run this gradle app:
 14. Once the folder is uploaded fully, open up a new google doc, and use the previously installed
     google doc add-on to create the Event, Action, and Form document templates. When prompted for
 	folder name, it is whatever you named it in step 11.
+
+
+Troubleshooting:
+
+If there are missing forms or actions, it is likely that an internet slowdown or interruption
+caused a page not to load, and you can simply run the program again and see if that captures them all.
+
+Make sure you checked the case sensitivity when putting in the flow and company names.
+
+You must have your downloaded .flow file in your userHomeDirectory/Downloads.  If this is not your
+automatic download location, then simply move the downloaded file to that folder.

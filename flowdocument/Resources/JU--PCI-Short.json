@@ -1,0 +1,2085 @@
+{
+ "conditions": [{
+  "id": 66968,
+  "scriptFilePrefix": "Event",
+  "name": "Station Forms Completed (#2) (#2)",
+  "parameters": {
+   "criteria": "All Station Events Cleared",
+   "value": "null"
+  },
+  "companyId": 59790,
+  "version": 0
+ }],
+ "id": 66773,
+ "formParameters": [],
+ "formTemplates": [
+  {
+   "id": 66857,
+   "name": "Asset Information (copy) #1 (copy)",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 59790,
+   "fieldTemplates": [
+    {
+     "id": 66858,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N - New,W - Remove,O - Overlash,R - Rebuild,U - Unauthorized,V - Violation,S - Service Drop,E - Existing Attachment",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Type Code",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66859,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "A - Added,D - Deleted,E - Existing,N - New,O - Overlash Pole,T - Transmission,X - Analysis Only",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Change Flag Code",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66860,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "na",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Pole Location",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66861,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "NJUNS",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66862,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Engineering Cost",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66863,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "MakeReady Cost",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66864,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Lead Id",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66865,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "No,Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66866,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Lead-Location",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 66877,
+   "name": "Station Details (copy) #9 (copy)",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 59790,
+   "fieldTemplates": [
+    {
+     "id": 66878,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "New,Overlash,Rebuild,Service Drop,Remove (Wreck Out)",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Type",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66879,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "ATN (complete field, if different from database)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66880,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "GLN (complete field, if different from database)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66881,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Cable Type",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66882,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Cable Size",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66883,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Cable Weight",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66884,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Messenger Size",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66885,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Messenger Weight",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66886,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Equipment Type",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66887,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "Distribution,Transmission",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission or Distribution",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66888,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N/A,Delete,Added Pole,Foreign Owned Pole,Transmission (Bill)",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Change Flag",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66889,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Scheduled work to be completed",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTAREA",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66890,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "No,Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposed Work Complete",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66891,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Count",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 66828,
+   "name": "Station Details (copy) #10 (copy)",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 59790,
+   "fieldTemplates": [
+    {
+     "id": 66829,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "New,Overlash,Rebuild,Service Drop,Remove (Wreck Out)",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Type",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66830,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "ATN (complete field, if different from database)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66831,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "GLN (complete field, if different from database)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66832,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Cable Type",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66833,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Cable Size",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66834,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Cable Weight",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66835,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Messenger Size",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66836,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Messenger Weight",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66837,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Equipment Type",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66838,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "Distribution,Transmission",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission or Distribution",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66839,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N/A,Delete,Added Pole,Foreign Owned Pole,Transmission (Bill)",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Change Flag",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66840,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Scheduled work to be completed",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTAREA",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66841,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "No,Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposed Work Complete",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66842,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Count",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 66852,
+   "name": "COMM PCI Station (copy) #1 (copy)",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 59790,
+   "fieldTemplates": [
+    {
+     "id": 66853,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Work Complete",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66854,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposed Attach Count",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66855,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Comments",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTAREA",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 66843,
+   "name": "PWUCS Station Level (copy) #8 (copy)",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 59790,
+   "fieldTemplates": [
+    {
+     "id": 66844,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Inspection Order #",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66845,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Duplicate Pole",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66846,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Field Analysis",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66847,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "OK to Attach",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66848,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Standard Remedy",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66849,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Complex Remedy",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66850,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Remedy Cost to",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66851,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Comments",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTAREA",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 66934,
+   "name": "Project Details (copy) (copy)",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 59790,
+   "fieldTemplates": [
+    {
+     "id": 66935,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Licensee Company Name",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66936,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Teco Tracking #",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66937,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "IO #",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66938,
+     "readOnly": true,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Date Permit Received",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66939,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Construction Start Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66940,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Submitted By",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66941,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Fax",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66942,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Phone",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 66943,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Email",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 66944,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "New,Overlash,Rebuild,Service Drop,Remove (Wreck Out),CATV,Phone/Telecommunications,Traffic",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Check all that apply",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "LISTBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "plans": [],
+   "leftPixelPosition": 4769,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "FinishEvent",
+   "flow": 66773,
+   "version": 3,
+   "id": 66868,
+   "topPixelPosition": 6991,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Finish",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5345,
+   "possibleNextEvents": [
+    {
+     "id": 66778,
+     "label": "Possible"
+    },
+    {
+     "id": 66955,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66953,
+   "topPixelPosition": 3518,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Detailed Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5644,
+   "possibleNextEvents": [{
+    "id": 66786,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 29,
+   "id": 66821,
+   "topPixelPosition": 5419,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "TECO PCI Visit",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 66874,
+   "plans": [],
+   "leftPixelPosition": 5345,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 66773,
+   "version": 5,
+   "id": 66954,
+   "topPixelPosition": 2295,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Submit PSR to TECO",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5644,
+   "possibleNextEvents": [{
+    "id": 66821,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66791,
+   "topPixelPosition": 5193,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "MR Construction",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4319,
+   "possibleNextEvents": [{
+    "id": 66826,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66789,
+   "topPixelPosition": 2542,
+   "projectLevel": "PROJECT",
+   "color": "80b9cb",
+   "name": "COMMWork Processing",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4795,
+   "onStartActions": [],
+   "condition": 66968,
+   "notMetEvent": 66945,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 66773,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 4,
+   "id": 66967,
+   "topPixelPosition": 770,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "Submit to IJUS",
+   "locationType": "ONLINE",
+   "metEvent": null,
+   "onFinishActions": [63203]
+  },
+  {
+   "nextEvent": 66868,
+   "plans": [],
+   "leftPixelPosition": 4769,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 66773,
+   "version": 4,
+   "id": 66947,
+   "topPixelPosition": 6741,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Proposal Closed",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4220,
+   "possibleNextEvents": [{
+    "id": 66948,
+    "label": "Possible"
+   }],
+   "onStartActions": [63348],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66818,
+   "topPixelPosition": 1593,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Additional Poles Found, Preliminary Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": [
+    63361,
+    59859
+   ]
+  },
+  {
+   "nextEvent": 66824,
+   "plans": [],
+   "leftPixelPosition": 5349,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 66773,
+   "version": 4,
+   "id": 66893,
+   "topPixelPosition": 3025,
+   "projectLevel": "PROJECT",
+   "color": "80b9cb",
+   "name": "Estimate Accepted",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5349,
+   "possibleNextEvents": [{
+    "id": 66893,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66827,
+   "topPixelPosition": 2749,
+   "projectLevel": "PROJECT",
+   "color": "80b9cb",
+   "name": "Attacher Estimate Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 3869,
+   "possibleNextEvents": [{
+    "id": 66784,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 27,
+   "id": 66871,
+   "topPixelPosition": 3018,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Exhibit A PCI",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5170,
+   "possibleNextEvents": [],
+   "onStartActions": [],
+   "formTemplates": [66857],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 5,
+   "id": 66867,
+   "topPixelPosition": 1294,
+   "projectLevel": "STATION",
+   "color": "e8993a",
+   "name": "Asset Details",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4319,
+   "possibleNextEvents": [
+    {
+     "id": 66871,
+     "label": "Possible"
+    },
+    {
+     "id": 66784,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 33,
+   "id": 66826,
+   "topPixelPosition": 2818,
+   "projectLevel": "PROJECT",
+   "color": "80b9cb",
+   "name": "COMM PCI",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4794,
+   "possibleNextEvents": [{
+    "id": 66875,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66964,
+   "topPixelPosition": 275,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "Proposal Poles Verified, Advance to edit pole forms",
+   "locationType": "ONLINE",
+   "onFinishActions": [63364]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4794,
+   "possibleNextEvents": [
+    {
+     "id": 66962,
+     "label": "Possible"
+    },
+    {
+     "id": 66954,
+     "label": "Possible"
+    },
+    {
+     "id": 66774,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [63155],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66961,
+   "topPixelPosition": 2092,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "PSR",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4795,
+   "possibleNextEvents": [{
+    "id": 66967,
+    "label": "Possible"
+   }],
+   "onStartActions": [59859],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66875,
+   "topPixelPosition": 546,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "Enter Proposal Information",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 66780,
+   "plans": [],
+   "leftPixelPosition": 5220,
+   "onStartActions": [],
+   "formTemplates": [66877],
+   "class": "AutomaticEvent",
+   "flow": 66773,
+   "version": 4,
+   "id": 66892,
+   "topPixelPosition": 472,
+   "projectLevel": "STATION",
+   "color": "8c1cbe",
+   "name": "Station Attachments",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4945,
+   "possibleNextEvents": [{
+    "id": 66822,
+    "label": "Possible"
+   }],
+   "onStartActions": [63348],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66955,
+   "topPixelPosition": 3568,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Additional Poles Found, Detailed Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": [
+    63361,
+    59859
+   ]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4769,
+   "possibleNextEvents": [{
+    "id": 66777,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66784,
+   "topPixelPosition": 5843,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Final Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 3594,
+   "possibleNextEvents": [],
+   "onStartActions": [],
+   "formTemplates": [
+    66828,
+    66852,
+    66843
+   ],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 3,
+   "id": 66856,
+   "topPixelPosition": 7993,
+   "projectLevel": "STATION",
+   "color": "80b9cb",
+   "name": "Additional COMM PCI Field Visit Station",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5344,
+   "possibleNextEvents": [
+    {
+     "id": 66791,
+     "label": "Possible"
+    },
+    {
+     "id": 66784,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66966,
+   "topPixelPosition": 4968,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "TECO Work",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 66820,
+   "plans": [],
+   "leftPixelPosition": 4769,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 66773,
+   "version": 4,
+   "id": 66777,
+   "topPixelPosition": 6194,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "All Meets Code",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Sub Status Action",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5349,
+   "possibleNextEvents": [{
+    "id": 66953,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66824,
+   "topPixelPosition": 3243,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "PSR Returned",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5644,
+   "possibleNextEvents": [
+    {
+     "id": 66826,
+     "label": "Possible"
+    },
+    {
+     "id": 66784,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 28,
+   "id": 66786,
+   "topPixelPosition": 5643,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "TECO Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5344,
+   "possibleNextEvents": [{
+    "id": 66827,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66874,
+   "topPixelPosition": 2518,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "TECO PSR Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4795,
+   "possibleNextEvents": [
+    {
+     "id": 66961,
+     "label": "Possible"
+    },
+    {
+     "id": 66818,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [59858],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66817,
+   "topPixelPosition": 1368,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Preliminary Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5220,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ClearEvent",
+   "flow": 66773,
+   "version": 3,
+   "id": 66780,
+   "topPixelPosition": 700,
+   "projectLevel": "STATION",
+   "color": "8c1cbe",
+   "name": "Station Attachments Clear",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4319,
+   "possibleNextEvents": [{
+    "id": 66789,
+    "label": "Possible"
+   }],
+   "onStartActions": [63173],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66774,
+   "topPixelPosition": 2292,
+   "projectLevel": "PROJECT",
+   "color": "80b9cb",
+   "name": "COMMWork",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 66964,
+   "plans": [],
+   "leftPixelPosition": 4794,
+   "onStartActions": [63345],
+   "formTemplates": [],
+   "automatic": false,
+   "class": "StartEvent",
+   "flow": 66773,
+   "version": 3,
+   "id": 66946,
+   "topPixelPosition": 50,
+   "projectLevel": "PROJECT",
+   "color": "8c1cbe",
+   "name": "Start",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 3969,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "HoldEvent",
+   "flow": 66773,
+   "version": 2,
+   "id": 66870,
+   "topPixelPosition": 7991,
+   "projectLevel": "PROJECT",
+   "color": "ee5454",
+   "name": "Hold",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5394,
+   "onStartActions": [],
+   "formTemplates": [],
+   "automatic": true,
+   "class": "CancelEvent",
+   "flow": 66773,
+   "version": 2,
+   "id": 66787,
+   "topPixelPosition": 9591,
+   "projectLevel": "PROJECT",
+   "color": "ee5454",
+   "name": "Cancel",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4220,
+   "possibleNextEvents": [{
+    "id": 66817,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66948,
+   "topPixelPosition": 1843,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Complete Pole Form, Preliminary Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": [59855]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4769,
+   "possibleNextEvents": [{
+    "id": 66947,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66820,
+   "topPixelPosition": 6469,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Billing",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 8269,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ClearEvent",
+   "flow": 66773,
+   "version": 2,
+   "id": 66957,
+   "topPixelPosition": 3368,
+   "projectLevel": "STATION",
+   "color": "76db77",
+   "name": "PSR Stations Clear",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4369,
+   "possibleNextEvents": [{
+    "id": 66945,
+    "label": "Possible"
+   }],
+   "onStartActions": [63348],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66869,
+   "topPixelPosition": 1098,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Additional Poles Found",
+   "locationType": "ONLINE",
+   "onFinishActions": [59859]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4794,
+   "possibleNextEvents": [{
+    "id": 66784,
+    "label": "Possible"
+   }],
+   "onStartActions": [63333],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66962,
+   "topPixelPosition": 2418,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "All Poles OK",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5350,
+   "possibleNextEvents": [{
+    "id": 66781,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66778,
+   "topPixelPosition": 4117,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Processing",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4795,
+   "possibleNextEvents": [
+    {
+     "id": 66869,
+     "label": "Possible"
+    },
+    {
+     "id": 66817,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [63361],
+   "formTemplates": [66934],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66945,
+   "topPixelPosition": 1099,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Prepare Proposal",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 66966,
+   "plans": [],
+   "leftPixelPosition": 5350,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 66773,
+   "version": 5,
+   "id": 66960,
+   "topPixelPosition": 4693,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Submit to TECO",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5350,
+   "possibleNextEvents": [{
+    "id": 66960,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66781,
+   "topPixelPosition": 4368,
+   "projectLevel": "PROJECT",
+   "color": "e8993a",
+   "name": "Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4945,
+   "possibleNextEvents": [{
+    "id": 66953,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 66773,
+   "version": 26,
+   "id": 66822,
+   "topPixelPosition": 3818,
+   "projectLevel": "PROJECT",
+   "color": "76db77",
+   "name": "Complete Pole Form, Detailed Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  }
+ ],
+ "name": "JU- PCI Short",
+ "coreForm": null,
+ "companyId": 59790,
+ "actions": [
+  {
+   "id": 63203,
+   "scriptFilePrefix": "TECOCreateExhibitAPdf",
+   "name": "Exhibit A",
+   "parameters": {
+    "station form name": "Station Details",
+    "project form name": "Project Details"
+   },
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 63348,
+   "scriptFilePrefix": "LockProject",
+   "name": "Unlock project",
+   "parameters": {"lock": "false"},
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 63361,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Asset Details",
+   "parameters": {
+    "status name": "Asset Details",
+    "project level": "Station"
+   },
+   "companyId": 59790,
+   "version": 1
+  },
+  {
+   "id": 59859,
+   "scriptFilePrefix": "LockProject",
+   "name": "Locking Project",
+   "parameters": {"lock": "true"},
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 63364,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "StationStatus",
+   "parameters": {
+    "status name": "Station Attachments",
+    "project level": "Station"
+   },
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 63155,
+   "scriptFilePrefix": "TECOCreateExhibitAPdf",
+   "name": "TECO Exhibit A",
+   "parameters": {
+    "station form name": "Station Details",
+    "project form name": "Project Details"
+   },
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 59858,
+   "scriptFilePrefix": "GenerateCalcFileWithOneLead",
+   "name": "GenerateCalcFile",
+   "parameters": null,
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 63173,
+   "scriptFilePrefix": "Assign",
+   "name": "Assign Tom Ogle",
+   "parameters": {
+    "email": "tom.ogle@ijus.net",
+    "do": "Assign a User",
+    "remove others?": "Yes",
+    "type": "Assignee"
+   },
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 63345,
+   "scriptFilePrefix": "AssignToRole",
+   "name": "Creator as Manager",
+   "parameters": {
+    "role": "Creator",
+    "remove others?": "No",
+    "type": "Manager"
+   },
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 59855,
+   "scriptFilePrefix": "ProjectPolesToMin1",
+   "name": "ProjectPolesToMin1",
+   "parameters": null,
+   "companyId": 59790,
+   "version": 0
+  },
+  {
+   "id": 63333,
+   "scriptFilePrefix": "RemoveAllTimeMarkers",
+   "name": "AllPolesOKRemoveTimeMarkers",
+   "parameters": null,
+   "companyId": 59790,
+   "version": 0
+  }
+ ],
+ "version": 30
+}

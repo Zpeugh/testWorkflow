@@ -90,6 +90,20 @@ casper.nextTab = function(tab) {
             for (var j = 1; j <= numberOfChildren; j++){
                 casper.matchFormNames(j);
             };
+        }, function() {
+
+            this.reload();
+            this.wait(5000, function(){
+                //find number of forms on the tab
+                var numberOfChildren = this.evaluate(function() {
+                    return document.querySelector('tbody').childNodes.length;
+                });
+                numberOfChildren = (numberOfChildren - 1) / 2;
+                for (var j = 1; j <= numberOfChildren; j++){
+                    casper.matchFormNames(j);
+                };
+            });
+
         }, 6000);
     });
 };
@@ -115,8 +129,17 @@ casper.matchFormNames = function(childNumber){
             casper.waitForSelector('#wrap>div.wide-body', function() {
                 this.evaluate(function(formName){
                     var elem = document.querySelector('#tabs>ul');
-                    elem.style.minHeight = "35px";
+                    elem.style.maxnHeight = "0px";
                     elem.innerHTML = "";
+                    elem = document.getElementById('edittab');
+                    elem.innerHTML = "";
+                    elem = document.getElementsByClassName('tblheadcolor');
+                    var htmlText, replacedHtml;
+                    for (var i = 0; i < elem.length; i++){
+                        htmlText = elem[i].innerHTML;
+                        replacedHtml = htmlText.replace(new RegExp('<th>','g'),'<th class=\"whitefont\" >');
+                        elem[i].innerHTML = replacedHtml;
+                    };
                 }, formName);
             }, function() {
                 console.log("Missing Form.");
@@ -126,7 +149,8 @@ casper.matchFormNames = function(childNumber){
             casper.then(function() {
                 var html = this.getHTML('#wrap>div.wide-body');
                 //console.log(formName + ':\n\n' + html);
-
+                var selectRE = new RegExp('<select name=','g');
+                html = html.replace(selectRE,'<select class=\"selectworkaround\" name=');
                 html = html.replace('<h1>Form Template Editor : ' + formName + '</h1>', "<link href=\"flow.css\" rel=\"stylesheet\" type=\"text/css\" />" );
                 html = html.replace("style=\"min-width:1100px\"", "style=\"min-width:800px\"");
                 urlRE = new RegExp('/projectmanager/plugins/layout-3.7/images/16', 'g');
@@ -226,7 +250,26 @@ casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrou
             this.nextTab(tab);
         };
     };
-});
+}, function(){
+
+    this.reload();
+    this.wait(5000, function(){
+        var numberOfTabs = this.evaluate(function() {
+          return document.querySelector('#wrap>div.body>div.paginate_buttons').childNodes.length;
+        },6000);
+
+        //set tabs to number of children minus the current, previous, and next children
+        numberOfTabs = numberOfTabs - 3;
+
+        if (numberOfTabs < 1){
+            this.nextTab(0);
+        } else {
+            for (var tab = 0; tab < numberOfTabs; tab++ ){
+                this.nextTab(tab);
+            };
+        };
+    });
+}, 6000);
 
 /*
 * Execute the script

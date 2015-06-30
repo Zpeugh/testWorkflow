@@ -1,25 +1,25 @@
 {
  "conditions": [
   {
-   "id": 96874,
+   "id": 96875,
    "scriptFilePrefix": "DataFieldValue",
-   "name": "Electric Make Ready Required? (based on Make Ready Engineering Form)",
+   "name": "Zone Selection in Core Form Contains word Central?",
    "parameters": {
-    "field criteria": "Field Value Equals",
-    "field value": "Yes",
-    "form name": "Make Ready Engineering",
-    "field name": "Electric Make Ready Needed"
+    "field criteria": "Field Value Contains",
+    "field value": "Central",
+    "form name": "DG Permit",
+    "field name": "Pole Owner Zone"
    },
    "companyId": 96828,
    "version": 0
   },
   {
-   "id": 96871,
+   "id": 96872,
    "scriptFilePrefix": "DataFieldValue",
-   "name": "Construction Company Just Bechtel? (From Pole Inventory Form)",
+   "name": "Construction Company Just Duke? (From Pole Inventory Form)",
    "parameters": {
     "field criteria": "Field Value Equals",
-    "field value": "Bechtel",
+    "field value": "Duke",
     "form name": "Pole Inventory",
     "field name": "Construction Companies Involved (Electric)"
    },
@@ -40,19 +40,6 @@
    "version": 0
   },
   {
-   "id": 96872,
-   "scriptFilePrefix": "DataFieldValue",
-   "name": "Construction Company Just Duke? (From Pole Inventory Form)",
-   "parameters": {
-    "field criteria": "Field Value Equals",
-    "field value": "Duke",
-    "form name": "Pole Inventory",
-    "field name": "Construction Companies Involved (Electric)"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
    "id": 97073,
    "scriptFilePrefix": "DataFieldValue",
    "name": "Yes Selected in Conflicting Permit Check Form?",
@@ -66,14 +53,12 @@
    "version": 0
   },
   {
-   "id": 96875,
-   "scriptFilePrefix": "DataFieldValue",
-   "name": "Zone Selection in Core Form Contains word Central?",
+   "id": 97072,
+   "scriptFilePrefix": "Event",
+   "name": "Any Stations with Status \"Conflicting Permit Found\"?",
    "parameters": {
-    "field criteria": "Field Value Contains",
-    "field value": "Central",
-    "form name": "DG Permit",
-    "field name": "Pole Owner Zone"
+    "criteria": "Event Exists",
+    "value": "Conflicting Permit Found"
    },
    "companyId": 96828,
    "version": 0
@@ -105,12 +90,27 @@
    "version": 0
   },
   {
-   "id": 97072,
-   "scriptFilePrefix": "Event",
-   "name": "Any Stations with Status \"Conflicting Permit Found\"?",
+   "id": 96874,
+   "scriptFilePrefix": "DataFieldValue",
+   "name": "Electric Make Ready Required? (based on Make Ready Engineering Form)",
    "parameters": {
-    "criteria": "Event Exists",
-    "value": "Conflicting Permit Found"
+    "field criteria": "Field Value Equals",
+    "field value": "Yes",
+    "form name": "Make Ready Engineering",
+    "field name": "Electric Make Ready Needed"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 96871,
+   "scriptFilePrefix": "DataFieldValue",
+   "name": "Construction Company Just Bechtel? (From Pole Inventory Form)",
+   "parameters": {
+    "field criteria": "Field Value Equals",
+    "field value": "Bechtel",
+    "form name": "Pole Inventory",
+    "field name": "Construction Companies Involved (Electric)"
    },
    "companyId": 96828,
    "version": 0
@@ -471,23 +471,23 @@
    ]
   },
   {
-   "id": 96900,
-   "name": "Assign Engineer",
+   "id": 96920,
+   "name": "Permit Submission Checklist",
    "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
    "companyId": 96828,
    "fieldTemplates": [{
-    "id": 96901,
+    "id": 96921,
     "readOnly": false,
     "parent": null,
-    "commaSeparatedChoices": "96883",
+    "commaSeparatedChoices": ",Yes",
     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-    "label": "Engineer Assignee",
+    "label": "Route File Uploaded to Files Section",
     "formTemplate": {
      "_ref": "../..",
      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
     },
     "type": {
-     "name": "PARAMETER_RADIO_BUTTONS",
+     "name": "RADIO_BUTTONS",
      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
     },
     "required": true,
@@ -611,72 +611,18 @@
    ]
   },
   {
-   "id": 96912,
-   "name": "Make Ready Engineering",
+   "id": 96922,
+   "name": "MRE Engineer Analysis Review",
    "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
    "companyId": 96828,
    "fieldTemplates": [
     {
-     "id": 96913,
-     "readOnly": false,
-     "parent": null,
-     "commaSeparatedChoices": ",Yes,No",
-     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-     "label": "Electric Make Ready Needed",
-     "formTemplate": {
-      "_ref": "../..",
-      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
-     },
-     "type": {
-      "name": "RADIO_BUTTONS",
-      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
-     },
-     "required": true,
-     "additionalFields": []
-    },
-    {
-     "id": 96914,
-     "readOnly": false,
-     "parent": null,
-     "commaSeparatedChoices": ",Yes,No",
-     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-     "label": "Comm Make Ready Needed",
-     "formTemplate": {
-      "_ref": "../..",
-      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
-     },
-     "type": {
-      "name": "RADIO_BUTTONS",
-      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
-     },
-     "required": true,
-     "additionalFields": []
-    },
-    {
-     "id": 96915,
-     "readOnly": false,
-     "parent": null,
-     "commaSeparatedChoices": ",Yes",
-     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-     "label": "MRE Packages Uploaded to Files Section?",
-     "formTemplate": {
-      "_ref": "../..",
-      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
-     },
-     "type": {
-      "name": "RADIO_BUTTONS",
-      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
-     },
-     "required": true,
-     "additionalFields": []
-    },
-    {
-     "id": 96916,
+     "id": 96923,
      "readOnly": false,
      "parent": null,
      "commaSeparatedChoices": null,
      "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-     "label": "Remarks",
+     "label": "Comments",
      "formTemplate": {
       "_ref": "../..",
       "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
@@ -687,8 +633,50 @@
      },
      "required": false,
      "additionalFields": []
+    },
+    {
+     "id": 96924,
+     "readOnly": true,
+     "parent": null,
+     "commaSeparatedChoices": ",Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Corrections Complete?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
     }
    ]
+  },
+  {
+   "id": 96900,
+   "name": "Assign Engineer",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 96828,
+   "fieldTemplates": [{
+    "id": 96901,
+    "readOnly": false,
+    "parent": null,
+    "commaSeparatedChoices": "96883",
+    "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+    "label": "Engineer Assignee",
+    "formTemplate": {
+     "_ref": "../..",
+     "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+    },
+    "type": {
+     "name": "PARAMETER_RADIO_BUTTONS",
+     "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+    },
+    "required": true,
+    "additionalFields": []
+   }]
   },
   {
    "id": 96902,
@@ -2418,48 +2406,28 @@
    ]
   },
   {
-   "id": 97066,
-   "name": "Conflicting Permit Check",
+   "id": 97077,
+   "name": "MRE Review",
    "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
    "companyId": 96828,
-   "fieldTemplates": [
-    {
-     "id": 97067,
-     "readOnly": false,
-     "parent": null,
-     "commaSeparatedChoices": "No,Yes",
-     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-     "label": "Conflicting Permit(s)?",
-     "formTemplate": {
-      "_ref": "../..",
-      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
-     },
-     "type": {
-      "name": "RADIO_BUTTONS",
-      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
-     },
-     "required": false,
-     "additionalFields": []
+   "fieldTemplates": [{
+    "id": 97078,
+    "readOnly": false,
+    "parent": null,
+    "commaSeparatedChoices": ",Yes,Not Necessary",
+    "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+    "label": "Seal Applied to Permit and Uploaded to Files Section?",
+    "formTemplate": {
+     "_ref": "../..",
+     "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
     },
-    {
-     "id": 97068,
-     "readOnly": false,
-     "parent": null,
-     "commaSeparatedChoices": "",
-     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-     "label": "Comments",
-     "formTemplate": {
-      "_ref": "../..",
-      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
-     },
-     "type": {
-      "name": "TEXTAREA",
-      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
-     },
-     "required": false,
-     "additionalFields": []
-    }
-   ]
+    "type": {
+     "name": "RADIO_BUTTONS",
+     "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+    },
+    "required": true,
+    "additionalFields": []
+   }]
   },
   {
    "id": 96917,
@@ -2506,16 +2474,34 @@
    ]
   },
   {
-   "id": 96922,
-   "name": "MRE Engineer Analysis Review",
+   "id": 97066,
+   "name": "Conflicting Permit Check",
    "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
    "companyId": 96828,
    "fieldTemplates": [
     {
-     "id": 96923,
+     "id": 97067,
      "readOnly": false,
      "parent": null,
-     "commaSeparatedChoices": null,
+     "commaSeparatedChoices": "No,Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Conflicting Permit(s)?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 97068,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "",
      "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
      "label": "Comments",
      "formTemplate": {
@@ -2528,14 +2514,22 @@
      },
      "required": false,
      "additionalFields": []
-    },
+    }
+   ]
+  },
+  {
+   "id": 96912,
+   "name": "Make Ready Engineering",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 96828,
+   "fieldTemplates": [
     {
-     "id": 96924,
-     "readOnly": true,
+     "id": 96913,
+     "readOnly": false,
      "parent": null,
-     "commaSeparatedChoices": ",Yes",
+     "commaSeparatedChoices": ",Yes,No",
      "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-     "label": "Corrections Complete?",
+     "label": "Electric Make Ready Needed",
      "formTemplate": {
       "_ref": "../..",
       "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
@@ -2544,332 +2538,172 @@
       "name": "RADIO_BUTTONS",
       "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
      },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 96914,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",Yes,No",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Comm Make Ready Needed",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 96915,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "MRE Packages Uploaded to Files Section?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 96916,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Remarks",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTAREA",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
      "required": false,
      "additionalFields": []
     }
    ]
-  },
-  {
-   "id": 97077,
-   "name": "MRE Review",
-   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
-   "companyId": 96828,
-   "fieldTemplates": [{
-    "id": 97078,
-    "readOnly": false,
-    "parent": null,
-    "commaSeparatedChoices": ",Yes,Not Necessary",
-    "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-    "label": "Seal Applied to Permit and Uploaded to Files Section?",
-    "formTemplate": {
-     "_ref": "../..",
-     "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
-    },
-    "type": {
-     "name": "RADIO_BUTTONS",
-     "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
-    },
-    "required": true,
-    "additionalFields": []
-   }]
-  },
-  {
-   "id": 96920,
-   "name": "Permit Submission Checklist",
-   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
-   "companyId": 96828,
-   "fieldTemplates": [{
-    "id": 96921,
-    "readOnly": false,
-    "parent": null,
-    "commaSeparatedChoices": ",Yes",
-    "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
-    "label": "Route File Uploaded to Files Section",
-    "formTemplate": {
-     "_ref": "../..",
-     "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
-    },
-    "type": {
-     "name": "RADIO_BUTTONS",
-     "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
-    },
-    "required": true,
-    "additionalFields": []
-   }]
   }
  ],
  "events": [
   {
-   "nextEvent": 96958,
    "plans": [],
-   "leftPixelPosition": 5463,
+   "leftPixelPosition": 5140,
+   "possibleNextEvents": [
+    {
+     "id": 96953,
+     "label": "Possible"
+    },
+    {
+     "id": 97086,
+     "label": "Possible"
+    }
+   ],
    "onStartActions": [],
-   "formTemplates": [],
-   "class": "AutomaticEvent",
-   "flow": 96853,
-   "version": 30,
-   "id": 97099,
-   "topPixelPosition": 6683,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Corrections Complete-Request Communications MR Inspection",
-   "locationType": "ONLINE",
-   "nextEventLabel": "Next",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4694,
-   "possibleNextEvents": [{
-    "id": 96953,
-    "label": "Possible"
-   }],
-   "onStartActions": [96865],
-   "formTemplates": [],
+   "formTemplates": [96920],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 1050,
-   "id": 96949,
-   "topPixelPosition": 1392,
+   "version": 1062,
+   "id": 96954,
+   "topPixelPosition": 367,
    "projectLevel": "PROJECT",
    "color": "5484ed",
-   "name": "Unable to Review-Missing Item(s)-Please add and resubmit",
+   "name": "Prepare Permit",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
    "plans": [],
-   "leftPixelPosition": 5139,
+   "leftPixelPosition": 5138,
    "possibleNextEvents": [{
-    "id": 96962,
+    "id": 97091,
     "label": "Possible"
    }],
-   "onStartActions": [96855],
-   "formTemplates": [96900],
+   "onStartActions": [96858],
+   "formTemplates": [],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 1051,
-   "id": 96959,
-   "topPixelPosition": 2635,
+   "version": 1058,
+   "id": 96937,
+   "topPixelPosition": 5460,
    "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Assign For Pole by Pole Review-North",
+   "color": "5484ed",
+   "name": "Install FOC",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
    "plans": [],
-   "leftPixelPosition": 5149,
-   "onStartActions": [
-    97113,
-    97114
-   ],
-   "condition": 96874,
-   "notMetEvent": 97093,
+   "leftPixelPosition": 5419,
+   "onStartActions": [],
+   "condition": 96875,
+   "notMetEvent": 96964,
    "formTemplates": [],
    "class": "ConditionalEvent",
    "flow": 96853,
    "notMetEventLabel": "No",
    "metEventLabel": "Yes",
-   "version": 64,
-   "id": 96942,
-   "topPixelPosition": 3435,
+   "version": 54,
+   "id": 97086,
+   "topPixelPosition": 565,
    "projectLevel": "PROJECT",
    "color": "8B8B8B",
-   "name": "Review Complete-Advance to Construction",
+   "name": "Skip Advance Route Review-Forward to Field  Pole Survey",
    "locationType": "ONLINE",
-   "metEvent": 96931,
+   "metEvent": 97087,
    "onFinishActions": []
   },
   {
    "plans": [],
    "leftPixelPosition": 4974,
    "onStartActions": [],
-   "condition": 96871,
-   "notMetEvent": 96938,
+   "condition": 96872,
+   "notMetEvent": 96974,
    "formTemplates": [],
    "class": "ConditionalEvent",
    "flow": 96853,
    "notMetEventLabel": "No",
    "metEventLabel": "Yes",
    "version": 59,
-   "id": 96931,
-   "topPixelPosition": 3660,
+   "id": 96938,
+   "topPixelPosition": 3885,
    "projectLevel": "PROJECT",
    "color": "8B8B8B",
-   "name": "Event-1431695955882",
+   "name": "Event-1431697280222",
    "locationType": "ONLINE",
-   "metEvent": 96972,
+   "metEvent": 96941,
    "onFinishActions": []
   },
   {
    "plans": [],
-   "leftPixelPosition": 5463,
+   "leftPixelPosition": 5694,
    "possibleNextEvents": [{
-    "id": 97099,
+    "id": 97086,
     "label": "Possible"
    }],
-   "onStartActions": [
-    97111,
-    96856,
-    97108
-   ],
+   "onStartActions": [97085],
    "formTemplates": [],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 738,
-   "id": 96981,
-   "topPixelPosition": 6483,
+   "version": 898,
+   "id": 97088,
+   "topPixelPosition": 965,
    "projectLevel": "PROJECT",
    "color": "5484ed",
-   "name": "Communications Construction Rejected",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5138,
-   "possibleNextEvents": [{
-    "id": 96965,
-    "label": "Possible"
-   }],
-   "onStartActions": [96863],
-   "formTemplates": [96925],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 486,
-   "id": 97102,
-   "topPixelPosition": 7133,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Assign Duke Construction-Prepare Permit for Closure",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5139,
-   "possibleNextEvents": [{
-    "id": 96969,
-    "label": "Possible"
-   }],
-   "onStartActions": [
-    96861,
-    96862
-   ],
-   "formTemplates": [96912],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1050,
-   "id": 96944,
-   "topPixelPosition": 1835,
-   "projectLevel": "PROJECT",
-   "color": "a4bdfc",
-   "name": "MR Engineering Analysis",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [{
-    "id": 96985,
-    "durationUnit": "days",
-    "event": 96978,
-    "metEvent": null,
-    "plannedAction": 96869,
-    "recurring": false,
-    "durationValue": 13,
-    "version": 0
-   }],
-   "leftPixelPosition": 4889,
-   "possibleNextEvents": [{
-    "id": 96952,
-    "label": "Possible"
-   }],
-   "onStartActions": [96870],
-   "formTemplates": [96902],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1053,
-   "id": 96978,
-   "topPixelPosition": 3235,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Pole by Pole Review-Conflicting Permit(s) Found",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5138,
-   "possibleNextEvents": [{
-    "id": 97102,
-    "label": "Possible"
-   }],
-   "onStartActions": [],
-   "formTemplates": [96925],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 488,
-   "id": 97101,
-   "topPixelPosition": 6910,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "EPC Contractor-Prepare Permit for Closure",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5139,
-   "possibleNextEvents": [{
-    "id": 96940,
-    "label": "Possible"
-   }],
-   "onStartActions": [
-    96860,
-    96859,
-    96866,
-    97074
-   ],
-   "formTemplates": [96902],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1056,
-   "id": 96962,
-   "topPixelPosition": 2835,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Pole by Pole Review-North",
-   "locationType": "ONLINE",
-   "onFinishActions": [97075]
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5148,
-   "possibleNextEvents": [
-    {
-     "id": 96939,
-     "label": "Possible"
-    },
-    {
-     "id": 97093,
-     "label": "Possible"
-    },
-    {
-     "id": 96980,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [97119],
-   "formTemplates": [96900],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 67,
-   "id": 97118,
-   "topPixelPosition": 4483,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Electric MRC Inspection Requested-North",
+   "name": "ERROR: Zone and Territory Mismatch",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
@@ -2896,6 +2730,47 @@
   },
   {
    "plans": [],
+   "leftPixelPosition": 5139,
+   "onStartActions": [],
+   "condition": 96875,
+   "notMetEvent": 96959,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 53,
+   "id": 96945,
+   "topPixelPosition": 2435,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Submit Permit to Duke Engineering",
+   "locationType": "ONLINE",
+   "metEvent": 96936,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4925,
+   "possibleNextEvents": [{
+    "id": 96937,
+    "label": "Possible"
+   }],
+   "onStartActions": [96856],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 317,
+   "id": 97110,
+   "topPixelPosition": 5259,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "Communication MR Complete",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
    "leftPixelPosition": 5138,
    "possibleNextEvents": [{
     "id": 97101,
@@ -2905,12 +2780,411 @@
    "formTemplates": [96925],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 489,
+   "version": 493,
    "id": 97100,
    "topPixelPosition": 6684,
    "projectLevel": "PROJECT",
    "color": "8B8B8B",
    "name": "Duke Finance-Prepare Permit for Closure",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5138,
+   "onStartActions": [],
+   "condition": 96875,
+   "notMetEvent": 96933,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 59,
+   "id": 96979,
+   "topPixelPosition": 5860,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Request Communications Inspection",
+   "locationType": "ONLINE",
+   "metEvent": 96973,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 6064,
+   "possibleNextEvents": [],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 63,
+   "id": 97069,
+   "topPixelPosition": 3235,
+   "projectLevel": "STATION",
+   "color": "FFB878",
+   "name": "Conflicting Permit Found",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "possibleNextEvents": [
+    {
+     "id": 96932,
+     "label": "Possible"
+    },
+    {
+     "id": 96956,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [96856],
+   "formTemplates": [96922],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1055,
+   "id": 96969,
+   "topPixelPosition": 2035,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "Prepare Pole Permit Application",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5789,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ClearEvent",
+   "flow": 96853,
+   "version": 59,
+   "id": 97071,
+   "topPixelPosition": 3235,
+   "projectLevel": "STATION",
+   "color": "FFB878",
+   "name": "Station Clear",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5789,
+   "onStartActions": [],
+   "condition": 97073,
+   "notMetEvent": 97071,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 64,
+   "id": 97070,
+   "topPixelPosition": 3035,
+   "projectLevel": "STATION",
+   "color": "FFB878",
+   "name": "Permit Check",
+   "locationType": "ONLINE",
+   "metEvent": 97069,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "onStartActions": [],
+   "condition": 97072,
+   "notMetEvent": 96976,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 57,
+   "id": 96940,
+   "topPixelPosition": 3035,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "IJUS Review Complete",
+   "locationType": "ONLINE",
+   "metEvent": 96978,
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 96979,
+   "plans": [],
+   "leftPixelPosition": 5138,
+   "onStartActions": [97092],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 96853,
+   "version": 39,
+   "id": 97091,
+   "topPixelPosition": 5658,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "FOC Installation Complete",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5628,
+   "possibleNextEvents": [],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 347,
+   "id": 96963,
+   "topPixelPosition": 7586,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Conditions or Automatics",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5463,
+   "possibleNextEvents": [{
+    "id": 97099,
+    "label": "Possible"
+   }],
+   "onStartActions": [
+    97111,
+    96856,
+    97108
+   ],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 742,
+   "id": 96981,
+   "topPixelPosition": 6483,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "Communications Construction Rejected",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5414,
+   "possibleNextEvents": [{
+    "id": 96943,
+    "label": "Possible"
+   }],
+   "onStartActions": [96857],
+   "formTemplates": [96900],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1053,
+   "id": 96936,
+   "topPixelPosition": 2635,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Assign For Pole by Pole Review-Central",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5414,
+   "possibleNextEvents": [{
+    "id": 96940,
+    "label": "Possible"
+   }],
+   "onStartActions": [
+    96860,
+    96859,
+    97074
+   ],
+   "formTemplates": [96902],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1056,
+   "id": 96943,
+   "topPixelPosition": 2835,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Pole by Pole Review-Central",
+   "locationType": "ONLINE",
+   "onFinishActions": [97075]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4990,
+   "onStartActions": [],
+   "condition": 96875,
+   "notMetEvent": 96950,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 32,
+   "id": 96977,
+   "topPixelPosition": 966,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Event-1431531163261",
+   "locationType": "ONLINE",
+   "metEvent": 96948,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "possibleNextEvents": [{
+    "id": 96945,
+    "label": "Possible"
+   }],
+   "onStartActions": [96854],
+   "formTemplates": [97077],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1055,
+   "id": 96932,
+   "topPixelPosition": 2235,
+   "projectLevel": "PROJECT",
+   "color": "a4bdfc",
+   "name": "MRE Permit Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "possibleNextEvents": [{
+    "id": 96944,
+    "label": "Possible"
+   }],
+   "onStartActions": [96854],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1058,
+   "id": 96964,
+   "topPixelPosition": 1632,
+   "projectLevel": "PROJECT",
+   "color": "a4bdfc",
+   "name": "Field Pole Survey",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4688,
+   "possibleNextEvents": [{
+    "id": 96953,
+    "label": "Possible"
+   }],
+   "onStartActions": [97085],
+   "formTemplates": [96884],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1056,
+   "id": 96966,
+   "topPixelPosition": 965,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "Error: Territory and Zone Mismatch",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4724,
+   "possibleNextEvents": [{
+    "id": 96955,
+    "label": "Possible"
+   }],
+   "onStartActions": [96856],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1056,
+   "id": 96972,
+   "topPixelPosition": 3885,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "Electric MRC (EPC Contractor)",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "possibleNextEvents": [{
+    "id": 96940,
+    "label": "Possible"
+   }],
+   "onStartActions": [
+    96860,
+    96859,
+    96866,
+    97074
+   ],
+   "formTemplates": [96902],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1060,
+   "id": 96962,
+   "topPixelPosition": 2835,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Pole by Pole Review-North",
+   "locationType": "ONLINE",
+   "onFinishActions": [97075]
+  },
+  {
+   "nextEvent": 96955,
+   "plans": [],
+   "leftPixelPosition": 4287,
+   "onStartActions": [97097],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 96853,
+   "version": 41,
+   "id": 97098,
+   "topPixelPosition": 5034,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Corrections Complete-Request Electric MRC Inspection",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5148,
+   "possibleNextEvents": [
+    {
+     "id": 97093,
+     "label": "Possible"
+    },
+    {
+     "id": 96980,
+     "label": "Possible"
+    },
+    {
+     "id": 96939,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [97119],
+   "formTemplates": [96900],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 71,
+   "id": 97118,
+   "topPixelPosition": 4483,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Electric MRC Inspection Requested-North",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
@@ -2933,63 +3207,298 @@
   },
   {
    "plans": [],
-   "leftPixelPosition": 5139,
+   "leftPixelPosition": 5419,
    "possibleNextEvents": [{
-    "id": 96944,
+    "id": 97096,
     "label": "Possible"
    }],
-   "onStartActions": [96854],
+   "onStartActions": [96856],
    "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 766,
+   "id": 96960,
+   "topPixelPosition": 3435,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "Reject Pole Permit",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [{
+    "id": 96983,
+    "durationUnit": "days",
+    "event": 96950,
+    "metEvent": null,
+    "plannedAction": 96864,
+    "recurring": false,
+    "durationValue": 13,
+    "version": 0
+   }],
+   "leftPixelPosition": 4990,
+   "possibleNextEvents": [
+    {
+     "id": 96949,
+     "label": "Possible"
+    },
+    {
+     "id": 97095,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [96857],
+   "formTemplates": [96917],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1060,
+   "id": 96950,
+   "topPixelPosition": 1167,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Advance Route Review-Central",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4900,
+   "possibleNextEvents": [
+    {
+     "id": 97093,
+     "label": "Possible"
+    },
+    {
+     "id": 96980,
+     "label": "Possible"
+    },
+    {
+     "id": 96939,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [97116],
+   "formTemplates": [96900],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1061,
+   "id": 96951,
+   "topPixelPosition": 4485,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Electric MRC Inspection Requested-North East",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5138,
+   "possibleNextEvents": [{
+    "id": 97102,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [96925],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 492,
+   "id": 97101,
+   "topPixelPosition": 6910,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "EPC Contractor-Prepare Permit for Closure",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5325,
+   "possibleNextEvents": [
+    {
+     "id": 97093,
+     "label": "Possible"
+    },
+    {
+     "id": 96980,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [96859],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1061,
+   "id": 96939,
+   "topPixelPosition": 4658,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Advance to Engineer from Form for Electric MRC Inspection",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 96954,
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "onStartActions": [],
+   "formTemplates": [],
+   "automatic": true,
+   "class": "StartEvent",
+   "flow": 96853,
+   "version": 37,
+   "id": 96947,
+   "topPixelPosition": 167,
+   "projectLevel": "PROJECT",
+   "color": "FFFFFF",
+   "name": "Start",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [{
+    "id": 96985,
+    "durationUnit": "days",
+    "event": 96978,
+    "metEvent": null,
+    "plannedAction": 96869,
+    "recurring": false,
+    "durationValue": 13,
+    "version": 0
+   }],
+   "leftPixelPosition": 4889,
+   "possibleNextEvents": [{
+    "id": 96952,
+    "label": "Possible"
+   }],
+   "onStartActions": [96870],
+   "formTemplates": [96902],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1057,
+   "id": 96978,
+   "topPixelPosition": 3235,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Pole by Pole Review-Conflicting Permit(s) Found",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5338,
+   "possibleNextEvents": [{
+    "id": 96958,
+    "label": "Possible"
+   }],
+   "onStartActions": [96855],
+   "formTemplates": [96900],
    "class": "ManualEvent",
    "flow": 96853,
    "version": 1054,
-   "id": 96964,
-   "topPixelPosition": 1632,
+   "id": 96933,
+   "topPixelPosition": 6060,
    "projectLevel": "PROJECT",
-   "color": "a4bdfc",
-   "name": "Field Pole Survey",
+   "color": "51b749",
+   "name": "Communications Inspection Requested-North",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
    "plans": [],
-   "leftPixelPosition": 5694,
+   "leftPixelPosition": 6064,
+   "possibleNextEvents": [],
+   "onStartActions": [],
+   "formTemplates": [97066],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 78,
+   "id": 97065,
+   "topPixelPosition": 3035,
+   "projectLevel": "STATION",
+   "color": "FFB878",
+   "name": "Conflicting Permit Check",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4638,
    "possibleNextEvents": [{
-    "id": 97086,
+    "id": 97098,
     "label": "Possible"
    }],
-   "onStartActions": [97085],
+   "onStartActions": [
+    97108,
+    97107,
+    97106
+   ],
    "formTemplates": [],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 894,
-   "id": 97088,
-   "topPixelPosition": 965,
+   "version": 756,
+   "id": 96980,
+   "topPixelPosition": 4860,
    "projectLevel": "PROJECT",
    "color": "5484ed",
-   "name": "ERROR: Zone and Territory Mismatch",
+   "name": "Electric MRC Rejected",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
-   "nextEvent": 96955,
    "plans": [],
-   "leftPixelPosition": 4549,
-   "onStartActions": [
-    97112,
-    97107
-   ],
+   "leftPixelPosition": 4889,
+   "possibleNextEvents": [{
+    "id": 97096,
+    "label": "Possible"
+   }],
+   "onStartActions": [96856],
    "formTemplates": [],
-   "class": "AutomaticEvent",
+   "class": "ManualEvent",
    "flow": 96853,
-   "version": 63,
-   "id": 96974,
+   "version": 1061,
+   "id": 96952,
+   "topPixelPosition": 3435,
+   "projectLevel": "PROJECT",
+   "color": "5484ed",
+   "name": "Conflicting Permits-EPC Contractor Resolution",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4974,
+   "possibleNextEvents": [{
+    "id": 96955,
+    "label": "Possible"
+   }],
+   "onStartActions": [96863],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1056,
+   "id": 96941,
    "topPixelPosition": 4084,
    "projectLevel": "PROJECT",
-   "color": "dbadff",
-   "name": "Electric MRC (EPC Contractor and Duke)",
+   "color": "51b749",
+   "name": "Electric MRC (Duke)",
    "locationType": "ONLINE",
-   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5133,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "FinishEvent",
+   "flow": 96853,
+   "version": 55,
+   "id": 96965,
+   "topPixelPosition": 7365,
+   "projectLevel": "PROJECT",
+   "color": "ffffff",
+   "name": "Finish",
+   "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
@@ -3018,7 +3527,7 @@
    "formTemplates": [96902],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 1056,
+   "version": 1060,
    "id": 96976,
    "topPixelPosition": 3235,
    "projectLevel": "PROJECT",
@@ -3029,126 +3538,111 @@
   },
   {
    "plans": [],
-   "leftPixelPosition": 5414,
+   "leftPixelPosition": 5138,
    "possibleNextEvents": [{
-    "id": 96943,
+    "id": 96965,
+    "label": "Possible"
+   }],
+   "onStartActions": [96863],
+   "formTemplates": [96925],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 490,
+   "id": 97102,
+   "topPixelPosition": 7133,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Assign Duke Construction-Prepare Permit for Closure",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "possibleNextEvents": [{
+    "id": 96962,
+    "label": "Possible"
+   }],
+   "onStartActions": [96855],
+   "formTemplates": [96900],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1055,
+   "id": 96959,
+   "topPixelPosition": 2635,
+   "projectLevel": "PROJECT",
+   "color": "51b749",
+   "name": "Assign For Pole by Pole Review-North",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5419,
+   "possibleNextEvents": [{
+    "id": 96969,
+    "label": "Possible"
+   }],
+   "onStartActions": [96854],
+   "formTemplates": [96922],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1054,
+   "id": 96956,
+   "topPixelPosition": 2235,
+   "projectLevel": "PROJECT",
+   "color": "a4bdfc",
+   "name": "MRE Engineering Analysis Corrections Reqd-See Form for Details",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4938,
+   "possibleNextEvents": [{
+    "id": 96958,
     "label": "Possible"
    }],
    "onStartActions": [96857],
    "formTemplates": [96900],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 1049,
-   "id": 96936,
-   "topPixelPosition": 2635,
+   "version": 1055,
+   "id": 96973,
+   "topPixelPosition": 6065,
    "projectLevel": "PROJECT",
    "color": "51b749",
-   "name": "Assign For Pole by Pole Review-Central",
+   "name": "Communications Inspection Requested-Central",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
    "plans": [],
-   "leftPixelPosition": 4974,
-   "onStartActions": [],
-   "condition": 96872,
-   "notMetEvent": 96974,
-   "formTemplates": [],
-   "class": "ConditionalEvent",
-   "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 59,
-   "id": 96938,
-   "topPixelPosition": 3885,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Event-1431697280222",
-   "locationType": "ONLINE",
-   "metEvent": 96941,
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4724,
-   "possibleNextEvents": [{
-    "id": 96955,
-    "label": "Possible"
-   }],
-   "onStartActions": [96856],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1052,
-   "id": 96972,
-   "topPixelPosition": 3885,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Electric MRC (EPC Contractor)",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 6064,
-   "possibleNextEvents": [],
-   "onStartActions": [],
-   "formTemplates": [97066],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 78,
-   "id": 97065,
-   "topPixelPosition": 3035,
-   "projectLevel": "STATION",
-   "color": "FFB878",
-   "name": "Conflicting Permit Check",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5789,
-   "onStartActions": [],
-   "condition": 97073,
-   "notMetEvent": 97071,
-   "formTemplates": [],
-   "class": "ConditionalEvent",
-   "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 64,
-   "id": 97070,
-   "topPixelPosition": 3035,
-   "projectLevel": "STATION",
-   "color": "FFB878",
-   "name": "Permit Check",
-   "locationType": "ONLINE",
-   "metEvent": 97069,
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5289,
+   "leftPixelPosition": 4637,
    "possibleNextEvents": [
     {
-     "id": 96953,
+     "id": 97093,
      "label": "Possible"
     },
     {
-     "id": 96964,
+     "id": 96980,
+     "label": "Possible"
+    },
+    {
+     "id": 96939,
      "label": "Possible"
     }
    ],
-   "onStartActions": [96856],
-   "formTemplates": [],
+   "onStartActions": [97115],
+   "formTemplates": [96900],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 767,
-   "id": 97095,
-   "topPixelPosition": 1392,
+   "version": 1059,
+   "id": 96961,
+   "topPixelPosition": 4483,
    "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Advance Route Review Complete",
+   "color": "51b749",
+   "name": "Electric MRC Inspection Requested-Central",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
@@ -3172,88 +3666,48 @@
   },
   {
    "plans": [],
-   "leftPixelPosition": 4900,
-   "possibleNextEvents": [
-    {
-     "id": 96939,
-     "label": "Possible"
-    },
-    {
-     "id": 97093,
-     "label": "Possible"
-    },
-    {
-     "id": 96980,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [97116],
-   "formTemplates": [96900],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1057,
-   "id": 96951,
-   "topPixelPosition": 4485,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Electric MRC Inspection Requested-North East",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [{
-    "id": 96982,
-    "durationUnit": "days",
-    "event": 96948,
-    "metEvent": null,
-    "plannedAction": 96864,
-    "recurring": false,
-    "durationValue": 13,
-    "version": 0
-   }],
    "leftPixelPosition": 4694,
-   "possibleNextEvents": [
-    {
-     "id": 97095,
-     "label": "Possible"
-    },
-    {
-     "id": 96949,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [96855],
-   "formTemplates": [96917],
+   "possibleNextEvents": [{
+    "id": 96953,
+    "label": "Possible"
+   }],
+   "onStartActions": [96865],
+   "formTemplates": [],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 1057,
-   "id": 96948,
-   "topPixelPosition": 1167,
+   "version": 1054,
+   "id": 96949,
+   "topPixelPosition": 1392,
    "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Advance Route Review-North",
+   "color": "5484ed",
+   "name": "Unable to Review-Missing Item(s)-Please add and resubmit",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
    "plans": [],
-   "leftPixelPosition": 5139,
-   "onStartActions": [],
-   "condition": 96875,
-   "notMetEvent": 96959,
+   "leftPixelPosition": 5289,
+   "possibleNextEvents": [
+    {
+     "id": 96953,
+     "label": "Possible"
+    },
+    {
+     "id": 96964,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [96856],
    "formTemplates": [],
-   "class": "ConditionalEvent",
+   "class": "ManualEvent",
    "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 53,
-   "id": 96945,
-   "topPixelPosition": 2435,
+   "version": 771,
+   "id": 97095,
+   "topPixelPosition": 1392,
    "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Submit Permit to Duke Engineering",
+   "color": "5484ed",
+   "name": "Advance Route Review Complete",
    "locationType": "ONLINE",
-   "metEvent": 96936,
    "onFinishActions": []
   },
   {
@@ -3278,39 +3732,19 @@
    "onFinishActions": []
   },
   {
+   "nextEvent": 96958,
    "plans": [],
-   "leftPixelPosition": 5419,
-   "possibleNextEvents": [{
-    "id": 96969,
-    "label": "Possible"
-   }],
-   "onStartActions": [96854],
-   "formTemplates": [96922],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1050,
-   "id": 96956,
-   "topPixelPosition": 2235,
-   "projectLevel": "PROJECT",
-   "color": "a4bdfc",
-   "name": "MRE Engineering Analysis Corrections Reqd-See Form for Details",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "nextEvent": 97100,
-   "plans": [],
-   "leftPixelPosition": 5138,
+   "leftPixelPosition": 5463,
    "onStartActions": [],
    "formTemplates": [],
    "class": "AutomaticEvent",
    "flow": 96853,
-   "version": 47,
-   "id": 96934,
-   "topPixelPosition": 6483,
+   "version": 30,
+   "id": 97099,
+   "topPixelPosition": 6683,
    "projectLevel": "PROJECT",
    "color": "8B8B8B",
-   "name": "Communication Inspection Approved",
+   "name": "Corrections Complete-Request Communications MR Inspection",
    "locationType": "ONLINE",
    "nextEventLabel": "Next",
    "onFinishActions": []
@@ -3338,6 +3772,51 @@
   },
   {
    "plans": [],
+   "leftPixelPosition": 4973,
+   "onStartActions": [],
+   "condition": 97120,
+   "notMetEvent": 97118,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 7,
+   "id": 97117,
+   "topPixelPosition": 4283,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Event-1433167945322",
+   "locationType": "ONLINE",
+   "metEvent": 96951,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5149,
+   "onStartActions": [
+    97113,
+    97114
+   ],
+   "condition": 96874,
+   "notMetEvent": 97093,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 64,
+   "id": 96942,
+   "topPixelPosition": 3435,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Review Complete-Advance to Construction",
+   "locationType": "ONLINE",
+   "metEvent": 96931,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
    "leftPixelPosition": 5764,
    "possibleNextEvents": [],
    "onStartActions": [],
@@ -3354,168 +3833,119 @@
    "onFinishActions": []
   },
   {
-   "plans": [],
-   "leftPixelPosition": 4925,
-   "possibleNextEvents": [{
-    "id": 96937,
-    "label": "Possible"
+   "plans": [{
+    "id": 96982,
+    "durationUnit": "days",
+    "event": 96948,
+    "metEvent": null,
+    "plannedAction": 96864,
+    "recurring": false,
+    "durationValue": 13,
+    "version": 0
    }],
-   "onStartActions": [96856],
-   "formTemplates": [],
+   "leftPixelPosition": 4694,
+   "possibleNextEvents": [
+    {
+     "id": 96949,
+     "label": "Possible"
+    },
+    {
+     "id": 97095,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [96855],
+   "formTemplates": [96917],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 313,
-   "id": 97110,
-   "topPixelPosition": 5259,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Communication MR Complete",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4974,
-   "possibleNextEvents": [{
-    "id": 96955,
-    "label": "Possible"
-   }],
-   "onStartActions": [96863],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1052,
-   "id": 96941,
-   "topPixelPosition": 4084,
+   "version": 1061,
+   "id": 96948,
+   "topPixelPosition": 1167,
    "projectLevel": "PROJECT",
    "color": "51b749",
-   "name": "Electric MRC (Duke)",
+   "name": "Advance Route Review-North",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
   {
-   "plans": [],
-   "leftPixelPosition": 5139,
-   "possibleNextEvents": [{
-    "id": 96945,
-    "label": "Possible"
-   }],
-   "onStartActions": [96854],
-   "formTemplates": [97077],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1051,
-   "id": 96932,
-   "topPixelPosition": 2235,
-   "projectLevel": "PROJECT",
-   "color": "a4bdfc",
-   "name": "MRE Permit Review",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5133,
-   "onStartActions": [],
-   "formTemplates": [],
-   "class": "FinishEvent",
-   "flow": 96853,
-   "version": 55,
-   "id": 96965,
-   "topPixelPosition": 7365,
-   "projectLevel": "PROJECT",
-   "color": "ffffff",
-   "name": "Finish",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "nextEvent": 96979,
+   "nextEvent": 97100,
    "plans": [],
    "leftPixelPosition": 5138,
-   "onStartActions": [97092],
+   "onStartActions": [],
    "formTemplates": [],
    "class": "AutomaticEvent",
    "flow": 96853,
-   "version": 39,
-   "id": 97091,
-   "topPixelPosition": 5658,
+   "version": 47,
+   "id": 96934,
+   "topPixelPosition": 6483,
    "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "FOC Installation Complete",
+   "color": "8B8B8B",
+   "name": "Communication Inspection Approved",
    "locationType": "ONLINE",
    "nextEventLabel": "Next",
    "onFinishActions": []
   },
   {
    "plans": [],
-   "leftPixelPosition": 5139,
-   "possibleNextEvents": [
-    {
-     "id": 96956,
-     "label": "Possible"
-    },
-    {
-     "id": 96932,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [96856],
-   "formTemplates": [96922],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1051,
-   "id": 96969,
-   "topPixelPosition": 2035,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Prepare Pole Permit Application",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5325,
-   "possibleNextEvents": [
-    {
-     "id": 97093,
-     "label": "Possible"
-    },
-    {
-     "id": 96980,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [96859],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1057,
-   "id": 96939,
-   "topPixelPosition": 4658,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Advance to Engineer from Form for Electric MRC Inspection",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4889,
+   "leftPixelPosition": 4925,
    "possibleNextEvents": [{
-    "id": 97096,
+    "id": 97110,
     "label": "Possible"
    }],
-   "onStartActions": [96856],
+   "onStartActions": [97109],
    "formTemplates": [],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 1057,
-   "id": 96952,
-   "topPixelPosition": 3435,
+   "version": 329,
+   "id": 97105,
+   "topPixelPosition": 5058,
    "projectLevel": "PROJECT",
    "color": "5484ed",
-   "name": "Conflicting Permits-EPC Contractor Resolution",
+   "name": "Communication Make Ready",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4974,
+   "onStartActions": [],
+   "condition": 96871,
+   "notMetEvent": 96938,
+   "formTemplates": [],
+   "class": "ConditionalEvent",
+   "flow": 96853,
+   "notMetEventLabel": "No",
+   "metEventLabel": "Yes",
+   "version": 59,
+   "id": 96931,
+   "topPixelPosition": 3660,
+   "projectLevel": "PROJECT",
+   "color": "8B8B8B",
+   "name": "Event-1431695955882",
+   "locationType": "ONLINE",
+   "metEvent": 96972,
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5139,
+   "possibleNextEvents": [{
+    "id": 96969,
+    "label": "Possible"
+   }],
+   "onStartActions": [
+    96861,
+    96862
+   ],
+   "formTemplates": [96912],
+   "class": "ManualEvent",
+   "flow": 96853,
+   "version": 1054,
+   "id": 96944,
+   "topPixelPosition": 1835,
+   "projectLevel": "PROJECT",
+   "color": "a4bdfc",
+   "name": "MR Engineering Analysis",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
@@ -3536,105 +3966,12 @@
    "formTemplates": [],
    "class": "ManualEvent",
    "flow": 96853,
-   "version": 1051,
+   "version": 1055,
    "id": 96958,
    "topPixelPosition": 6284,
    "projectLevel": "PROJECT",
    "color": "51b749",
    "name": "Communications Inspection",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4689,
-   "onStartActions": [],
-   "condition": 96876,
-   "notMetEvent": 96977,
-   "formTemplates": [],
-   "class": "ConditionalEvent",
-   "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 37,
-   "id": 96957,
-   "topPixelPosition": 763,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Event-1431531073542",
-   "locationType": "ONLINE",
-   "metEvent": 96966,
-   "onFinishActions": []
-  },
-  {
-   "nextEvent": 96954,
-   "plans": [],
-   "leftPixelPosition": 5139,
-   "onStartActions": [],
-   "formTemplates": [],
-   "automatic": true,
-   "class": "StartEvent",
-   "flow": 96853,
-   "version": 37,
-   "id": 96947,
-   "topPixelPosition": 167,
-   "projectLevel": "PROJECT",
-   "color": "FFFFFF",
-   "name": "Start",
-   "locationType": "ONLINE",
-   "nextEventLabel": "Next",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5789,
-   "onStartActions": [],
-   "formTemplates": [],
-   "class": "ClearEvent",
-   "flow": 96853,
-   "version": 59,
-   "id": 97071,
-   "topPixelPosition": 3235,
-   "projectLevel": "STATION",
-   "color": "FFB878",
-   "name": "Station Clear",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5628,
-   "possibleNextEvents": [],
-   "onStartActions": [],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 347,
-   "id": 96963,
-   "topPixelPosition": 7586,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Conditions or Automatics",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5138,
-   "possibleNextEvents": [{
-    "id": 97091,
-    "label": "Possible"
-   }],
-   "onStartActions": [96858],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1054,
-   "id": 96937,
-   "topPixelPosition": 5460,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Install FOC",
    "locationType": "ONLINE",
    "onFinishActions": []
   },
@@ -3661,381 +3998,44 @@
   },
   {
    "plans": [],
-   "leftPixelPosition": 4925,
-   "possibleNextEvents": [{
-    "id": 97110,
-    "label": "Possible"
-   }],
-   "onStartActions": [97109],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 325,
-   "id": 97105,
-   "topPixelPosition": 5058,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Communication Make Ready",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5419,
-   "possibleNextEvents": [{
-    "id": 97096,
-    "label": "Possible"
-   }],
-   "onStartActions": [96856],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 762,
-   "id": 96960,
-   "topPixelPosition": 3435,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Reject Pole Permit",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4638,
-   "possibleNextEvents": [{
-    "id": 97098,
-    "label": "Possible"
-   }],
-   "onStartActions": [
-    97108,
-    97107,
-    97106
-   ],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 752,
-   "id": 96980,
-   "topPixelPosition": 4860,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Electric MRC Rejected",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5419,
+   "leftPixelPosition": 4689,
    "onStartActions": [],
-   "condition": 96875,
-   "notMetEvent": 96964,
+   "condition": 96876,
+   "notMetEvent": 96977,
    "formTemplates": [],
    "class": "ConditionalEvent",
    "flow": 96853,
    "notMetEventLabel": "No",
    "metEventLabel": "Yes",
-   "version": 54,
-   "id": 97086,
-   "topPixelPosition": 565,
+   "version": 37,
+   "id": 96957,
+   "topPixelPosition": 763,
    "projectLevel": "PROJECT",
    "color": "8B8B8B",
-   "name": "Skip Advance Route Review-Forward to Field  Pole Survey",
+   "name": "Event-1431531073542",
    "locationType": "ONLINE",
-   "metEvent": 97087,
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4973,
-   "onStartActions": [],
-   "condition": 97120,
-   "notMetEvent": 97118,
-   "formTemplates": [],
-   "class": "ConditionalEvent",
-   "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 7,
-   "id": 97117,
-   "topPixelPosition": 4283,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Event-1433167945322",
-   "locationType": "ONLINE",
-   "metEvent": 96951,
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4688,
-   "possibleNextEvents": [{
-    "id": 96953,
-    "label": "Possible"
-   }],
-   "onStartActions": [97085],
-   "formTemplates": [96884],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1052,
-   "id": 96966,
-   "topPixelPosition": 965,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Error: Territory and Zone Mismatch",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5338,
-   "possibleNextEvents": [{
-    "id": 96958,
-    "label": "Possible"
-   }],
-   "onStartActions": [96855],
-   "formTemplates": [96900],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1050,
-   "id": 96933,
-   "topPixelPosition": 6060,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Communications Inspection Requested-North",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5414,
-   "possibleNextEvents": [{
-    "id": 96940,
-    "label": "Possible"
-   }],
-   "onStartActions": [
-    96860,
-    96859,
-    97074
-   ],
-   "formTemplates": [96902],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1052,
-   "id": 96943,
-   "topPixelPosition": 2835,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Pole by Pole Review-Central",
-   "locationType": "ONLINE",
-   "onFinishActions": [97075]
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5139,
-   "onStartActions": [],
-   "condition": 97072,
-   "notMetEvent": 96976,
-   "formTemplates": [],
-   "class": "ConditionalEvent",
-   "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 57,
-   "id": 96940,
-   "topPixelPosition": 3035,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "IJUS Review Complete",
-   "locationType": "ONLINE",
-   "metEvent": 96978,
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4637,
-   "possibleNextEvents": [
-    {
-     "id": 96939,
-     "label": "Possible"
-    },
-    {
-     "id": 97093,
-     "label": "Possible"
-    },
-    {
-     "id": 96980,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [97115],
-   "formTemplates": [96900],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1055,
-   "id": 96961,
-   "topPixelPosition": 4483,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Electric MRC Inspection Requested-Central",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5140,
-   "possibleNextEvents": [
-    {
-     "id": 96953,
-     "label": "Possible"
-    },
-    {
-     "id": 97086,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [],
-   "formTemplates": [96920],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1058,
-   "id": 96954,
-   "topPixelPosition": 367,
-   "projectLevel": "PROJECT",
-   "color": "5484ed",
-   "name": "Prepare Permit",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 5138,
-   "onStartActions": [],
-   "condition": 96875,
-   "notMetEvent": 96933,
-   "formTemplates": [],
-   "class": "ConditionalEvent",
-   "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 59,
-   "id": 96979,
-   "topPixelPosition": 5860,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Request Communications Inspection",
-   "locationType": "ONLINE",
-   "metEvent": 96973,
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4990,
-   "onStartActions": [],
-   "condition": 96875,
-   "notMetEvent": 96950,
-   "formTemplates": [],
-   "class": "ConditionalEvent",
-   "flow": 96853,
-   "notMetEventLabel": "No",
-   "metEventLabel": "Yes",
-   "version": 32,
-   "id": 96977,
-   "topPixelPosition": 966,
-   "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Event-1431531163261",
-   "locationType": "ONLINE",
-   "metEvent": 96948,
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 4938,
-   "possibleNextEvents": [{
-    "id": 96958,
-    "label": "Possible"
-   }],
-   "onStartActions": [96857],
-   "formTemplates": [96900],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1051,
-   "id": 96973,
-   "topPixelPosition": 6065,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Communications Inspection Requested-Central",
-   "locationType": "ONLINE",
+   "metEvent": 96966,
    "onFinishActions": []
   },
   {
    "nextEvent": 96955,
    "plans": [],
-   "leftPixelPosition": 4287,
-   "onStartActions": [97097],
+   "leftPixelPosition": 4549,
+   "onStartActions": [
+    97112,
+    97107
+   ],
    "formTemplates": [],
    "class": "AutomaticEvent",
    "flow": 96853,
-   "version": 41,
-   "id": 97098,
-   "topPixelPosition": 5034,
+   "version": 63,
+   "id": 96974,
+   "topPixelPosition": 4084,
    "projectLevel": "PROJECT",
-   "color": "8B8B8B",
-   "name": "Corrections Complete-Request Electric MRC Inspection",
+   "color": "dbadff",
+   "name": "Electric MRC (EPC Contractor and Duke)",
    "locationType": "ONLINE",
    "nextEventLabel": "Next",
-   "onFinishActions": []
-  },
-  {
-   "plans": [],
-   "leftPixelPosition": 6064,
-   "possibleNextEvents": [],
-   "onStartActions": [],
-   "formTemplates": [],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 63,
-   "id": 97069,
-   "topPixelPosition": 3235,
-   "projectLevel": "STATION",
-   "color": "FFB878",
-   "name": "Conflicting Permit Found",
-   "locationType": "ONLINE",
-   "onFinishActions": []
-  },
-  {
-   "plans": [{
-    "id": 96983,
-    "durationUnit": "days",
-    "event": 96950,
-    "metEvent": null,
-    "plannedAction": 96864,
-    "recurring": false,
-    "durationValue": 13,
-    "version": 0
-   }],
-   "leftPixelPosition": 4990,
-   "possibleNextEvents": [
-    {
-     "id": 97095,
-     "label": "Possible"
-    },
-    {
-     "id": 96949,
-     "label": "Possible"
-    }
-   ],
-   "onStartActions": [96857],
-   "formTemplates": [96917],
-   "class": "ManualEvent",
-   "flow": 96853,
-   "version": 1056,
-   "id": 96950,
-   "topPixelPosition": 1167,
-   "projectLevel": "PROJECT",
-   "color": "51b749",
-   "name": "Advance Route Review-Central",
-   "locationType": "ONLINE",
    "onFinishActions": []
   }
  ],
@@ -4044,64 +4044,27 @@
  "companyId": 96828,
  "actions": [
   {
-   "id": 96865,
-   "scriptFilePrefix": "AssignToRole",
-   "name": "Assign Creator-Remove Others",
-   "parameters": {
-    "Type": "Assignee",
-    "Remove Others?": "Yes",
-    "Role": "Creator"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 96855,
-   "scriptFilePrefix": "AssignToUserGroup",
-   "name": "Assign to Duke North Engineer Supervisor UG-Remove Others",
-   "parameters": {
-    "Type": "Assignee",
-    "Remove Others?": "Yes",
-    "Group": "Duke North Engineer Supervisor"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 97113,
-   "scriptFilePrefix": "Email",
-   "name": "Email Duke JU-Permit Authorized for Construction",
-   "parameters": {
-    "Body": "This Permit has been Authorized for Construction",
-    "Email": "duke@ju.com",
-    "Subject": "Permit Authorized for Construction"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 97114,
-   "scriptFilePrefix": "EmailFromForm",
-   "name": "Email EPC Engineer-Permit Authorized for Construction",
-   "parameters": {
-    "Body": "This Permit has been Authorized for Construction.",
-    "Field": "EPC Engineer",
-    "Form": "Application",
-    "Subject": "Permit Authorized for Construction"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 97111,
+   "id": 96858,
    "scriptFilePrefix": "AssignFromForm",
-   "name": "Assign MRC Communication Contractor from App Form-Don't Remove Others",
+   "name": "Assign FOC Contractor From Form-Remove Others",
    "parameters": {
     "Do": "Assign a User",
-    "Field": "MRC Communication Contractor",
+    "Field": "FOC Contractor",
     "Form": "Application",
     "Type": "Assignee",
-    "Remove Others?": "No"
+    "Remove Others?": "Yes"
+   },
+   "companyId": 96828,
+   "version": 2
+  },
+  {
+   "id": 97085,
+   "scriptFilePrefix": "EmailRole",
+   "name": "Email Project Creator-Territory and Zone Mismatch",
+   "parameters": {
+    "Body": "Please review the territory and zone selections in the project form for this permit. When corrected, resubmit the project.",
+    "Subject": "ERROR: Territory and Zone Mismatch",
+    "Role": "Creator"
    },
    "companyId": 96828,
    "version": 0
@@ -4121,6 +4084,45 @@
    "version": 2
   },
   {
+   "id": 96867,
+   "scriptFilePrefix": "AssignToUserGroup",
+   "name": "Assign Duke Finance UG-Don't Remove Others",
+   "parameters": {
+    "Type": "Assignee",
+    "Remove Others?": "No",
+    "Group": "Duke Finance"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 97092,
+   "scriptFilePrefix": "EmailFromForm",
+   "name": "Email EPC Engineer from form: FOC Installation Complete",
+   "parameters": {
+    "Body": "FOC installation is complete for this project.",
+    "Field": "EPC Engineer",
+    "Form": "Application",
+    "Subject": "FOC Installation Complete"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 97111,
+   "scriptFilePrefix": "AssignFromForm",
+   "name": "Assign MRC Communication Contractor from App Form-Don't Remove Others",
+   "parameters": {
+    "Do": "Assign a User",
+    "Field": "MRC Communication Contractor",
+    "Form": "Application",
+    "Type": "Assignee",
+    "Remove Others?": "No"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
    "id": 97108,
    "scriptFilePrefix": "AssignFromForm",
    "name": "Remove Engineer From Assign Engineer Form",
@@ -4135,63 +4137,13 @@
    "version": 0
   },
   {
-   "id": 96863,
+   "id": 96857,
    "scriptFilePrefix": "AssignToUserGroup",
-   "name": "Assign Duke Construction UG-Remove Others",
+   "name": "Assign Central Engineer Supervisor UG-Remove Others",
    "parameters": {
     "Type": "Assignee",
     "Remove Others?": "Yes",
-    "Group": "Duke Construction"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 96861,
-   "scriptFilePrefix": "EmailFromForm",
-   "name": "Email EPC Design-From Form-Field Pole Survey Completed",
-   "parameters": {
-    "Body": "The Field Pole Survey has been Completed for this Project.",
-    "Field": "EPC Design",
-    "Form": "Application",
-    "Subject": "Field Pole Survey Completed"
-   },
-   "companyId": 96828,
-   "version": 2
-  },
-  {
-   "id": 96862,
-   "scriptFilePrefix": "EmailFromForm",
-   "name": "Email EPC Engineer-Field Pole Survey Completed",
-   "parameters": {
-    "Body": "The Field Pole Survey has been Completed for this Project.",
-    "Field": "EPC Engineer",
-    "Form": "Application",
-    "Subject": "Field Pole Survey Completed"
-   },
-   "companyId": 96828,
-   "version": 2
-  },
-  {
-   "id": 96870,
-   "scriptFilePrefix": "EmailRole",
-   "name": "Email Assignees: IJUS Review Complete-Conflicting Permits Found",
-   "parameters": {
-    "Body": "IJUS review complete-conflicting permits found. See comments in the Pole Inventory form for more details.",
-    "Subject": "IJUS Review Complete-Conflicting Permits Found",
-    "Role": "Assignee"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 96869,
-   "scriptFilePrefix": "EmailRole",
-   "name": "Email Assignees: Project in Pole-by-Pole Review for 2 Weeks",
-   "parameters": {
-    "Body": "This project has been in pole-by-pole review for 2 weeks.",
-    "Subject": "Project in Pole-by-Pole Review for 2 Weeks",
-    "Role": "Assignee"
+    "Group": "Duke Central Engineer Supervisor"
    },
    "companyId": 96828,
    "version": 0
@@ -4223,19 +4175,6 @@
    "version": 0
   },
   {
-   "id": 96866,
-   "scriptFilePrefix": "PopulateFormTableWithPrimaryAssetTags",
-   "name": "Populate Pole IDs in Pole Inventory FOrm",
-   "parameters": {
-    "Form": "Pole Inventory",
-    "Prevent Addition and Removal of Rows?": "on",
-    "Table": "Pole Inventory",
-    "Column": "Pole ID"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
    "id": 97074,
    "scriptFilePrefix": "SetSubStatus",
    "name": "Set Stations to \"Conflicting Permit Check\"",
@@ -4258,31 +4197,6 @@
    "version": 0
   },
   {
-   "id": 97119,
-   "scriptFilePrefix": "Assign",
-   "name": "Assign Waylon Blakely (need email address)",
-   "parameters": {
-    "Do": "Assign a User",
-    "Email": "w.b@duke.com",
-    "Type": "Assignee",
-    "Remove Others?": "Yes"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 96867,
-   "scriptFilePrefix": "AssignToUserGroup",
-   "name": "Assign Duke Finance UG-Don't Remove Others",
-   "parameters": {
-    "Type": "Assignee",
-    "Remove Others?": "No",
-    "Group": "Duke Finance"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
    "id": 96854,
    "scriptFilePrefix": "AssignFromForm",
    "name": "Assign MRE Contractor from form-Remove Others",
@@ -4297,63 +4211,14 @@
    "version": 2
   },
   {
-   "id": 97085,
-   "scriptFilePrefix": "EmailRole",
-   "name": "Email Project Creator-Territory and Zone Mismatch",
+   "id": 96866,
+   "scriptFilePrefix": "PopulateFormTableWithPrimaryAssetTags",
+   "name": "Populate Pole IDs in Pole Inventory FOrm",
    "parameters": {
-    "Body": "Please review the territory and zone selections in the project form for this permit. When corrected, resubmit the project.",
-    "Subject": "ERROR: Territory and Zone Mismatch",
-    "Role": "Creator"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 97112,
-   "scriptFilePrefix": "AssignToUserGroup",
-   "name": "Assign Duke Construction UG-Don't Remove Others",
-   "parameters": {
-    "Type": "Assignee",
-    "Remove Others?": "No",
-    "Group": "Duke Construction"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 97107,
-   "scriptFilePrefix": "AssignFromForm",
-   "name": "Assign EPC Engineer-From Form-Don't Remove Others",
-   "parameters": {
-    "Do": "Assign a User",
-    "Field": "EPC Engineer",
-    "Form": "Application",
-    "Type": "Assignee",
-    "Remove Others?": "No"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 96868,
-   "scriptFilePrefix": "EmailRole",
-   "name": "Email Assignees: IJUS Complete-No Conflicting Permits",
-   "parameters": {
-    "Body": "IJUS has completed their pole-by-pole review. Conflicting permits were found.",
-    "Subject": "IJUS Complete-No Conflicting Permits",
-    "Role": "Assignee"
-   },
-   "companyId": 96828,
-   "version": 0
-  },
-  {
-   "id": 96857,
-   "scriptFilePrefix": "AssignToUserGroup",
-   "name": "Assign Central Engineer Supervisor UG-Remove Others",
-   "parameters": {
-    "Type": "Assignee",
-    "Remove Others?": "Yes",
-    "Group": "Duke Central Engineer Supervisor"
+    "Form": "Pole Inventory",
+    "Prevent Addition and Removal of Rows?": "on",
+    "Table": "Pole Inventory",
+    "Column": "Pole ID"
    },
    "companyId": 96828,
    "version": 0
@@ -4373,12 +4238,12 @@
    "version": 0
   },
   {
-   "id": 97116,
+   "id": 97119,
    "scriptFilePrefix": "Assign",
-   "name": "Assign Doug Everheart (need email address)",
+   "name": "Assign Waylon Blakely (need email address)",
    "parameters": {
     "Do": "Assign a User",
-    "Email": "doug.everheart@duke.com",
+    "Email": "w.b@duke.com",
     "Type": "Assignee",
     "Remove Others?": "Yes"
    },
@@ -4398,42 +4263,64 @@
    "version": 0
   },
   {
-   "id": 97092,
-   "scriptFilePrefix": "EmailFromForm",
-   "name": "Email EPC Engineer from form: FOC Installation Complete",
+   "id": 97116,
+   "scriptFilePrefix": "Assign",
+   "name": "Assign Doug Everheart (need email address)",
    "parameters": {
-    "Body": "FOC installation is complete for this project.",
-    "Field": "EPC Engineer",
-    "Form": "Application",
-    "Subject": "FOC Installation Complete"
+    "Do": "Assign a User",
+    "Email": "doug.everheart@duke.com",
+    "Type": "Assignee",
+    "Remove Others?": "Yes"
    },
    "companyId": 96828,
    "version": 0
   },
   {
-   "id": 96858,
-   "scriptFilePrefix": "AssignFromForm",
-   "name": "Assign FOC Contractor From Form-Remove Others",
+   "id": 96870,
+   "scriptFilePrefix": "EmailRole",
+   "name": "Email Assignees: IJUS Review Complete-Conflicting Permits Found",
    "parameters": {
-    "Do": "Assign a User",
-    "Field": "FOC Contractor",
-    "Form": "Application",
-    "Type": "Assignee",
-    "Remove Others?": "Yes"
+    "Body": "IJUS review complete-conflicting permits found. See comments in the Pole Inventory form for more details.",
+    "Subject": "IJUS Review Complete-Conflicting Permits Found",
+    "Role": "Assignee"
    },
    "companyId": 96828,
-   "version": 2
+   "version": 0
   },
   {
-   "id": 97109,
+   "id": 96869,
+   "scriptFilePrefix": "EmailRole",
+   "name": "Email Assignees: Project in Pole-by-Pole Review for 2 Weeks",
+   "parameters": {
+    "Body": "This project has been in pole-by-pole review for 2 weeks.",
+    "Subject": "Project in Pole-by-Pole Review for 2 Weeks",
+    "Role": "Assignee"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 96855,
+   "scriptFilePrefix": "AssignToUserGroup",
+   "name": "Assign to Duke North Engineer Supervisor UG-Remove Others",
+   "parameters": {
+    "Type": "Assignee",
+    "Remove Others?": "Yes",
+    "Group": "Duke North Engineer Supervisor"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 97107,
    "scriptFilePrefix": "AssignFromForm",
-   "name": "Assign MRC Communication Contractor from Application Form-Remove Others",
+   "name": "Assign EPC Engineer-From Form-Don't Remove Others",
    "parameters": {
     "Do": "Assign a User",
-    "Field": "MRC Communication Contractor",
+    "Field": "EPC Engineer",
     "Form": "Application",
     "Type": "Assignee",
-    "Remove Others?": "Yes"
+    "Remove Others?": "No"
    },
    "companyId": 96828,
    "version": 0
@@ -4453,6 +4340,30 @@
    "version": 0
   },
   {
+   "id": 96863,
+   "scriptFilePrefix": "AssignToUserGroup",
+   "name": "Assign Duke Construction UG-Remove Others",
+   "parameters": {
+    "Type": "Assignee",
+    "Remove Others?": "Yes",
+    "Group": "Duke Construction"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 96868,
+   "scriptFilePrefix": "EmailRole",
+   "name": "Email Assignees: IJUS Complete-No Conflicting Permits",
+   "parameters": {
+    "Body": "IJUS has completed their pole-by-pole review. Conflicting permits were found.",
+    "Subject": "IJUS Complete-No Conflicting Permits",
+    "Role": "Assignee"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
    "id": 97115,
    "scriptFilePrefix": "Assign",
    "name": "Assign Mark Brooks (need email address)",
@@ -4464,6 +4375,95 @@
    },
    "companyId": 96828,
    "version": 1
+  },
+  {
+   "id": 96865,
+   "scriptFilePrefix": "AssignToRole",
+   "name": "Assign Creator-Remove Others",
+   "parameters": {
+    "Type": "Assignee",
+    "Remove Others?": "Yes",
+    "Role": "Creator"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 97113,
+   "scriptFilePrefix": "Email",
+   "name": "Email Duke JU-Permit Authorized for Construction",
+   "parameters": {
+    "Body": "This Permit has been Authorized for Construction",
+    "Email": "duke@ju.com",
+    "Subject": "Permit Authorized for Construction"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 97114,
+   "scriptFilePrefix": "EmailFromForm",
+   "name": "Email EPC Engineer-Permit Authorized for Construction",
+   "parameters": {
+    "Body": "This Permit has been Authorized for Construction.",
+    "Field": "EPC Engineer",
+    "Form": "Application",
+    "Subject": "Permit Authorized for Construction"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 97109,
+   "scriptFilePrefix": "AssignFromForm",
+   "name": "Assign MRC Communication Contractor from Application Form-Remove Others",
+   "parameters": {
+    "Do": "Assign a User",
+    "Field": "MRC Communication Contractor",
+    "Form": "Application",
+    "Type": "Assignee",
+    "Remove Others?": "Yes"
+   },
+   "companyId": 96828,
+   "version": 0
+  },
+  {
+   "id": 96861,
+   "scriptFilePrefix": "EmailFromForm",
+   "name": "Email EPC Design-From Form-Field Pole Survey Completed",
+   "parameters": {
+    "Body": "The Field Pole Survey has been Completed for this Project.",
+    "Field": "EPC Design",
+    "Form": "Application",
+    "Subject": "Field Pole Survey Completed"
+   },
+   "companyId": 96828,
+   "version": 2
+  },
+  {
+   "id": 96862,
+   "scriptFilePrefix": "EmailFromForm",
+   "name": "Email EPC Engineer-Field Pole Survey Completed",
+   "parameters": {
+    "Body": "The Field Pole Survey has been Completed for this Project.",
+    "Field": "EPC Engineer",
+    "Form": "Application",
+    "Subject": "Field Pole Survey Completed"
+   },
+   "companyId": 96828,
+   "version": 2
+  },
+  {
+   "id": 97112,
+   "scriptFilePrefix": "AssignToUserGroup",
+   "name": "Assign Duke Construction UG-Don't Remove Others",
+   "parameters": {
+    "Type": "Assignee",
+    "Remove Others?": "No",
+    "Group": "Duke Construction"
+   },
+   "companyId": 96828,
+   "version": 0
   }
  ],
  "version": 64

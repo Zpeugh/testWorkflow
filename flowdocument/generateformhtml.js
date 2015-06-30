@@ -1,5 +1,5 @@
 var casper = require('casper').create({
-    waitTimeout: 8000,    
+    waitTimeout: 8000,
     stepTimeout: 8000,
     timeout: 12000,
     verbose: true,
@@ -58,7 +58,7 @@ casper.capturePNG = function(formName){
         var formSnip = this.getElementBounds('#tabs');
         this.capture('Resources/formHtmls/formPNGs/' + formName + '.png', {
             top : formSnip.top + 5,
-            height : formSnip.height + 4,
+            height : formSnip.height - 4,
             left : formSnip.left,
             width : formSnip.width
         });
