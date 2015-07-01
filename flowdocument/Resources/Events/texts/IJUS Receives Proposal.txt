@@ -1,0 +1,9 @@
+Event: IJUS RECEIVES PROPOSAL
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Verify Proposal Poles, Advance to Complete Pole Forms
+On start: 45 Day Clock
+Planned: None for this event
+On finish: None for this event
+IJUS Tracking Information

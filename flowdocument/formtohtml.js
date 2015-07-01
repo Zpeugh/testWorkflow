@@ -275,5 +275,7 @@ casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrou
 * Execute the script
 */
 casper.run(function() {
-casper.exit();
+casper.exit(function(){
+    console.log('FINISHED!@#');
+});
 });

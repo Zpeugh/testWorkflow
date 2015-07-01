@@ -172,7 +172,7 @@ class Event {
 				posEvents = "None"
 			}
 
-
+			println "OUTFILE: " + outputFile.toString()
 			outputFile.write "Event: ${this.eventName.toUpperCase()}\n"
 			outputFile.append "Type: ${this.eventClass}\n"
 			outputFile.append "Level: ${this.projectLevel}\n"

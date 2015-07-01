@@ -9,6 +9,8 @@
 
 // Apply the java plugin to add support for Java
 
+import org.apache.tools.ant.taskdefs.condition.Os
+
 apply plugin: 'groovy'
 
 repositories{
@@ -65,7 +67,7 @@ task runMain( dependsOn: 'classes', type: JavaExec) {
     doFirst{
 
         tasks.unzip.execute()
-        //tasks.cleanResources.execute()
+        tasks.cleanResources.execute()
 
         main = 'flow.WorkFlow'
         classpath = sourceSets.main.runtimeClasspath
@@ -91,16 +93,12 @@ task runMain( dependsOn: 'classes', type: JavaExec) {
 
 task exportWorkflow()  {
 
-
     String homeDirectory = System.properties['user.home']
     def folderString = homeDirectory + '/Desktop/ExportToGoogleDrive/'
 
     doFirst{
-
         FileTree googleDriveFolder = fileTree(new File(folderString))
-
         delete googleDriveFolder
-
     }
 
     doLast{
@@ -171,13 +169,14 @@ task cleanResources() {
     }
 }
 
-
-
 task showInBrowser() {
-
     doLast{
-        def thisDirectory = System.getProperty("user.dir")
-        java.awt.Desktop.desktop.browse( ('File://' + thisDirectory + '/Resources/Events/eventIndex.html').toURI() )
-    }
 
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            'cmd /c start Resources/Events/eventIndex.html'.execute()
+        } else {
+            def thisDirectory = System.getProperty("user.dir")
+            java.awt.Desktop.desktop.browse( ('File://' + thisDirectory + '/Resources/Events/eventIndex.html').toURI() )
+        }
+    }
 }

@@ -1,0 +1,3412 @@
+{
+ "conditions": [],
+ "id": 6378,
+ "formParameters": [],
+ "formTemplates": [
+  {
+   "id": 6566,
+   "name": "Core Form",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6567,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Submitting Company",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6568,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "User Email Address",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6569,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",Cable/TV,Phone,Fiber,Traffic,Municipal,Other",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Classification",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6570,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",New,Drop",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Type",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6571,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",N/A,1/4\",3/8\",3/16\"",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Messenger Size",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6572,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",N/A,1 1/4\",1 1/2\",1 3/4\",2\",2 1/4\",2 1/2\",2 3/4\",3\",3 1/4\",3 1/2\",Drop,3 3/4\",1/4\",3/8\",1/2\",5/8\",3/4\",7/8\",1\"",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Bundle Size",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6573,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",N/A,Wifi Box,Amplifier",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Equipment",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6574,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Remarks",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6438,
+   "name": "Asset Information",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6439,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N-New,E-Existing,W-Remove",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment Type Code",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6440,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "A - Added,D- Deleted",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Change Flag Code",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6441,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "na",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Pole Location",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6442,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "NJUNS",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6443,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Engineering Cost",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6444,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "MakeReady Cost",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6445,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Lead ID",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6446,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "No,Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6447,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Lead-Location",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6430,
+   "name": "Billing Code",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6431,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission Pole?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6432,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N/A,A - Added,N - New,O - Overlash,X - Analysis Only,D - Deleted,E - Existing",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Change Flag",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6433,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "Unspecified,OK to Attach,SE,SP,CE,CP,Additional Work Order",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Billing Code",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6434,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "N/A,AEP,50/50,Split,Other",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "CE Description",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6435,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Note",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6436,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "0,1,2,3,4,5,6,7",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Existing Attachers with Work",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6437,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission Analysis Not Done (Clearance Violation)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6471,
+   "name": "EJU - Transmission Checklist",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6472,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Check completed assignment date with project manager",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6473,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission analysis complete",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6474,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Documentation complied",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6487,
+   "name": "EJU - Remediation Review Checklist",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6488,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Midspan heights match span to span",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6489,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attachment heights match remedy",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6490,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Clearances are all correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6491,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Loading is correct and valid for all poles",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6492,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Guy and anchors are all correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6493,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Billing is correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6494,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Summary notes are correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6495,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Standards are correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6496,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Remedy format is correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6497,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "All documentation is complete",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6498,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Comments are all addressed then removed",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6423,
+   "name": "EJU - Davey Form",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6424,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Date Sent",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6425,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Date Returned",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6401,
+   "name": "EJU - Ride Out Checklist",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6402,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Added to ride out calendar",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6403,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Ride out date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6404,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Response notification completion notice PDf'd",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6405,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Emailed correct individuals with correct attachments",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6406,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Emailed response notification",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6407,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Work order per pole cost estimate sent to proposee and AEP",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6408,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Covermap emailed to all parties",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6502,
+   "name": "EJU - Field Checklist",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6503,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Check completed assignment data with project manager",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6504,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Primary hardware correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6505,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposee added",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6506,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposee has the correct midspans",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6507,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Completed design clearances report",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6508,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "All reports printed for all poles",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6509,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "All needed equipment signed out",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6510,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Scheduled per Diem and hotel reservations",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6511,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Working GPS unit and tablet",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6512,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Checked PAC sheet/PDS for existing owners",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6513,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Reviewed utility maps for companies in the area",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6514,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Load cases, custom forms, designs applied properly",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6515,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct load zone and grade used",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6516,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Average loading, no K-factor, no P-delta",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6517,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "All data collected/entered correctly and checked",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6518,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Companies identified correctly",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6519,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct proposee size",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6520,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct placement on pole (overbuild, underbuild, overlash)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6521,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Cross-check AEP data with AEP map",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6522,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Address for each pole",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6523,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Span guys are entered properly",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6524,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Collected transmission pole numbers",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6525,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Collected foreign pole numbers",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6526,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Environments correct and used properly",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6527,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Location information filled out for every pole",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6528,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Remediation notes written",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6529,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Staking completed",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6530,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Midspan notes (distance, direction, etc.)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6531,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "ODOT distance collection (St Rte and HWY)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6532,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Measured distances for ROW",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6533,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attempted to make contact w/landowner",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6534,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Filed our ROW custom form(s)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6535,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Noted contact info of landowner for ROW or left door hanger",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6536,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Went to site and reviewed location in field",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6537,
+   "name": "EJU - Office Checklist",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6538,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Pictures assigned, directions correct, data matches pictures",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6539,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Duplicate poles checked",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6540,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Davey design comparison report run",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6541,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": ",YES,NO",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "RADIO_BUTTONS",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6542,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "Yes",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Transmission?",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "LISTBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6543,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Designs used correctly (existing, proposed, remedy)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6544,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Midspan poles entered correctly",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6545,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Midspans are still OK due to adjacent pole remedies",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6546,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Summary notes completed correctly",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6547,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Attach at heights for OK poles",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6548,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Remedy is finalized and in correct format",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6549,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct standard(s) noted in remedy",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6550,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Adjacent pole heights are within 5' of replaced pole heights",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6551,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct spelling",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6552,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Work on foreign pole(s) noted and done correctly",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6553,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Need splicing for conductors, services, etc.",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6554,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Adder(s) noted",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6555,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Billing codes checked and correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6556,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposed and remedy designs updated",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6557,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Analysis valid on all poles; Usage valid on all poles",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6558,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Emailed AEP low services and illegal attachment to manager",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6559,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Created EVF for X-poles",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6560,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "APP3 started and saved",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6561,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Completed drawing on ROW form(s)",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6562,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "General overview PDF'd",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6563,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Location analysis results PDF'd",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6387,
+   "name": "IJUS Tracking Information",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6388,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposal Code",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6389,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Proposee Proposal Code",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6390,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Client Received Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6391,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "day",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Close Date",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "DATE",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6392,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Work/Job-Order#",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6393,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Pole Quantity",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6394,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Job Location",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    },
+    {
+     "id": 6395,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Submitter",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTFIELD",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6396,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": null,
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Remarks",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "TEXTAREA",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": false,
+     "additionalFields": []
+    }
+   ]
+  },
+  {
+   "id": 6449,
+   "name": "EJU - Covermap Checklist",
+   "class": "com.spidasoftware.projectmanager.forms.FormTemplate",
+   "companyId": 43,
+   "fieldTemplates": [
+    {
+     "id": 6450,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Use correct template from server",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6451,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Complete all information needed for title block",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6452,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct pole number(s) in correct format",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6453,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct city/county/state information",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6454,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct proposal numbers",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6455,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Arrows pointing to correct poles",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6456,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Spelling and punctuation checked",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6457,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "All remedies make sense",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6458,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Designer's name correct",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6459,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Correct circuit #'s added",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6460,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Label poles accordingly if transmission involved",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6461,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Make sure viewports are locked",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6462,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Sheets are in proper order and combined into one PDF",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6463,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Covermaps are named with the _CM",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6464,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Once covermap complete, run final \"audit\" to remove errors",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6465,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "\"Preliminary\" is turned ON",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6466,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Primary and secondary annotation are turned OFF",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6467,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Street names are balanced and not overlapping",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    },
+    {
+     "id": 6468,
+     "readOnly": false,
+     "parent": null,
+     "commaSeparatedChoices": "false",
+     "class": "com.spidasoftware.projectmanager.forms.FieldTemplate",
+     "label": "Polyline around ALL complex remedies",
+     "formTemplate": {
+      "_ref": "../..",
+      "class": "com.spidasoftware.projectmanager.forms.FormTemplate"
+     },
+     "type": {
+      "name": "CHECKBOX",
+      "enumType": "com.spidasoftware.projectmanager.enums.FieldType"
+     },
+     "required": true,
+     "additionalFields": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "plans": [],
+   "leftPixelPosition": 5020,
+   "possibleNextEvents": [{
+    "id": 6501,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6500,
+   "topPixelPosition": 2951,
+   "projectLevel": "PROJECT",
+   "color": "30d917",
+   "name": "Data Collection (IJUS)",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4749,
+   "possibleNextEvents": [
+    {
+     "id": 6475,
+     "label": "Possible"
+    },
+    {
+     "id": 6485,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6379,
+   "topPixelPosition": 3321,
+   "projectLevel": "PROJECT",
+   "color": "0080ff",
+   "name": "Transmission Engineering",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4991,
+   "possibleNextEvents": [{
+    "id": 6429,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6419,
+   "topPixelPosition": 4581,
+   "projectLevel": "PROJECT",
+   "color": "891f87",
+   "name": "Work Order",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 6564,
+   "plans": [],
+   "leftPixelPosition": 4749,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 6378,
+   "version": 9,
+   "id": 6412,
+   "topPixelPosition": 3741,
+   "projectLevel": "PROJECT",
+   "color": "0080ff",
+   "name": "Transmission Engineering Complete",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4669,
+   "possibleNextEvents": [{
+    "id": 6420,
+    "label": "Possible"
+   }],
+   "onStartActions": [6481],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6484,
+   "topPixelPosition": 5681,
+   "projectLevel": "PROJECT",
+   "color": "f0a904",
+   "name": "Proposal Finalization",
+   "locationType": "ONLINE",
+   "onFinishActions": [
+    6482,
+    6483
+   ]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 6020,
+   "possibleNextEvents": [],
+   "onStartActions": [],
+   "formTemplates": [
+    6438,
+    6430
+   ],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 20,
+   "id": 6448,
+   "topPixelPosition": 2311,
+   "projectLevel": "STATION",
+   "color": "ffffff",
+   "name": "Pole Details",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5311,
+   "possibleNextEvents": [{
+    "id": 6422,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6384,
+   "topPixelPosition": 6081,
+   "projectLevel": "PROJECT",
+   "color": "c0c0c0",
+   "name": "Covermap Updates Post Rideout",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 6564,
+   "plans": [],
+   "leftPixelPosition": 5720,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 6378,
+   "version": 9,
+   "id": 6486,
+   "topPixelPosition": 3361,
+   "projectLevel": "PROJECT",
+   "color": "0080ff",
+   "name": "Remediation Updates Required",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4871,
+   "possibleNextEvents": [{
+    "id": 6412,
+    "label": "Possible"
+   }],
+   "onStartActions": [6416],
+   "formTemplates": [6471],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6475,
+   "topPixelPosition": 3521,
+   "projectLevel": "PROJECT",
+   "color": "0080ff",
+   "name": "RAS Sent",
+   "locationType": "ONLINE",
+   "onFinishActions": [6417]
+  },
+  {
+   "nextEvent": 6469,
+   "plans": [],
+   "leftPixelPosition": 4920,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 6378,
+   "version": 12,
+   "id": 6380,
+   "topPixelPosition": 4041,
+   "projectLevel": "PROJECT",
+   "color": "d731be",
+   "name": "Covermap Updates Required",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5251,
+   "onStartActions": [6416],
+   "formTemplates": [],
+   "class": "HoldEvent",
+   "flow": 6378,
+   "version": 16,
+   "id": 6418,
+   "topPixelPosition": 1881,
+   "projectLevel": "PROJECT",
+   "color": "ff4242",
+   "name": "Hold",
+   "locationType": "ONLINE",
+   "onFinishActions": [6417]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5255,
+   "possibleNextEvents": [
+    {
+     "id": 6419,
+     "label": "Possible"
+    },
+    {
+     "id": 6380,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6385,
+   "topPixelPosition": 4141,
+   "projectLevel": "PROJECT",
+   "color": "d731be",
+   "name": "Covermap Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5340,
+   "possibleNextEvents": [
+    {
+     "id": 6469,
+     "label": "Possible"
+    },
+    {
+     "id": 6486,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [6487],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6499,
+   "topPixelPosition": 3460,
+   "projectLevel": "PROJECT",
+   "color": "0080ff",
+   "name": "Remediation Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4659,
+   "possibleNextEvents": [{
+    "id": 6428,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6427,
+   "topPixelPosition": 6081,
+   "projectLevel": "PROJECT",
+   "color": "f0a904",
+   "name": "Returned",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4599,
+   "possibleNextEvents": [{
+    "id": 6412,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [6471],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6485,
+   "topPixelPosition": 3521,
+   "projectLevel": "PROJECT",
+   "color": "0080ff",
+   "name": "No RAS Needed",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 6421,
+   "plans": [],
+   "leftPixelPosition": 5311,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 6378,
+   "version": 17,
+   "id": 6398,
+   "topPixelPosition": 5681,
+   "projectLevel": "PROJECT",
+   "color": "c0c0c0",
+   "name": "Updates Required Post Ride Out",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 6564,
+   "plans": [],
+   "leftPixelPosition": 5315,
+   "onStartActions": [
+    6482,
+    6483
+   ],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 6378,
+   "version": 16,
+   "id": 6501,
+   "topPixelPosition": 3041,
+   "projectLevel": "PROJECT",
+   "color": "30d917",
+   "name": "Data Collection Complete",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4659,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "FinishEvent",
+   "flow": 6378,
+   "version": 14,
+   "id": 6428,
+   "topPixelPosition": 6311,
+   "projectLevel": "PROJECT",
+   "color": "ffffff",
+   "name": "Finish",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 6370,
+   "possibleNextEvents": [{
+    "id": 6411,
+    "label": "Possible"
+   }],
+   "onStartActions": [6381],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6383,
+   "topPixelPosition": 2511,
+   "projectLevel": "PROJECT",
+   "color": "ffffff",
+   "name": "Additional Poles Found",
+   "locationType": "ONLINE",
+   "onFinishActions": [6382]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 6360,
+   "possibleNextEvents": [{
+    "id": 6564,
+    "label": "Possible"
+   }],
+   "onStartActions": [6410],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6411,
+   "topPixelPosition": 3071,
+   "projectLevel": "PROJECT",
+   "color": "ffffff",
+   "name": "Complete Additional Pole Forms",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 6311,
+   "possibleNextEvents": [],
+   "onStartActions": [6381],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 31,
+   "id": 6415,
+   "topPixelPosition": 3611,
+   "projectLevel": "PROJECT",
+   "color": "ffffff",
+   "name": "Poles Added at Ride Out",
+   "locationType": "ONLINE",
+   "onFinishActions": [6382]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5620,
+   "possibleNextEvents": [{
+    "id": 6501,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [6423],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6426,
+   "topPixelPosition": 2960,
+   "projectLevel": "PROJECT",
+   "color": "30d917",
+   "name": "Data Collection [Contractor]",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4980,
+   "possibleNextEvents": [{
+    "id": 6470,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [6401],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6409,
+   "topPixelPosition": 5190,
+   "projectLevel": "PROJECT",
+   "color": "00dddd",
+   "name": "Ride Out Preparation",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5311,
+   "possibleNextEvents": [{
+    "id": 6484,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6422,
+   "topPixelPosition": 6280,
+   "projectLevel": "PROJECT",
+   "color": "c0c0c0",
+   "name": "Work Order Updates Post Ride Out",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 6397,
+   "plans": [],
+   "leftPixelPosition": 5640,
+   "onStartActions": [],
+   "formTemplates": [],
+   "automatic": true,
+   "class": "StartEvent",
+   "flow": 6378,
+   "version": 14,
+   "id": 6414,
+   "topPixelPosition": 1831,
+   "projectLevel": "PROJECT",
+   "color": "ec7600",
+   "name": "Start",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": [6413]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5315,
+   "possibleNextEvents": [
+    {
+     "id": 6379,
+     "label": "Possible"
+    },
+    {
+     "id": 6499,
+     "label": "Possible"
+    },
+    {
+     "id": 6383,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [
+    6502,
+    6537
+   ],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 38,
+   "id": 6564,
+   "topPixelPosition": 3270,
+   "projectLevel": "PROJECT",
+   "color": "0080ff",
+   "name": "Remediation",
+   "locationType": "ONLINE",
+   "onFinishActions": [
+    6482,
+    6483
+   ]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5311,
+   "possibleNextEvents": [{
+    "id": 6384,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6421,
+   "topPixelPosition": 5881,
+   "projectLevel": "PROJECT",
+   "color": "c0c0c0",
+   "name": "Remediation Updates Post Ride Out",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": 6419,
+   "plans": [],
+   "leftPixelPosition": 4720,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 6378,
+   "version": 11,
+   "id": 6400,
+   "topPixelPosition": 4661,
+   "projectLevel": "PROJECT",
+   "color": "891f87",
+   "name": "Work Order Updates Required",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5660,
+   "possibleNextEvents": [{
+    "id": 6476,
+    "label": "Possible"
+   }],
+   "onStartActions": [6386],
+   "formTemplates": [6387],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6397,
+   "topPixelPosition": 2081,
+   "projectLevel": "PROJECT",
+   "color": "ec7600",
+   "name": "IJUS Receives Proposal",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "nextEvent": null,
+   "plans": [],
+   "leftPixelPosition": 4431,
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "AutomaticEvent",
+   "flow": 6378,
+   "version": 10,
+   "id": 6477,
+   "topPixelPosition": 4921,
+   "projectLevel": "PROJECT",
+   "color": "ffffff",
+   "name": "Advance to Ride Out Prep",
+   "locationType": "ONLINE",
+   "nextEventLabel": "Next",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5660,
+   "possibleNextEvents": [{
+    "id": 6480,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6476,
+   "topPixelPosition": 2300,
+   "projectLevel": "PROJECT",
+   "color": "ec7600",
+   "name": "Verify Proposal Poles, Advance to Complete Pole Forms",
+   "locationType": "ONLINE",
+   "onFinishActions": [6382]
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4669,
+   "possibleNextEvents": [{
+    "id": 6427,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6420,
+   "topPixelPosition": 5881,
+   "projectLevel": "PROJECT",
+   "color": "f0a904",
+   "name": "Billing Confirmation",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5280,
+   "possibleNextEvents": [{
+    "id": 6385,
+    "label": "Possible"
+   }],
+   "onStartActions": [],
+   "formTemplates": [6449],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6469,
+   "topPixelPosition": 3941,
+   "projectLevel": "PROJECT",
+   "color": "d731be",
+   "name": "Covermap",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4991,
+   "possibleNextEvents": [
+    {
+     "id": 6400,
+     "label": "Possible"
+    },
+    {
+     "id": 6409,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6429,
+   "topPixelPosition": 4780,
+   "projectLevel": "PROJECT",
+   "color": "891f87",
+   "name": "Work Order Review",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 4960,
+   "possibleNextEvents": [
+    {
+     "id": 6415,
+     "label": "Possible"
+    },
+    {
+     "id": 6484,
+     "label": "Possible"
+    },
+    {
+     "id": 6398,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 39,
+   "id": 6470,
+   "topPixelPosition": 5420,
+   "projectLevel": "PROJECT",
+   "color": "00dddd",
+   "name": "Ride Out",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5660,
+   "possibleNextEvents": [
+    {
+     "id": 6500,
+     "label": "Possible"
+    },
+    {
+     "id": 6426,
+     "label": "Possible"
+    }
+   ],
+   "onStartActions": [
+    6478,
+    6410
+   ],
+   "formTemplates": [],
+   "class": "ManualEvent",
+   "flow": 6378,
+   "version": 42,
+   "id": 6480,
+   "topPixelPosition": 2501,
+   "projectLevel": "PROJECT",
+   "color": "ec7600",
+   "name": "Data Collection Maps",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  },
+  {
+   "plans": [],
+   "leftPixelPosition": 5251,
+   "onStartActions": [],
+   "formTemplates": [],
+   "automatic": true,
+   "class": "CancelEvent",
+   "flow": 6378,
+   "version": 16,
+   "id": 6399,
+   "topPixelPosition": 2081,
+   "projectLevel": "PROJECT",
+   "color": "ff4242",
+   "name": "Cancel",
+   "locationType": "ONLINE",
+   "onFinishActions": []
+  }
+ ],
+ "name": "EJU",
+ "coreForm": 6566,
+ "companyId": 43,
+ "actions": [
+  {
+   "id": 6481,
+   "scriptFilePrefix": "AddTimeMarkerByDays",
+   "name": "15 Day Return Clock",
+   "parameters": {
+    "days until expiration": "15",
+    "label": "Project Name 15 Day Return Clock",
+    "met event name": "Returned"
+   },
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6482,
+   "scriptFilePrefix": "PullFormsFromCalc",
+   "name": "Pull Forms from Calc",
+   "parameters": null,
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6483,
+   "scriptFilePrefix": "PullPhotosFromCalc",
+   "name": "Pull Photos from Calc",
+   "parameters": null,
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6416,
+   "scriptFilePrefix": "HoldTimeMarkers",
+   "name": "Hold 45 Day Clock",
+   "parameters": null,
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6417,
+   "scriptFilePrefix": "ResumeTimeMarkers",
+   "name": "Resume 45 Day Clock",
+   "parameters": null,
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6381,
+   "scriptFilePrefix": "LockProject",
+   "name": "ProjectUnlocked",
+   "parameters": {"lock": "false"},
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6382,
+   "scriptFilePrefix": "SetSubStatus",
+   "name": "Pole Details",
+   "parameters": {
+    "status name": "Pole Details",
+    "project level": "Station"
+   },
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6410,
+   "scriptFilePrefix": "LockProject",
+   "name": "LockProject",
+   "parameters": {"lock": "true"},
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6413,
+   "scriptFilePrefix": "AssignToRole",
+   "name": "Creator as Manager",
+   "parameters": {
+    "role": "Creator",
+    "remove others?": "Yes",
+    "type": "Manager"
+   },
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6386,
+   "scriptFilePrefix": "AddTimeMarkerByDays",
+   "name": "45 Day Clock",
+   "parameters": {
+    "days until expiration": "45",
+    "label": "Project Name 45 Day Clock",
+    "met event name": "Ride Out Preparation"
+   },
+   "companyId": 43,
+   "version": 0
+  },
+  {
+   "id": 6478,
+   "scriptFilePrefix": "GenerateCalcFileWithOneLead",
+   "name": "Generate Calc File",
+   "parameters": null,
+   "companyId": 43,
+   "version": 0
+  }
+ ],
+ "version": 17
+}

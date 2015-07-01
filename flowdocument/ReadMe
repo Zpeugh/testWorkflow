@@ -21,7 +21,7 @@ To run this gradle app:
 4. Open up a terminal window.
 5. Change directory on to the directory containing the 'flowdocument' folder.
 6. Type on the commandline 'gradle runMain' for Mac OSx users.
-   For Windows users, type 'gradlew runMain'. 
+   For Windows users, type 'gradlew runMain'.
 7. When prompted for "flow name: ", enter the downloaded file name from step 3,
    with or without the .flow extension.
 8. When prompted for "Company Name: ", enter the name you logged in as on spidasoftware.com.
@@ -52,3 +52,7 @@ Make sure you checked the case sensitivity when putting in the flow and company 
 
 You must have your downloaded .flow file in your userHomeDirectory/Downloads.  If this is not your
 automatic download location, then simply move the downloaded file to that folder.
+
+Windows:
+If you have two graphics cards and one is NVIDIA, then you must go to NVidia Control Panel > Manage 3D Settings > Global Settings
+  and change the "Preferred graphics processor" to "High-performance NVIDIA processor".

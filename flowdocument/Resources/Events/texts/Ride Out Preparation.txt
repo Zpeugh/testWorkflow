@@ -1,0 +1,9 @@
+Event: RIDE OUT PREPARATION
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Ride Out
+On start: None for this event
+Planned: None for this event
+On finish: None for this event
+EJU - Ride Out Checklist

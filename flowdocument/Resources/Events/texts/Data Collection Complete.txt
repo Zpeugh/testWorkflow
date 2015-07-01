@@ -1,0 +1,9 @@
+Event: DATA COLLECTION COMPLETE
+Type: Automatic
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: None
+On start: Pull Forms from Calc~Pull Photos from Calc
+Planned: None for this event
+On finish: None for this event
+No forms for this event

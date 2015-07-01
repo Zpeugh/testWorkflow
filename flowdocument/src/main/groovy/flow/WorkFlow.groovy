@@ -226,13 +226,13 @@ public class WorkFlow {
 		def fileName = args[1]
 		WorkFlow newFlow = new WorkFlow(fileName)
 		SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
-
 		File flowInfo = new File('Resources/flowInfo.txt')
+		new File('Resources/Events/texts').mkdir()
 
 		flowInfo.write(newFlow.flowName + '\n')
 		flowInfo.append(companyName.replaceAll('~', ' '))
 
-		def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + sampleFlow.formArguments).execute()
+		def getForms = ('casperjs.bat --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + sampleFlow.formArguments).execute()
 		getForms.waitForProcessOutput(System.out, System.err)
 
 		def formatFormHtml = ('casperjs generateformhtml.js ' +  sampleFlow.formArguments).execute()
@@ -252,32 +252,5 @@ public class WorkFlow {
 			File eventPage = new File('Resources/Events/texts/' + v.eventName + '.txt')
 			v.printEventInfoPage(eventPage)
 		}
-
-		// Asynchronizer.doParallel() {
-		//
-		// Closure getFormHtmls = {
-		// 	def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + formNameArgs).execute()
-		// 	getForms.waitForProcessOutput(System.out, System.err)
-		// 	println "Finished form capture script."
-		// }
-		//
-		// Closure getActionHtmls = {
-		// 	def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js ' + companyName + ' ' + flowName + ' ' + actionNameArgs).execute()
-		// 	getActions.waitForProcessOutput(System.out, System.err)
-		// 	println "Finished action capture script"
-		// }
-		//
-		// Closure formAsync = getFormHtmls.async()
-		// Closure actionAsync = getActionHtmls.async()
-		//
-		// Future formResult=formAsync() //get the "finished" text from each async. closure.
-		// Future actionResult=actionAsync()
-		//
-		//
-		//
-		// println formResult.get()
-		// println actionResult.get()
-		//
-		// }
 	}
 }

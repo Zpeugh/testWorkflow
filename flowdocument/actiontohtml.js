@@ -14,8 +14,8 @@ var casper = require('casper').create({
 
     stepTimeout: 8000,
     timeout : 10000,
-    verbose: true,
-    logLevel: 'debug',
+    verbose: false,
+    logLevel: 'error',
     pageSettings: {
       userAgent : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36",
       localToRemoteUrlAccessEnabled : true
@@ -89,7 +89,7 @@ casper.getAction = function(j, actionName, actionValue){
     });
 
     casper.wait(2000, function printPage(){
-        this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){            
+        this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){
             var html = this.getHTML('#action');
             html = html.replace("<form", "<html><link href=\"../flow.css\" rel=\"stylesheet\" " +
             "type=\"text/css\" /><div class=\"row\"><div id=\"action\" class=\"small-12 columns\"><form" );

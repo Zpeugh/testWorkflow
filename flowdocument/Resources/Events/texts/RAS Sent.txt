@@ -1,0 +1,9 @@
+Event: RAS SENT
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Transmission Engineering Complete
+On start: Hold 45 Day Clock
+Planned: None for this event
+On finish: Resume 45 Day Clock
+EJU - Transmission Checklist

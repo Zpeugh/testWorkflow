@@ -1,8 +1,8 @@
 var casper = require('casper').create({
     stepTimeout: 6000,
     timeout : 8000,
-    verbose: true,
-    logLevel: 'debug',
+    verbose: false,
+    logLevel: 'error',
     pageSettings: {
       localToRemoteUrlAccessEnabled : true
     },
@@ -47,7 +47,7 @@ if(actionNameArray.length === 0){
 
 casper.getActionLabels = function(actionName){
 
-    this.thenOpen('file://' + fs.workingDirectory + '/Resources/actionHtmls/' + actionName + '.html', function(){
+    this.thenOpen('Resources/actionHtmls/' + actionName + '.html', function(){
 
           var actionFormValues = this.getElementsAttribute('div>label', 'for');
           for (var x = 0; x < actionFormValues.length ; x++){
@@ -65,7 +65,7 @@ casper.getActionLabels = function(actionName){
 
 
 casper.createActionHTML = function(actionName, actionFormValues){
-    this.thenOpen('file://' + fs.workingDirectory + '/Resources/actionHtmls/' + actionName + '.html', function(){
+    this.thenOpen('Resources/actionHtmls/' + actionName + '.html', function(){
 
         var fileName = fs.workingDirectory + '/Resources/actionHtmls/' + actionName + '.html';
         this.createPageHeader(fileName, actionName, actionFormValues);
@@ -95,7 +95,7 @@ casper.createPageHeader = function(fileName, actionName, actionFormValues){
 
 casper.makeActionPNG = function(actionName) {
 
-    this.thenOpen('file://' + fs.workingDirectory + '/Resources/actionHtmls/' + actionName + '.html', function(){
+    this.thenOpen('Resources/actionHtmls/' + actionName + '.html', function(){
         this.waitForSelector('#actionForm>fieldset', function(){
 
             var actionSnip = this.getElementBounds('#actionForm>fieldset');
