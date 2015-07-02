@@ -1,9 +1,0 @@
-Event: WORK ORDER REVIEW
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Work Order Updates Required~Ride Out Preparation
-On start: None for this event
-Planned: None for this event
-On finish: None for this event
-No forms for this event

@@ -1,9 +1,0 @@
-Event: TRANSMISSION ENGINEERING
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: RAS Sent~No RAS Needed
-On start: None for this event
-Planned: None for this event
-On finish: None for this event
-No forms for this event

@@ -1,9 +1,0 @@
-Event: COVERMAP
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Covermap Review
-On start: None for this event
-Planned: None for this event
-On finish: None for this event
-EJU - Covermap Checklist

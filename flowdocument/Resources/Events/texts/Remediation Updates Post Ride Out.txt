@@ -1,9 +1,0 @@
-Event: REMEDIATION UPDATES POST RIDE OUT
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Covermap Updates Post Rideout
-On start: None for this event
-Planned: None for this event
-On finish: None for this event
-No forms for this event

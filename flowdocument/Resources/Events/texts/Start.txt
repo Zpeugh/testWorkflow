@@ -1,9 +1,0 @@
-Event: START
-Type: Start
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: None
-On start: None for this event
-Planned: None for this event
-On finish: Creator as Manager
-No forms for this event

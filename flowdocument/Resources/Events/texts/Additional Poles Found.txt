@@ -1,9 +1,0 @@
-Event: ADDITIONAL POLES FOUND
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Complete Additional Pole Forms
-On start: ProjectUnlocked
-Planned: None for this event
-On finish: Pole Details
-No forms for this event
