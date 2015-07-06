@@ -57,13 +57,13 @@ casper.capturePNG = function(formName){
     this.waitForSelector('#tabs', function(){
         var formSnip = this.getElementBounds('#tabs');
         this.capture('Resources/formHtmls/formPNGs/' + formName + '.png', {
-            top : formSnip.top + 5,
-            height : formSnip.height - 4,
+            top : formSnip.top,
+            height : formSnip.height,
             left : formSnip.left,
             width : formSnip.width
         });
     }, function(){
-        console.log('Likely a blank form html page.')
+        console.log('Likely a blank form html page at: ' + this.getCurrentUrl());
     }, 3000);
 };
 
@@ -91,6 +91,7 @@ casper.createFormHTML = function(formName, formValues) {
 
 casper.getFormLabels = function(formName) {
 
+    console.log("Made it in");
     var formValues = ["temp"];
     var finalFormValues = [];
     var count = 0;
@@ -116,10 +117,14 @@ casper.start();
 
 //Gets all of the fields in the action form and stores them in an array
 casper.each(formNameArray, function(casper, formName) {
-    this.thenOpen('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', function(){
+    var fileString =  'Resources/formHtmls/' + formName + '.html';
+    //fileString = fileString.replace(new RegExp('/','g'), '\\');
+
+    casper.thenOpen(fileString, function(){
+        console.log("This: " + this.getCurrentUrl());
         this.capturePNG(formName);
         //this.capture('Resources/formHtmls/formPNGs/' + formName + '.png');
-        this.waitForUrl('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName));
+        this.waitForUrl('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName) );
     });
 });
 

@@ -8,8 +8,9 @@
  */
 
 // Apply the java plugin to add support for Java
-
 apply plugin: 'groovy'
+
+project.ext.set('javafxHome', System.env['JAVAFX_HOME'])
 
 repositories{
   mavenCentral()
@@ -19,88 +20,39 @@ repositories{
 dependencies {
 	compile 'org.codehaus.groovy:groovy-all:2.4.3'
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    compile 'org.codehaus.groovyfx:groovyfx:0.4.0'
+    compile("ant:ant:1.7.0")
+    compile files("${javafxHome}/rt/lib/jfxrt.jar")
 }
 
 String flowName
 
-task unzip() {
-    doFirst{
-        def dir = System.properties['user.home'] + '/Downloads/'
-        flowName = System.console().readLine("\nFlow name: ")
-        flowName = flowName.replace('.flow', '')
-        def fileString = flowName + '.flow'
-        def myCopySpec
-        def srcDir = "${buildDir}/Resources".replace('build/','')
-        def outputDir = file(srcDir)
-
-        copy{
-            from {
-                println ("Unzipping file: " + dir + fileString)
-                zipTree(dir + fileString)
-            }
-            into {
-                println ("Into: " + outputDir)
-                outputDir
-            }
-        }
-    }
-
-    doLast{
-
-        def jsonFile = file('Resources/Flow.json')
-        jsonFile.renameTo('Resources/' + flowName + '.json' )
-        FileTree actions = fileTree(dir: 'Resources/actions')
-        FileTree conditions = fileTree(dir: 'Resources/conditions')
-
-        delete actions
-        delete conditions
-    }
+task wrap(type:Wrapper, description:"create a gradlew") {
+    gradleVersion = '1.0-rc-3'
 }
 
 
-
-
-task runMain( dependsOn: 'classes', type: JavaExec) {
+task run( dependsOn: 'classes', type: JavaExec) {
 
     doFirst{
 
-        tasks.unzip.execute()
-        //tasks.cleanResources.execute()
+        // tasks.unzip.execute()
+        // tasks.cleanResources.execute()
 
-        main = 'flow.WorkFlow'
+        main = 'flow.GUI'
         classpath = sourceSets.main.runtimeClasspath
-        standardInput = System.in
-        standardOutput = System.out
 
-        def company = System.console().readLine("\nCompany name: ")
-
-
-
-        def arguments = new ArrayList<>()
-        arguments << company.replaceAll(' ', '~')
-        arguments << flowName + '.json'
-
-        args = arguments
-    }
-
-    doLast{
-        tasks.showInBrowser.execute()
-        tasks.exportWorkflow.execute()
     }
 }
 
 task exportWorkflow()  {
 
-
     String homeDirectory = System.properties['user.home']
     def folderString = homeDirectory + '/Desktop/ExportToGoogleDrive/'
 
     doFirst{
-
         FileTree googleDriveFolder = fileTree(new File(folderString))
-
         delete googleDriveFolder
-
     }
 
     doLast{
@@ -171,13 +123,9 @@ task cleanResources() {
     }
 }
 
-
-
 task showInBrowser() {
-
     doLast{
-        def thisDirectory = System.getProperty("user.dir")
-        java.awt.Desktop.desktop.browse( ('File://' + thisDirectory + '/Resources/Events/eventIndex.html').toURI() )
-    }
 
+
+    }
 }

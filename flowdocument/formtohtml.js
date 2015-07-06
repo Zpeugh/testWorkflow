@@ -129,7 +129,7 @@ casper.matchFormNames = function(childNumber){
             casper.waitForSelector('#wrap>div.wide-body', function() {
                 this.evaluate(function(formName){
                     var elem = document.querySelector('#tabs>ul');
-                    elem.style.maxnHeight = "0px";
+                    elem.style.maxHeight = "0px";
                     elem.innerHTML = "";
                     elem = document.getElementById('edittab');
                     elem.innerHTML = "";
@@ -275,5 +275,5 @@ casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrou
 * Execute the script
 */
 casper.run(function() {
-casper.exit();
+    casper.exit();
 });

@@ -1,36 +1,48 @@
-To download all necessary resources to run and generate the workflow output:
+MAC OSx USERS:
 
-1. Fork the repository spidasoftware/min/scripts/flowdocument.
-2. Create a google drive if you do not already have one.
+To download and setup all necessary resources to run and generate the workflow output:
+
+The APP:
+1. Install Python version 2.7 or higher if you do not already have it
+2. Install Phantomjs version 1.9.7 (DO NOT choose any other version)
+3. Install Casperjs version 1.1 or higher
+4. Clone/download the git repository https://github.com/spidasoftware/min/scripts/flowdocument
+   into the Applications folder.
+5. Inside of Applications/flowdocument, drag or duplicate the SHELL file called "GenerateWorkflow" to your
+   desktop.
+6. Open up a terminal window and type "chmod u+x /Users/zpeugh/Desktop/GenerateWorkflow.command"
+
+7. You can now put this GenerateWorkflow file anywhere you wish, and you will simply double-click
+   on it to begin the app.
+
+
+Google Docs Add-on:
+2. Create a google drive if you do not already have one (You must be a member of the spidasoftware
+   domain to find it).
 3. Open a new document in google docs.
 4. Click on the "Add-ons" tab, then "Get add-ons...".
 5. Inside the web store, find the add-on titled "Document Workflow", and install it.
    Alternatively, go to https://chrome.google.com/webstore/detail/document-workflow/lhffgpnhgkohngaplfphaihbapakkchl
-6. The add on is not ready to use in any file you wish to implement it.
 
 
-To run this gradle app:
 
-1. Go to the spidasoftware.com/projectManager page where you created your WorkFlow.
+To run the app:
+
+1. Go to the https://www.spidasoftware.com/projectManager/ page where you created your WorkFlow.
 2. Note the exact syntax of the company name you log into to get to the flow.
    If you do not have to change companies, then the company name is 'SPIDA'.
 3. Press download on your workflow, and note the name of the file that gets downloaded.
    For example, if the flow name was 'North Carolina Make Ready Process' then the file download
    name would be 'North-Carolina-Make-Ready-Process.flow'.  You will need this in an upcoming step.
 
-4. Open up a terminal window.
-5. Change directory on to the directory containing the 'flowdocument' folder.
-6. Type on the commandline 'gradle runMain' for Mac OSx users.
-   For Windows users, type 'gradlew runMain'. 
-7. When prompted for "flow name: ", enter the downloaded file name from step 3,
-   with or without the .flow extension.
-8. When prompted for "Company Name: ", enter the name you logged in as on spidasoftware.com.
-   This is case-sensitive.
-9. The program will then go and gather all the proper resources and after between 1-10 minutes
-   (depending on the size of the flow, but usually around 3-4) a folder called "ExportToGoogleDrive"
-   will appear on your desktop, and a local html page will appear in your browser.
-
-10. Go to your google drive
+4. Double-click the GenerateWorkflow file in App-setup step 7.
+5. Fill in Company and flow names, being careful with spelling.
+6. Press "Generate Document"
+7. The program will then go and gather all the proper resources and after between 1-10 minutes
+   (depending on the size of the flow, but usually around 3-4).
+8. Click "Open in Browser"
+9. Click "Create Export Folder" then a folder called ExportToGoogleDrive will appear in your desktop.
+10. Click "Go to Google Drive"
 11. Inside of "My Drive" create a new folder for the workflow, and name it whatever you like.
 	Do not name it something that is already in your MyDrive folder however.  This name will
 	be prompted later, so remember it.
@@ -42,13 +54,10 @@ To run this gradle app:
     google doc add-on to create the Event, Action, and Form document templates. When prompted for
 	folder name, it is whatever you named it in step 11.
 
-
 Troubleshooting:
 
 If there are missing forms or actions, it is likely that an internet slowdown or interruption
 caused a page not to load, and you can simply run the program again and see if that captures them all.
 
-Make sure you checked the case sensitivity when putting in the flow and company names.
-
-You must have your downloaded .flow file in your userHomeDirectory/Downloads.  If this is not your
-automatic download location, then simply move the downloaded file to that folder.
+You must have your downloaded .flow file in your /Users/"your username"/Downloads.  If this is not your
+automatic download location, then simply move the downloaded file to that folder and try again.
