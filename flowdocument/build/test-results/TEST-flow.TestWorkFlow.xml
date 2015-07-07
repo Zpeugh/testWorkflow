@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="flow.TestWorkFlow" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-07-07T14:26:51" hostname="Zach-PC" time="20.527">
+  <properties/>
+  <testcase name="1: SPIDA: Test-Flow: Captured all forms" classname="flow.TestWorkFlow" time="20.527"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
