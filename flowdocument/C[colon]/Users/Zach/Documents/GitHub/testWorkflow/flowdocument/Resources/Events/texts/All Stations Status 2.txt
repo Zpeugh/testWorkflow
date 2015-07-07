@@ -1,0 +1,9 @@
+Event: ALL STATIONS STATUS 2
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Finish
+On start: Assign Inspector
+Planned: None for this event
+On finish: None for this event
+No forms for this event

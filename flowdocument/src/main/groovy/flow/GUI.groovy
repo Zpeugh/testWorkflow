@@ -1,6 +1,5 @@
 package flow
 
-
 import static groovyx.javafx.GroovyFX.*
 import groovy.util.AntBuilder
 import org.apache.tools.ant.taskdefs.condition.Os
@@ -63,6 +62,7 @@ public class GUI{
 	private static void showInBrowser(){
 		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             'cmd /c start Resources/Events/eventIndex.html'.execute()
+			println System.getProperty("user.dir")
         } else {
             def thisDirectory = System.getProperty("user.dir")
             java.awt.Desktop.desktop.browse( ('File://' + thisDirectory + '/Resources/Events/eventIndex.html').toURI() )
@@ -90,15 +90,18 @@ public class GUI{
 		ant.delete(dir: googleDriveFolder,failonerror:false)
 		ant.mkdir(dir: folderString)
 		def workingDir = System.getProperty("user.dir")
+		String noColonFileString
 
 		resources.each() { file ->
-			def fileString = file.toString()
-            def noColonFileString = fileString.replaceAll(':', '[colon]')
-			noColonFileString = folderString + (noColonFileString - workingDir)
+			String fileString = file.toString()
+			noColonFileString = folderString + (fileString - workingDir)
+			//noColonFileString = fileString.replaceAll(':', '[colon]')
+			println noColonFileString
 			ant.copy(file: file, toFile: noColonFileString , includeEmptyDirs: false, )
 		}
 
 		ant.delete(dir: folderString + '/Resources/formHtmls/images', failonerror: false)
+		ant.delete(dir: folderString + '/Resources/images', failonerror: false)
 
 
 
@@ -158,7 +161,7 @@ public class GUI{
 		def companyName
 
 		start {
-			stage(title: "Generate Workflow", width: 500, height: 300, visible: true) {
+			stage(title: "Generate Workflow", width: 550, height: 350, visible: true) {
 				scene(fill: GROOVYBLUE) {
 					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center") {
 						columnConstraints(minWidth: 50, halignment: "right")

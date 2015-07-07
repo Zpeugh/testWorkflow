@@ -1,0 +1,9 @@
+Event: STATION STATUS 1
+Type: Manual
+Level: STATION
+Condition: Non-Conditional Event
+Next Possible Events: Station Status 2
+On start: None for this event
+Planned: None for this event
+On finish: None for this event
+Test Station Form 1

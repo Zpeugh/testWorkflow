@@ -1,0 +1,9 @@
+Event: FINISH
+Type: Finish
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: None
+On start: Send As-Designed to SAP
+Planned: None for this event
+On finish: None for this event
+single

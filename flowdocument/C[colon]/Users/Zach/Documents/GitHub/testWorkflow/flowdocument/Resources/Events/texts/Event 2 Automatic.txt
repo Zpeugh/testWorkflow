@@ -1,0 +1,9 @@
+Event: EVENT 2 AUTOMATIC
+Type: Automatic
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: None
+On start: None for this event
+Planned: GenerateCalcFile
+On finish: GenerateCalcFile
+69003~36072~Asset Information~QC

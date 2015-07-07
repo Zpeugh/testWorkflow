@@ -1,0 +1,1 @@
+Start~Station Status 1~Event 1~Conditional Event 2~Event 2 Automatic~All Stations Status 2~Station Status 2~Conditional All Stations Advanced~Event 3~Some Stations Status 1~Finish

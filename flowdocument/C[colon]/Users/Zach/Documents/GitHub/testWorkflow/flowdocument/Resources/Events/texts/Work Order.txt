@@ -1,0 +1,9 @@
+Event: WORK ORDER
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Work Order Review
+On start: None for this event
+Planned: None for this event
+On finish: None for this event
+No forms for this event

@@ -1,0 +1,9 @@
+Event: DATA COLLECTION [CONTRACTOR]
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Data Collection Complete
+On start: None for this event
+Planned: None for this event
+On finish: None for this event
+EJU - Davey Form

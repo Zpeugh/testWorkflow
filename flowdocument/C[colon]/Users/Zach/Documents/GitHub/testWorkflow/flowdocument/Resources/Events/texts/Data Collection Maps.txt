@@ -1,0 +1,9 @@
+Event: DATA COLLECTION MAPS
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Data Collection [Contractor]~Data Collection (IJUS)
+On start: Generate Calc File~LockProject
+Planned: None for this event
+On finish: None for this event
+No forms for this event

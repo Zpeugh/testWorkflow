@@ -1,0 +1,9 @@
+Event: CONDITIONAL EVENT 2
+Type: Conditional
+Level: PROJECT
+Condition: Group 2 Check
+Next Possible Events: None
+On start: None for this event
+Planned: None for this event
+On finish: None for this event
+No forms for this event

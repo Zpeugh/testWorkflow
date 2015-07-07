@@ -1,0 +1,9 @@
+Event: RIDE OUT
+Type: Manual
+Level: PROJECT
+Condition: Non-Conditional Event
+Next Possible Events: Updates Required Post Ride Out~Poles Added at Ride Out~Proposal Finalization
+On start: None for this event
+Planned: None for this event
+On finish: None for this event
+No forms for this event
