@@ -1,9 +1,0 @@
-Event: EVENT 3
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Finish~Conditional All Stations Advanced
-On start: Set Sub Status
-Planned: None for this event
-On finish: None for this event
-Test Project Form 1

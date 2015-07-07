@@ -1,9 +1,0 @@
-Event: REMEDIATION REVIEW
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Remediation Updates Required~Covermap
-On start: None for this event
-Planned: None for this event
-On finish: None for this event
-EJU - Remediation Review Checklist

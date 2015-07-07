@@ -1,9 +1,0 @@
-Event: EVENT 1
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Event 2 Automatic~Finish~Conditional Event 2
-On start: Email Creator on Start
-Planned: None for this event
-On finish: None for this event
-No forms for this event

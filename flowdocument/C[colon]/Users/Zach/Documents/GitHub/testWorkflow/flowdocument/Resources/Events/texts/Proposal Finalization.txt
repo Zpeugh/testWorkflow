@@ -1,9 +1,0 @@
-Event: PROPOSAL FINALIZATION
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Billing Confirmation
-On start: 15 Day Return Clock
-Planned: None for this event
-On finish: Pull Forms from Calc~Pull Photos from Calc
-No forms for this event

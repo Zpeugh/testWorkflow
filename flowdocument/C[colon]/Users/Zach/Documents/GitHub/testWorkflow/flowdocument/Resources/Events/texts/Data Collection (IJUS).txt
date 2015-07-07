@@ -1,9 +1,0 @@
-Event: DATA COLLECTION (IJUS)
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: Data Collection Complete
-On start: None for this event
-Planned: None for this event
-On finish: None for this event
-No forms for this event

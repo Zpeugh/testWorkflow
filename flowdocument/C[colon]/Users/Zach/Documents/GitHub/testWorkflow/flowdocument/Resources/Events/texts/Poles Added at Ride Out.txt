@@ -1,9 +1,0 @@
-Event: POLES ADDED AT RIDE OUT
-Type: Manual
-Level: PROJECT
-Condition: Non-Conditional Event
-Next Possible Events: None
-On start: ProjectUnlocked
-Planned: None for this event
-On finish: Pole Details
-No forms for this event

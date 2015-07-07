@@ -1,9 +1,0 @@
-Event: STATION STATUS 2
-Type: Manual
-Level: STATION
-Condition: Non-Conditional Event
-Next Possible Events: None
-On start: Assign Inspector
-Planned: None for this event
-On finish: 18 Months to Complete Construction~Calc Forms
-No forms for this event
