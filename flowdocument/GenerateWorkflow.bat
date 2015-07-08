@@ -1,3 +1,3 @@
 cd \
 cd 'Program Files'\flowdocument
-gradlew run
+CALL gradlew "run"

@@ -2,8 +2,8 @@ var casper = require('casper').create({
     waitTimeout: 8000,
     stepTimeout: 8000,
     timeout: 12000,
-    verbose: true,
-    logLevel: 'debug',
+    verbose: false,
+    logLevel: 'error',
     pageSettings: {
     localToRemoteUrlAccessEnabled: true
     },
@@ -62,8 +62,9 @@ casper.capturePNG = function(formName){
             left : formSnip.left,
             width : formSnip.width
         });
+        console.log('Created PNG of: '+ formName);
     }, function(){
-        console.log('Likely a blank form html page at: ' + this.getCurrentUrl());
+        console.log('Could not find form: ' + formName);
     }, 3000);
 };
 
@@ -91,7 +92,6 @@ casper.createFormHTML = function(formName, formValues) {
 
 casper.getFormLabels = function(formName) {
 
-    console.log("Made it in");
     var formValues = ["temp"];
     var finalFormValues = [];
     var count = 0;
@@ -121,7 +121,6 @@ casper.each(formNameArray, function(casper, formName) {
     //fileString = fileString.replace(new RegExp('/','g'), '\\');
 
     casper.thenOpen(fileString, function(){
-        console.log("This: " + this.getCurrentUrl());
         this.capturePNG(formName);
         //this.capture('Resources/formHtmls/formPNGs/' + formName + '.png');
         this.waitForUrl('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName) );

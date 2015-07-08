@@ -1,8 +1,8 @@
 var casper = require('casper').create({
     stepTimeout: 6000,
     timeout : 8000,
-    verbose: true,
-    logLevel: 'debug',
+    verbose: false,
+    logLevel: 'error',
     pageSettings: {
       localToRemoteUrlAccessEnabled : true
     },
@@ -106,8 +106,9 @@ casper.makeActionPNG = function(actionName) {
                 left : (actionSnip.left + 47),
                 width : (actionSnip.width - 47)
             });
+            console.log("Created PNG of: " + actionName )
         }, function missedFile() {
-        console.log("Missing action file: " + actionName + ".html")
+        console.log("Could not find action: " + actionName)
         }, 4000);
     });
 };

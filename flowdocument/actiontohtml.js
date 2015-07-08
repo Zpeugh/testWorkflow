@@ -14,8 +14,8 @@ var casper = require('casper').create({
 
     stepTimeout: 8000,
     timeout : 10000,
-    verbose: true,
-    logLevel: 'debug',
+    verbose: false,
+    logLevel: 'error',
     pageSettings: {
       userAgent : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36",
       localToRemoteUrlAccessEnabled : true
@@ -97,10 +97,10 @@ casper.getAction = function(j, actionName, actionValue){
             var imageRE = new RegExp('images', 'g');
             html = html.replace(imageRE,'../images');
             fs.write('Resources/actionHtmls/' + actionName + '.html', html, 'w');
-            console.log("Captured action: " + actionName + "value: " + actionValue);
+            console.log("Stored screenshot of action: " + actionName );
 
         }, function(){
-            console.log('Missed action: ' + actionName);
+            console.log('Could not find action: ' + actionName);
         }, 6000);
     });
 };
@@ -143,7 +143,6 @@ casper.waitForSelector('#mainnav>ul>li>div>div', function(){
 
 casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', function(){
     console.log("Logged in as: " + companyName);
-    //this.capture('loggedIn2.png');
 }, function() {
     console.log("Should only see this message if the company is SPIDA.");
 }, 7000);
@@ -154,7 +153,6 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', 
 */
 casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/flow/list', function openFlowList(){
     console.log("Navigating to Flow List");
-    //this.capture('whatever.png');
 });
 
 
@@ -220,9 +218,7 @@ casper.waitForSelector('#possibleActionsSelect', function chooseAnAction() {
         casper.each(actionNameArray, function sendActionToGetCaptured(casper, actionName){
 			currentAction = this.fetchText('#possibleActionsSelect>option:nth-child(0)');
 			if(actionName === currentAction){
-				console.log('Capturing action: ' + currentAction + '...');
                 actionValue = this.getElementAttribute('#possibleActionsSelect>option:nth-child(0)', 'value');
-				console.log(actionValue);
 				casper.getAction(1, actionName, actionValue);
             };
     	});
@@ -231,9 +227,7 @@ casper.waitForSelector('#possibleActionsSelect', function chooseAnAction() {
             casper.each(actionNameArray, function sendActionToGetCaptured(casper, actionName){
     			currentAction = this.fetchText('#possibleActionsSelect>option:nth-child(' + j + ')');
     			if(actionName === currentAction){
-    				console.log('Capturing action: ' + currentAction + '...');
                     actionValue = this.getElementAttribute('#possibleActionsSelect>option:nth-child(' + j + ')', 'value');
-    				console.log(actionValue);
     				casper.getAction(j, actionName, actionValue);
                 };
         	});

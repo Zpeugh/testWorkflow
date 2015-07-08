@@ -1,7 +1,6 @@
 //GLOBAL AND CHANGEABLE STYLES FOR DOCUMENT ITEMS
 var FONT_CHOICE = "TIMES NEW ROMAN";
 var FONT_SIZE = 11;
-var re = /\[colon\]/;
 var SPIDA_RED = '#800000';
 
 //ALL LIST STYLES
@@ -493,7 +492,7 @@ function createIndexPage(map, type){
   body.appendHorizontalRule();
 
   for (var item in map){
-    var listElement = body.appendListItem(item.replace(re,':'))
+    var listElement = body.appendListItem(item)
     listElement.setAttributes(LIST_STYLE).setItalic(true);
   };
 };
@@ -502,7 +501,7 @@ function createIndexPage(map, type){
 //creates a header at the top of each action/form page with the name of the action/form
 function putHeader(name, body, type){
 
-  name = name.replace(re,':');
+  name = name;
   body.appendPageBreak();
   var header
   var topDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');
@@ -663,7 +662,7 @@ function createEventIndexPage(eventOrder){
   body.appendHorizontalRule();
 
   for (var i=0; i < eventOrder.length; i++){
-    var listElement = body.appendListItem(eventOrder[i].replace(re,':'))
+    var listElement = body.appendListItem(eventOrder[i])
     listElement.setAttributes(LIST_STYLE).setItalic(true);
   };
 };
@@ -681,7 +680,6 @@ function createEventPage(eventTexts, eventOrder){
   while (eventIterator.hasNext()){
     var file = eventIterator.next();
     var fileName = file.getName().replace('.txt','');
-    fileName = fileName.replace('[colon]',':');
     var data = file.getBlob().getDataAsString();
     dataArray = data.split('\n');
     dataMap[fileName] = dataArray;
