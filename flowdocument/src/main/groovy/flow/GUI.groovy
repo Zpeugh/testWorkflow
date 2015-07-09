@@ -1,49 +1,15 @@
 package flow
 
-
 import static groovyx.javafx.GroovyFX.*
 import groovy.util.AntBuilder
 import org.apache.tools.ant.taskdefs.condition.Os
+import groovy.transform.Canonical
+import groovyx.javafx.beans.FXBindable
+import javafx.collections.*
+import groovyx.javafx.SceneGraphBuilder
 
 
 public class GUI{
-
-
-	private static void runScripts(String flowName, String companyName){
-
-		def fileName = flowName + '.json'
-		WorkFlow newFlow = new WorkFlow(fileName)
-		SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
-		File flowInfo = new File('Resources/flowInfo.txt')
-		new File('Resources/Events/texts').mkdir()
-
-		flowInfo.write(newFlow.flowName + '\n')
-		flowInfo.append(companyName.replaceAll('~', ' '))
-
-		def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + sampleFlow.formArguments).execute()
-		getForms.waitForProcessOutput(System.out, System.err)
-
-		def formatFormHtml = ('casperjs generateformhtml.js ' +  sampleFlow.formArguments).execute()
-		formatFormHtml.waitForProcessOutput(System.out, System.err)
-
-		def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js ' + companyName + ' ' + sampleFlow.flowName + ' ' + sampleFlow.actionArguments).execute()
-		getActions.waitForProcessOutput(System.out, System.err)
-
-		def formatActionHtml = ('casperjs generateactionhtml.js ' + sampleFlow.actionArguments).execute()
-		formatActionHtml.waitForProcessOutput(System.out, System.err)
-
-		newFlow.events.each{k,v -> v.printEventPage(new File('Resources/Events/' + v.eventName + '.html'))}
-
-		newFlow.printEventIndexPage(new File('Resources/Events/EventIndex.html') )
-
-		newFlow.events.each{k,v ->
-			File eventPage = new File('Resources/Events/texts/' + v.eventName + '.txt')
-			v.printEventInfoPage(eventPage)
-		}
-
-	}
-
-
 
 	private static void unzipFile(flowName){
 		def builder = new AntBuilder()
@@ -63,12 +29,12 @@ public class GUI{
 	private static void showInBrowser(){
 		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             'cmd /c start Resources/Events/eventIndex.html'.execute()
+			println System.getProperty("user.dir")
         } else {
             def thisDirectory = System.getProperty("user.dir")
             java.awt.Desktop.desktop.browse( ('File://' + thisDirectory + '/Resources/Events/eventIndex.html').toURI() )
         }
 	}
-
 
 
 	private static void exportWorkflow(){
@@ -90,15 +56,18 @@ public class GUI{
 		ant.delete(dir: googleDriveFolder,failonerror:false)
 		ant.mkdir(dir: folderString)
 		def workingDir = System.getProperty("user.dir")
+		String noColonFileString
 
 		resources.each() { file ->
-			def fileString = file.toString()
-            def noColonFileString = fileString.replaceAll(':', '[colon]')
-			noColonFileString = folderString + (noColonFileString - workingDir)
+			String fileString = file.toString()
+			noColonFileString = folderString + (fileString - workingDir)
+			//noColonFileString = fileString.replaceAll(':', '[colon]')
+			println noColonFileString
 			ant.copy(file: file, toFile: noColonFileString , includeEmptyDirs: false, )
 		}
 
 		ant.delete(dir: folderString + '/Resources/formHtmls/images', failonerror: false)
+		ant.delete(dir: folderString + '/Resources/images', failonerror: false)
 
 
 
@@ -152,67 +121,249 @@ public class GUI{
 
 	}
 
+	private static void captureFormsAndUpdateFormTable(def sampleFlow, def companyName, def formTable){
+
+		HashMap<String, LoadItem> formMap = new HashMap()
+		def formNames = sampleFlow.allForms
+		formNames.each() { form ->
+			formMap << [ (form.toString()) : ( new LoadItem(name: form.toString(), status: 'Unfinished', color: 'RED') )]
+		}
+		refreshTable(formMap, formTable)
+
+		def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + sampleFlow.formArguments).execute()
+		getForms.in.eachLine { line ->
+			if (line.contains('Stored screenshot of form: ')) {
+				println line
+				String tempName = line.replace('Stored screenshot of form: ', '')
+				formMap.get(tempName).status = 'Captured'
+			} else {
+				println line
+			}
+		}
+
+		refreshTable(formMap, formTable)
+
+		def formatFormHtml = ('casperjs generateformhtml.js ' +  sampleFlow.formArguments).execute()
+		formatFormHtml.in.eachLine { line ->
+			if (line.contains('Created PNG of: ')) {
+				println line
+				String tempName = line.replace('Created PNG of: ', '')
+				formMap.get(tempName).status = 'Ready To Export'
+			} else if (line.contains('Could not find form: ')){
+				String tempName = line.replace('Could not find form: ', '')
+				println line
+				formMap.get(tempName).status = 'Missing Form'
+			}
+		}
+		refreshTable(formMap, formTable)
+	}
+
+
+	private static void captureActionsAndUpdateActionTable(def sampleFlow, def companyName, def actionTable){
+
+		HashMap<String, LoadItem> actionMap = new HashMap()
+		def actionNames = sampleFlow.allActions
+		actionNames.each() { action ->
+			actionMap << [ (action.toString()) : ( new LoadItem(name: action.toString(), status: 'Unfinished', color: 'RED') )]
+		}
+		refreshTable(actionMap, actionTable)
+		def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js ' + companyName + ' ' + sampleFlow.flowName + ' ' + sampleFlow.actionArguments).execute()
+		getActions.in.eachLine { line ->
+			if (line.contains('Stored screenshot of action: ')) {
+				println line
+				String tempName = line.replace('Stored screenshot of action: ', '')
+				actionMap.get(tempName).status = 'Captured'
+			} else {
+				println line
+			}
+		}
+		refreshTable(actionMap, actionTable)
+
+		def formatActionHtml = ('casperjs generateactionhtml.js ' + sampleFlow.actionArguments).execute()
+		formatActionHtml.in.eachLine { line ->
+			if (line.contains('Created PNG of: ')) {
+				println line
+				String tempName = line.replace('Created PNG of: ', '')
+				actionMap.get(tempName).status = 'Ready To Export'
+			}  else if (line.contains('Could not find action: ')){
+				println line
+				String tempName = line.replace('Could not find action: ', '')
+				actionMap.get(tempName).status = 'Missing action'
+			}
+		}
+		refreshTable(actionMap, actionTable)
+
+	}
+
+	private static void createEventDocuments(fileName, companyName){
+		WorkFlow newFlow = new WorkFlow(fileName)
+		File flowInfo = new File('Resources/flowInfo.txt')
+		new File('Resources/Events/texts').mkdir()
+
+		newFlow.events.each{k,v -> v.printEventPage(new File('Resources/Events/' + v.eventName + '.html'))}
+
+		newFlow.printEventIndexPage(new File('Resources/Events/EventIndex.html') )
+
+		newFlow.events.each{k,v ->
+			File eventPage = new File('Resources/Events/texts/' + v.eventName + '.txt')
+			v.printEventInfoPage(eventPage)
+		}
+
+		flowInfo.write(newFlow.flowName + '\n')
+		flowInfo.append(companyName.replaceAll('~', ' '))
+
+	}
+
+	private static void refreshTable(def map, def table){
+		ArrayList<LoadItem> populateTable = map.values()
+		ObservableList<LoadItem> updateTable = populateTable as ObservableList
+		table.items = updateTable
+		table.getColumns().get(0).setVisible(false)
+		table.getColumns().get(0).setVisible(true)
+		table.getColumns().get(1).setVisible(false)
+		table.getColumns().get(1).setVisible(true)
+	}
+
+
 	public static void main(args){
 
-		def flowName
-		def companyName
+		def forms =  [new LoadItem(name: "No forms yet", status: 'N/A', color: 'RED')]
+		def actions = [new LoadItem(name: "No actions yet", status: 'N/A', color: 'RED')]
 
 		start {
-			stage(title: "Generate Workflow", width: 500, height: 300, visible: true) {
+		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 600, height: 800, visible: true) {
 				scene(fill: GROOVYBLUE) {
-					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center") {
-						columnConstraints(minWidth: 50, halignment: "right")
-						columnConstraints(prefWidth: 250, hgrow: 'always')
 
-						label("Enter Workflow Parameters", style: "-fx-font-size: 18px;",
-							textFill: black, row: 0, columnSpan: 2, halignment: "center",
-							margin: [0, 0, 10] )
+					tabPane {
+		                tab('Main', id: 'mainTab', closable: false) {
+		                    gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center") {
+								columnConstraints(minWidth: 50, halignment: "right")
+								columnConstraints(prefWidth: 250, hgrow: 'always')
 
-						label("Flow Name", hgrow: "never", row: 1, column: 0, textFill: black)
-						def nameOfFlowFile = textField(promptText: ".flow file name", row: 1, column: 1 )
+								label("Enter Workflow Parameters", style: "-fx-font-size: 18px;-fx-font-color: #800000",
+									textFill: black, row: 0, columnSpan: 2, halignment: "right",
+									margin: [0, 0, 10] )
 
-						label("Company", row: 2, column: 0, textFill: black)
-						def nameOfCompany = textField(promptText: "Company Name", row: 2, column: 1)
+								label("Flow Name", hgrow: "never", row: 1, column: 0, textFill: black)
+								def nameOfFlowFile = textField(promptText: ".flow file name", row: 1, column: 1 )
 
-						def browserButton = button("Open in browser", row: 5, column: 1, halignment: "right", onAction: {
-							showInBrowser()
-						})
-						browserButton.setDisable(true)
+								label("Company", row: 2, column: 0, textFill: black)
+								def nameOfCompany = textField(promptText: "Company Name", row: 2, column: 1)
 
-						def exportButton = button("Create Export Folder", row: 6, column: 0, halignment: "right", onAction: {
-							exportWorkflow()
-						})
-						exportButton.setDisable(true)
+								def browserButton = button("Open in browser", minWidth: 150, prefWidth: 150, row: 6, column: 2, halignment: "center", onAction: {
+									showInBrowser()
+								})
+								browserButton.setDisable(true)
 
-						button("Clean Workspace", row: 6, column: 1, halignment: "right", onAction: {
-							cleanWorkspace()
-							browserButton.setDisable(true)
-							exportButton.setDisable(true)
-						})
+								def exportButton = button("Create Export Folder", minWidth: 150, prefWidth: 150, row: 6, column: 1, halignment: "center", onAction: {
+									exportWorkflow()
+								})
+								exportButton.setDisable(true)
 
-						def genDocButton = button("Generate Document", row: 5, column: 0, halignment: "right", onAction: {
+								button("Clean Workspace", id: 'cleanButton', minWidth: 150, prefWidth: 150, row: 6, column: 0, halignment: "center", onAction: {
+									cleanWorkspace()
+									browserButton.setDisable(true)
+									exportButton.setDisable(true)
+									cleanButton.setDisable(true)
+									refreshTable(forms, formTable)
+									refreshTable(actions, actionTable)
+								})
 
-							if (nameOfFlowFile.text != ''){
-								unzipFile(nameOfFlowFile.text)
-								if (nameOfCompany.text != ''){
-									runScripts(nameOfFlowFile.text, nameOfCompany.text.replaceAll(' ', '~'))
-									browserButton.setDisable(false)
-									exportButton.setDisable(false)
-								}else {
-									popup("Please enter a company name.")
-								}
-							}else {
-								println "Please enter a .flow file name."
+								button("Generate Document", id: 'genDocButton', minWidth: 150, prefWidth: 150, row: 5, column: 2, halignment: "center", onAction: {
+
+									if (nameOfFlowFile.text != ''){
+										unzipFile(nameOfFlowFile.text)
+										if (nameOfCompany.text != ''){
+
+
+											def fileName = nameOfFlowFile.text + '.json'
+											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
+											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+
+											captureFormsAndUpdateFormTable(sampleFlow, companyName, formTable)
+											captureActionsAndUpdateActionTable(sampleFlow, companyName, actionTable)
+
+											createEventDocuments(fileName, companyName)
+
+											browserButton.setDisable(false)
+											exportButton.setDisable(false)
+										}else {
+											println "Please enter a company name."
+										}
+									}else {
+										println "Please enter a flow name."
+									}
+								})
+
+								button("Generate Forms", id: 'genFormsButton', minWidth: 150, prefWidth: 150, row: 5, column: 0, halignment: "center", onAction: {
+
+									if (nameOfFlowFile.text != ''){
+										unzipFile(nameOfFlowFile.text)
+										if (nameOfCompany.text != ''){
+
+											def fileName = nameOfFlowFile.text + '.json'
+											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
+											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+
+											captureFormsAndUpdateFormTable(sampleFlow, companyName, formTable)
+
+											createEventDocuments(fileName, companyName)
+
+											browserButton.setDisable(false)
+											exportButton.setDisable(false)
+										}else {
+											println "Please enter a company name."
+										}
+									}else {
+										println "Please enter a flow name."
+									}
+								})
+
+								button("Generate Actions", id: 'genActionsButton', minWidth: 150, prefWidth: 150, row: 5, column: 1, halignment: "center", onAction: {
+
+									if (nameOfFlowFile.text != ''){
+										unzipFile(nameOfFlowFile.text)
+										if (nameOfCompany.text != ''){
+
+											def fileName = nameOfFlowFile.text + '.json'
+											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
+											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+
+											captureActionsAndUpdateActionTable(sampleFlow, companyName, actionTable)
+
+											createEventDocuments(fileName, companyName)
+
+											browserButton.setDisable(false)
+											exportButton.setDisable(false)
+										}else {
+											println "Please enter a company name."
+										}
+									}else {
+										println "Please enter a flow name."
+									}
+								})
+
+								button("Go to Google drive", minWidth: 150, prefWidth: 150, row: 7, column: 1, halignment: "center", onAction: {
+									openGoogleDrive()
+								})
 							}
-						})
+						}
+		                tab('Forms', id: 'formTab', closable: false) {
+		                    tableView(id: 'formTable', selectionMode: "single", cellSelectionEnabled: true, editable: false, items: forms) {
+				                tableColumn(id: 'formNameColumn', editable: false,  property: 'name', text: "Form Name", width: 400)
+								tableColumn(id: 'formStatusColumn', editable: false,  property: 'status', text: "Status", width: 200, style: 'align: center')
+		                	}
+						}
 
-						button("Go to Google drive", row: 7, column: 1, halignment: "right", onAction: {
-							openGoogleDrive()
-						})
-
-					}
-				}
-			}
+		                tab('Actions', id: 'actionTab', closable: false) {
+		                    tableView(id: 'actionTable', selectionMode: "single", cellSelectionEnabled: true, editable: false, items: actions) {
+				                tableColumn(id: 'actionNameColumn', editable: false,  property: 'name', text: "Action Name", width: 400)
+								tableColumn(id: 'actionStatusColumn', editable: false,  property: 'status', text: "Status", width: 200, style: 'align: center')
+		                	}
+						}
+		            }
+		        }
+		    }
 		}
 	}
 }

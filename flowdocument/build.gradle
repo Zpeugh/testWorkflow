@@ -23,85 +23,23 @@ dependencies {
     compile 'org.codehaus.groovyfx:groovyfx:0.4.0'
     compile("ant:ant:1.7.0")
     compile files("${javafxHome}/rt/lib/jfxrt.jar")
+    compile 'org.codehaus.gpars:gpars:1.2.1'
 }
 
 String flowName
 
 task wrap(type:Wrapper, description:"create a gradlew") {
-    gradleVersion = '1.0-rc-3'
+    gradleVersion = '2.4'
 }
 
 
 task run( dependsOn: 'classes', type: JavaExec) {
 
     doFirst{
-
-        // tasks.unzip.execute()
-        // tasks.cleanResources.execute()
-
         main = 'flow.GUI'
         classpath = sourceSets.main.runtimeClasspath
-
     }
 }
-
-task exportWorkflow()  {
-
-    String homeDirectory = System.properties['user.home']
-    def folderString = homeDirectory + '/Desktop/ExportToGoogleDrive/'
-
-    doFirst{
-        FileTree googleDriveFolder = fileTree(new File(folderString))
-        delete googleDriveFolder
-    }
-
-    doLast{
-
-        FileTree resources = fileTree(dir: 'Resources')
-        FileTree actionImages = fileTree(dir: 'Resources/images')
-        FileTree formImages = fileTree(dir: 'Resources/formHtmls/images')
-
-        resources.exclude('.DS_Store')
-        resources.exclude('**/*.css')
-        resources.exclude('**/*.json')
-
-        resources = resources.minus(actionImages).getAsFileTree()
-        resources = resources.minus(formImages).getAsFileTree()
-
-        File arbitraryFile = file(resources[0])
-        String absolutePath = arbitraryFile.toString() - relativePath(arbitraryFile)
-
-        File exportsFolder = mkdir(folderString);
-        File resourcesFolder = mkdir(exportsFolder.toString() + '/Resources/');
-        File actionHtmlsFolder = mkdir(resourcesFolder.toString() + '/actionHtmls/');
-        File eventsFolder = mkdir(resourcesFolder.toString() + '/Events/');
-        File formHtmlsFolder = mkdir(resourcesFolder.toString() + '/formHtmls/');
-        mkdir(actionHtmlsFolder.toString() + '/actionPNGs/');
-        mkdir(formHtmlsFolder.toString() + '/formPNGs/');
-        mkdir(eventsFolder.toString() + '/texts/');
-        def fileString, noColonFileString, extension, myCopySpec
-        String baseName
-
-        resources.each{File file ->
-
-            fileString = file.toString()
-            extension = file.name.split('\\.')
-            baseName = file.name.replaceFirst(~/\.[^\.]+$/, '') + '.' + extension[-1]
-            noColonFileString = baseName.replaceAll(':', '[colon]')
-
-            myCopySpec = project.copySpec {
-               into folderString
-
-               copy{
-                   from fileString
-                   into folderString + (fileString - absolutePath) - baseName
-                   rename( baseName, noColonFileString )
-               }
-            }
-        }
-    }
-}
-
 
 task cleanResources() {
 
@@ -120,12 +58,5 @@ task cleanResources() {
         delete resources
         delete 'actions/'
         delete 'conditions/'
-    }
-}
-
-task showInBrowser() {
-    doLast{
-
-
     }
 }

@@ -14,8 +14,8 @@ var re = new RegExp('~', 'g');
 var casper = require('casper').create({
     stepTimeout: 8000,
     timeout : 10000,
-    verbose: true,
-    logLevel: 'debug',
+    verbose: false,
+    logLevel: 'error',
     pageSettings: {
       localToRemoteUrlAccessEnabled : true
     },
