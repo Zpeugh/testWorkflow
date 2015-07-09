@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="flow.TestWorkFlow" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-07-08T20:24:25" hostname="ca0284.local" time="44.006">
   <properties/>
   <testcase name="1: SPIDA: Test-Flow: Captured all forms" classname="flow.TestWorkFlow" time="44.006"/>
@@ -12,5 +13,11 @@ Currently at: https://www.spidasoftware.com/projectmanager/formTemplate/list
 Stored screenshot of form: Test Project Form 1
 Stored screenshot of form: Test Station Form 1
 ]]></system-out>
+=======
+<testsuite name="flow.TestWorkFlow" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-07-07T14:26:51" hostname="Zach-PC" time="20.527">
+  <properties/>
+  <testcase name="1: SPIDA: Test-Flow: Captured all forms" classname="flow.TestWorkFlow" time="20.527"/>
+  <system-out><![CDATA[]]></system-out>
+>>>>>>> a39a8ae2c635c680aee7121f81bfa015623947d0
   <system-err><![CDATA[]]></system-err>
 </testsuite>
