@@ -1,3 +1,3 @@
-cd ~
-cd Applications/flowdocument
+cd ~$SUDO_USER
+cd flowdocument
 gradle run
