@@ -224,9 +224,6 @@ public class GUI{
 	}
 
 
-
-
-
 	private static void refreshTable(def map, def table){
 		ArrayList<LoadItem> populateTable = map.values()
 		ObservableList<LoadItem> updateTable = populateTable as ObservableList
