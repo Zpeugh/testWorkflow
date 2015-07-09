@@ -1,3 +1,4 @@
-cd ~$SUDO_USER
+cd ~
+cd $SUDO_USER
 cd flowdocument
 gradle run
