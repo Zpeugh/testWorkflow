@@ -151,12 +151,12 @@ casper.matchFormNames = function(childNumber){
                 //console.log(formName + ':\n\n' + html);
                 var selectRE = new RegExp('<select name=','g');
                 html = html.replace(selectRE,'<select class=\"selectworkaround\" name=');
-                html = html.replace('<h1>Form Template Editor : ' + formName + '</h1>', "<link href=\"flow.css\" rel=\"stylesheet\" type=\"text/css\" />" );
+                html = html.replace('<h1>Form Template Editor : ' + formName + '</h1>', "<link href=\"../../../src/Resources/formflow.css\" rel=\"stylesheet\" type=\"text/css\" />" );
                 html = html.replace("style=\"min-width:1100px\"", "style=\"min-width:800px\"");
                 urlRE = new RegExp('/projectmanager/plugins/layout-3.7/images/16', 'g');
-                html = html.replace(urlRE, '../images');
+                html = html.replace(urlRE, '../../../src/Resources/images');
 
-                fs.write('Resources/formHtmls/' + formName + '.html', html, 'w');
+                fs.write('build/Resources/formHtmls/' + formName + '.html', html, 'w');
             });
             //navigate back to the form list page
             casper.then( function() {

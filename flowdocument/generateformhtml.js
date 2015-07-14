@@ -56,7 +56,7 @@ casper.capturePNG = function(formName){
 
     this.waitForSelector('#tabs', function(){
         var formSnip = this.getElementBounds('#tabs');
-        this.capture('Resources/formHtmls/formPNGs/' + formName + '.png', {
+        this.capture('build/Resources/formHtmls/formPNGs/' + formName + '.png', {
             top : formSnip.top,
             height : formSnip.height,
             left : formSnip.left,
@@ -72,13 +72,13 @@ casper.createFormHTML = function(formName, formValues) {
 
   this.then(function() {
 
-    var fileName = fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html';
+    var fileName = fs.workingDirectory + '/build/Resources/formHtmls/' + formName + '.html';
 
-    var headerString = '<html>\n\t<link rel=\"stylesheet\" type=\"text/css\" href=\"form.css\"/>' +
+    var headerString = '<html>\n\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../src/Resources/form.css\"/>' +
       '\n\t<div class=\"header\">\n\t\t<hr>\n\t\t<h2>FORM: ' + formName.toUpperCase() +
       '</h2>\n\t\t<hr>\n\t</div>\n\t<div class=\"form\"><p>Description: </p>\n\t<div>' +
       '\n\t<center>\n\t\t<p class=\"underline\">Form Screenshot</p>\n\t\t<img src=\"file://' +
-      fs.workingDirectory + '/Resources/formHtmls/formPNGs/' +
+      fs.workingDirectory + '/build/Resources/formHtmls/formPNGs/' +
       formName + '.png\" >\n\t</div>\n\t<ul>Form Field Names and Descriptions:';
 
     fs.write(fileName, headerString, 'w');
@@ -117,13 +117,12 @@ casper.start();
 
 //Gets all of the fields in the action form and stores them in an array
 casper.each(formNameArray, function(casper, formName) {
-    var fileString =  'Resources/formHtmls/' + formName + '.html';
+    var fileString =  'build/Resources/formHtmls/' + formName + '.html';
     //fileString = fileString.replace(new RegExp('/','g'), '\\');
 
     casper.thenOpen(fileString, function(){
         this.capturePNG(formName);
-        //this.capture('Resources/formHtmls/formPNGs/' + formName + '.png');
-        this.waitForUrl('file://' + fs.workingDirectory + '/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName) );
+        this.waitForUrl('file://' + fs.workingDirectory + '/build/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName) );
     });
 });
 

@@ -32,7 +32,7 @@ public class WorkFlow {
 
 		//Store the parsed contents of the file in jsonObject
 
-		File jsonFile = new File('Resources/' + fileName)
+		File jsonFile = new File('build/Resources/' + fileName)
 		def jsonObject = jsonParser.parse(jsonFile)
 
 
@@ -197,7 +197,11 @@ public class WorkFlow {
 
 		def writer = new FileWriter(outputFile)
 		def markup = new MarkupBuilder(writer)
-		String eventList = new File('Resources/Events/order.txt').text;
+		File eventFile = new File('build/Resources/Events/order.txt')
+		def eventList
+		if (eventFile.exists()){
+			eventList = eventFile.text
+		}
 		def events = new ArrayList()
 		def order = eventList.tokenize('~');
 
@@ -207,7 +211,7 @@ public class WorkFlow {
 		}
 		events = events.join("").toString()
 		markup.html{
-			link(href : "events.css", rel : 'stylesheet', type : "text/css"){}
+			link(href : "../../../src/Resources/events.css", rel : 'stylesheet', type : "text/css"){}
 			h1{
 				mkp.yield("Event Index Page")
 			}
@@ -217,38 +221,4 @@ public class WorkFlow {
 		}
 	}
 
-
-	public static void main(args){
-
-		def companyName = args[0]
-		def fileName = args[1]
-		WorkFlow newFlow = new WorkFlow(fileName)
-		SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
-		File flowInfo = new File('Resources/flowInfo.txt')
-		new File('Resources/Events/texts').mkdir()
-
-		flowInfo.write(newFlow.flowName + '\n')
-		flowInfo.append(companyName.replaceAll('~', ' '))
-
-		def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + sampleFlow.formArguments).execute()
-		getForms.waitForProcessOutput(System.out, System.err)
-
-		def formatFormHtml = ('casperjs generateformhtml.js ' +  sampleFlow.formArguments).execute()
-		formatFormHtml.waitForProcessOutput(System.out, System.err)
-
-		def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js ' + companyName + ' ' + sampleFlow.flowName + ' ' + sampleFlow.actionArguments).execute()
-		getActions.waitForProcessOutput(System.out, System.err)
-
-		def formatActionHtml = ('casperjs generateactionhtml.js ' + sampleFlow.actionArguments).execute()
-		formatActionHtml.waitForProcessOutput(System.out, System.err)
-
-		newFlow.events.each{k,v -> v.printEventPage(new File('Resources/Events/' + v.eventName + '.html'))}
-
-		newFlow.printEventIndexPage(new File('Resources/Events/EventIndex.html') )
-
-		newFlow.events.each{k,v ->
-			File eventPage = new File('Resources/Events/texts/' + v.eventName + '.txt')
-			v.printEventInfoPage(eventPage)
-		}
-	}
 }

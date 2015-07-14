@@ -26,7 +26,6 @@ dependencies {
     compile 'org.codehaus.gpars:gpars:1.2.1'
 }
 
-String flowName
 
 task wrap(type:Wrapper, description:"create a gradlew") {
     gradleVersion = '2.4'
@@ -38,25 +37,5 @@ task run( dependsOn: 'classes', type: JavaExec) {
     doFirst{
         main = 'flow.GUI'
         classpath = sourceSets.main.runtimeClasspath
-    }
-}
-
-task cleanResources() {
-
-    doFirst{
-        FileTree resources = fileTree(dir: 'Resources')
-        FileTree images = fileTree(dir: 'Resources/images')
-
-        resources.exclude('.DS_Store')
-        resources.exclude('**/*.css')
-        resources.exclude('**/*.json')
-        resources.exclude('SpidaEmblem.png')
-        resources.exclude('formHtmls/images')
-
-        resources = resources.minus(images).getAsFileTree()
-
-        delete resources
-        delete 'actions/'
-        delete 'conditions/'
     }
 }

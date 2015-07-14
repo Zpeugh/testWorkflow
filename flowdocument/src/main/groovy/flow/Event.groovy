@@ -42,6 +42,8 @@ class Event {
 
 
 	public printEventPage(File outputFile){
+
+	
 		def writer = new FileWriter(outputFile)
 		def markup = new MarkupBuilder(writer)
 		def thisCondition
@@ -98,7 +100,7 @@ class Event {
 
 
 		markup.html{
-			link(href : "events.css", rel : 'stylesheet', type : "text/css"){}
+			link(href : "../../../src/Resources/events.css", rel : 'stylesheet', type : "text/css"){}
 			center {
 				h1(class: "header") { mkp.yield "Event: ${this.eventName}" }
 			}

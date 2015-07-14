@@ -1,0 +1,78 @@
+#formTab{
+	-fx-background-color: #CDB380;
+	-fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+	-fx-background-insets: 0, 1, 2;
+	-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+	-fx-padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+#formTab: selected{
+	-fx-background-color: #E8DDCB;
+}
+
+#mainTab{
+	-fx-background-color: #CDB380;
+	-fx-effect: innershadow(two-pass-box, rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+	-fx-background-insets: 0, 1, 2;
+	-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+	-fx-padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+#mainTab:selected{
+	-fx-background-color: #2B2726;
+}
+
+
+#actionTab{
+	-fx-background-color: #CDB380;
+	-fx-effect: innershadow(two-pass-box, rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+	-fx-background-insets: 0, 1, 2;
+	-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+	-fx-padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+#actionTab: selected{
+	-fx-background-color: #E8DDCB;
+}
+
+
+#titleLabel {
+	-fx-text-fill: #0A516D;
+	-fx-font-size: 20pt;
+}
+
+
+.tab-label	{
+	-fx-alignment: CENTER;
+	-fx-text-fill: #0A516D !important;
+}
+
+.button:hover {
+	-fx-background: #E8DDCB;
+	-fx-cursor: HAND
+}
+.button:active {
+	-fx-position:relative;
+	-fx-top:1px;
+}
+
+
+#popupClean:hover{
+	-fx-cursor: HAND;
+}
+
+#cleanFirstPopup{
+	-fx-cursor: DEFAULT;
+}
+
+.button {
+	-fx-backgrounf-color: #CDB380;
+	-fx-background-color: linear-gradient(to bottom, #f5e4c4, #CDB380);
+	-fx-effect: dropshadow(two-pass-box, rgba(0,0,0,0.6) , 2, 0.0 , 1, 1);
+	-fx-background-insets: 2,2,2,4,4;
+	-fx-background-radius: 0px;
+	-fx-text-fill: #2B2726 !important;
+	-fx-padding: 5 10 5 10;
+	-fx-border: solid #AD9464 1px;
+
+}

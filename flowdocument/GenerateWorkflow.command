@@ -1,4 +1,4 @@
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd ~
-cd $SUDO_USER
-cd flowdocument
+cd $DIR
 gradle run

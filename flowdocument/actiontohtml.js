@@ -91,12 +91,12 @@ casper.getAction = function(j, actionName, actionValue){
     casper.wait(2000, function printPage(){
         this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){
             var html = this.getHTML('#action');
-            html = html.replace("<form", "<html><link href=\"../flow.css\" rel=\"stylesheet\" " +
+            html = html.replace("<form", "<html><link href=\"../../../src/Resources/actionflow.css\" rel=\"stylesheet\" " +
             "type=\"text/css\" /><div class=\"row\"><div id=\"action\" class=\"small-12 columns\"><form" );
             html = html.replace("</form>", "</div></div></form></html>");
             var imageRE = new RegExp('images', 'g');
-            html = html.replace(imageRE,'../images');
-            fs.write('Resources/actionHtmls/' + actionName + '.html', html, 'w');
+            html = html.replace(imageRE,'../../../src/Resources/images');
+            fs.write('build/Resources/actionHtmls/' + actionName + '.html', html, 'w');
             console.log("Stored screenshot of action: " + actionName );
 
         }, function(){
@@ -176,10 +176,10 @@ casper.waitForSelector('#wrap>div.body>div.list>table>tbody', function clickFlow
 casper.waitForSelector('#events_table>table>tbody>tr:nth-child(1)>td:nth-child(5)>a', function getOrder(){
     var i = 2;
     var text;
-    fs.write('Resources/Events/order.txt', 'Start', 'w');
+    fs.write('build/Resources/Events/order.txt', 'Start', 'w');
     while (this.exists('#events_table>table>tbody>tr:nth-child(' + i + ')>td:nth-child(7)>div>a')){
         text = this.fetchText('#events_table>table>tbody>tr:nth-child(' + i + ')>td:nth-child(7)>div>a');
-        fs.write('Resources/Events/order.txt', '~' + text, 'a');
+        fs.write('build/Resources/Events/order.txt', '~' + text, 'a');
         i++;
     };
 }, function reloadPage(){
