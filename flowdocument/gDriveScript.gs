@@ -2,6 +2,8 @@
 var FONT_CHOICE = "TIMES NEW ROMAN";
 var FONT_SIZE = 11;
 var SPIDA_RED = '#800000';
+var colon = /[colon]/;
+var quote = /\"/;
 
 //ALL LIST STYLES
 var LIST_STYLE = {};
@@ -501,7 +503,7 @@ function createIndexPage(map, type){
 //creates a header at the top of each action/form page with the name of the action/form
 function putHeader(name, body, type){
 
-  name = name;
+  name = name.replace(colon, ':');
   body.appendPageBreak();
   var header
   var topDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');

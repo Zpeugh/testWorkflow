@@ -1,9 +1,10 @@
 //globally defined username and password for logging in.
 var USERNAME = 'admin@spidasoftware.com';
 var PASSWORD = 'defaultADMIN321';
-var WEBSITE = 'www.spidasoftware'; //or demo.spidastudio
+//var WEBSITE = 'www.spidasoftware';
+var WEBSITE = 'demo.spidastudio';
 var actionNameArray = [];
-var re = new RegExp('~', 'g');
+var re = /\+/g
 var START_ON_TAB = 0; //tab to begin looking for forms on.
 
 //create the file writing variable fs
@@ -44,13 +45,18 @@ casper.on('page.error', function (msg, trace) {
 
 //store the action names passed from the command line into actionNameArray
 var counter = 2;
-var companyName = casper.cli.get(0).replace(re,' ');
-var FLOW_NAME = casper.cli.get(1).replace(re,' ');
+var companyName = decodeURIComponent(casper.cli.get(0));
+companyName = companyName.replace(re, ' ');
+var FLOW_NAME =  decodeURIComponent(casper.cli.get(1));
+FLOW_NAME = FLOW_NAME.replace(re, ' ');
+var temp;
 console.log("company name: " + companyName);
 console.log("flow Name: " + FLOW_NAME);
 
 while (casper.cli.has(counter)){
-    actionNameArray[counter - 2] = casper.cli.get(counter).replace(re,' ');
+    temp = decodeURIComponent(casper.cli.get(counter));
+    actionNameArray[counter - 2] = temp.replace(re, ' ');
+
     console.log(counter + ': ' + actionNameArray[counter - 2]);
     counter++;
 };
@@ -90,13 +96,15 @@ casper.getAction = function(j, actionName, actionValue){
 
     casper.wait(2000, function printPage(){
         this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){
+            var aName = actionName.replace(/\"/g,'');
+            aName = aName.replace(/:/g, '[colon]');
             var html = this.getHTML('#action');
             html = html.replace("<form", "<html><link href=\"../../../src/Resources/actionflow.css\" rel=\"stylesheet\" " +
             "type=\"text/css\" /><div class=\"row\"><div id=\"action\" class=\"small-12 columns\"><form" );
             html = html.replace("</form>", "</div></div></form></html>");
             var imageRE = new RegExp('images', 'g');
             html = html.replace(imageRE,'../../../src/Resources/images');
-            fs.write('build/Resources/actionHtmls/' + actionName + '.html', html, 'w');
+            fs.write('build/Resources/actionHtmls/' + aName + '.html', html, 'w');
             console.log("Stored screenshot of action: " + actionName );
 
         }, function(){

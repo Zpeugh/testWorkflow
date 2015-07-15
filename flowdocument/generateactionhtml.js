@@ -26,13 +26,13 @@ var casper = require('casper').create({
 var counter = 0;
 var actionNameArray = [];
 var fs = require('fs');
-var re = new RegExp('~', 'g');
+var re = /\+/g
 var reUnder = new RegExp('_', 'g');
 console.log("Actions to capture: ");
 
 while ( casper.cli.has(counter) ){
 
-    actionNameArray[counter] = casper.cli.get(counter).replace(re,' ');
+    actionNameArray[counter] = decodeURIComponent(casper.cli.get(counter)).replace(re,' ');
     console.log(counter + ': ' + actionNameArray[counter]);
     counter++;
 };
@@ -46,8 +46,9 @@ if(actionNameArray.length === 0){
 
 
 casper.getActionLabels = function(actionName){
-
-    this.thenOpen('build/Resources/actionHtmls/' + actionName + '.html', function(){
+    var aName = actionName.replace(/\"/g,'');
+    aName = aName.replace(/:/g, '[colon]');
+    this.thenOpen('build/Resources/actionHtmls/' + aName + '.html', function(){
 
           var actionFormValues = this.getElementsAttribute('div>label', 'for');
           for (var x = 0; x < actionFormValues.length ; x++){
@@ -65,9 +66,11 @@ casper.getActionLabels = function(actionName){
 
 
 casper.createActionHTML = function(actionName, actionFormValues){
-    this.thenOpen('build/Resources/actionHtmls/' + actionName + '.html', function(){
+    var aName = actionName.replace(/\"/g,'');
+    aName = aName.replace(/:/g,'[colon]');
+    this.thenOpen('build/Resources/actionHtmls/' + aName + '.html', function(){
 
-        var fileName = fs.workingDirectory + '/build/Resources/actionHtmls/' + actionName + '.html';
+        var fileName = fs.workingDirectory + '/build/Resources/actionHtmls/' + aName + '.html';
         this.createPageHeader(fileName, actionName, actionFormValues);
 
         for (var i = 0; i < actionFormValues.length; i++){
@@ -79,12 +82,13 @@ casper.createActionHTML = function(actionName, actionFormValues){
 
 
 casper.createPageHeader = function(fileName, actionName, actionFormValues){
-
+var aName = actionName.replace(/\"/g,'');
+aName = aName.replace(/:/g, '[colon]');
     var headerString = '<html>\n\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../src/Resources/action.css\"/>' +
     '\n\t<div class=\"header\">\n\t\t<hr>\n\t\t<h2>ACTION: ' + actionName.toUpperCase() +
     '</h2>\n\t\t<hr>\n\t</div>\n\t<div class=\"action\"><p>Description: </p>\n\t<center>\n\t\t<img src=\"file://' +
     fs.workingDirectory + '/build/Resources/actionHtmls/actionPNGs/' +
-    actionName + '.png\" >\n\t</center>\n\t<ul>';
+    aName + '.png\" >\n\t</center>\n\t<ul>';
 
     fs.write(fileName, headerString, 'w');
 }
@@ -94,13 +98,14 @@ casper.createPageHeader = function(fileName, actionName, actionFormValues){
 
 
 casper.makeActionPNG = function(actionName) {
-
-    this.thenOpen('build/Resources/actionHtmls/' + actionName + '.html', function(){
+    var aName = actionName.replace(/\"/g,'');
+    aName = aName.replace(/:/g, '[colon]');
+    this.thenOpen('build/Resources/actionHtmls/' + aName + '.html', function(){
         this.waitForSelector('#actionForm>fieldset', function(){
 
             var actionSnip = this.getElementBounds('#actionForm>fieldset');
 
-            this.capture('build/Resources/actionHtmls/actionPNGs/' + actionName + '.png', {
+            this.capture('build/Resources/actionHtmls/actionPNGs/' + aName + '.png', {
                 top : actionSnip.top - 2,
                 height : actionSnip.height,
                 left : (actionSnip.left + 37),

@@ -201,7 +201,11 @@ public class WorkFlow {
 		def eventList
 		if (eventFile.exists()){
 			eventList = eventFile.text
+		} else {
+			println "MISSING order.txt, generating arbitrary order for events. "
+			eventList = this.events.keySet()
 		}
+
 		def events = new ArrayList()
 		def order = eventList.tokenize('~');
 

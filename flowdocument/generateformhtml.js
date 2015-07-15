@@ -34,7 +34,7 @@ casper.on('remote.message', function(msg) {
 var counter = 0;
 var formNameArray = [];
 var fs = require('fs');
-var re = new RegExp('~', 'g');
+var re = /\+/g
 
 console.log('Forms to generate: ');
 
@@ -53,10 +53,11 @@ if (formNameArray.length === 0) {
 //*****************************SCRIPT FUNCTIONS*******************************//
 
 casper.capturePNG = function(formName){
-
+    var fName = formName.replace(/\"/g,'');
+    fName = fName.replace(/:/g, '[colon]');
     this.waitForSelector('#tabs', function(){
         var formSnip = this.getElementBounds('#tabs');
-        this.capture('build/Resources/formHtmls/formPNGs/' + formName + '.png', {
+        this.capture('build/Resources/formHtmls/formPNGs/' + fName + '.png', {
             top : formSnip.top,
             height : formSnip.height,
             left : formSnip.left,
@@ -71,15 +72,17 @@ casper.capturePNG = function(formName){
 casper.createFormHTML = function(formName, formValues) {
 
   this.then(function() {
+    var fName = formName.replace(/\"/g,'');
+    fName = fName.replace(/:/g, '[colon]');
 
-    var fileName = fs.workingDirectory + '/build/Resources/formHtmls/' + formName + '.html';
+    var fileName = fs.workingDirectory + '/build/Resources/formHtmls/' + fName + '.html';
 
     var headerString = '<html>\n\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../src/Resources/form.css\"/>' +
       '\n\t<div class=\"header\">\n\t\t<hr>\n\t\t<h2>FORM: ' + formName.toUpperCase() +
       '</h2>\n\t\t<hr>\n\t</div>\n\t<div class=\"form\"><p>Description: </p>\n\t<div>' +
       '\n\t<center>\n\t\t<p class=\"underline\">Form Screenshot</p>\n\t\t<img src=\"file://' +
       fs.workingDirectory + '/build/Resources/formHtmls/formPNGs/' +
-      formName + '.png\" >\n\t</div>\n\t<ul>Form Field Names and Descriptions:';
+      fName + '.png\" >\n\t</div>\n\t<ul>Form Field Names and Descriptions:';
 
     fs.write(fileName, headerString, 'w');
 
@@ -117,12 +120,15 @@ casper.start();
 
 //Gets all of the fields in the action form and stores them in an array
 casper.each(formNameArray, function(casper, formName) {
-    var fileString =  'build/Resources/formHtmls/' + formName + '.html';
-    //fileString = fileString.replace(new RegExp('/','g'), '\\');
+    var fName = formName.replace(/\"/g,'');
+    fName = fName.replace(/:/g, '[colon]');
+    var fileString =  'build/Resources/formHtmls/' + fName + '.html';
+    fileString = fileString.replace(/\"/g,'');
 
     casper.thenOpen(fileString, function(){
         this.capturePNG(formName);
-        this.waitForUrl('file://' + fs.workingDirectory + '/build/Resources/formHtmls/' + formName + '.html', this.getFormLabels(formName) );
+        //console.log('file://' + fs.workingDirectory + '/build/Resources/formHtmls/' + formName + '.html')
+        this.waitForSelector('#tabs' , this.getFormLabels(formName) );
     });
 });
 

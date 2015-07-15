@@ -1,5 +1,7 @@
 package flow
 
+import java.net.URLEncoder
+
 class SampleWorkFlow{
 
 	def workFlow
@@ -16,13 +18,13 @@ class SampleWorkFlow{
 		this.workFlow = new WorkFlow(fileName)
 		this.allForms = this.workFlow.formNames
 		this.allActions = this.workFlow.actionNames
-		this.flowName = this.workFlow.flowName.replaceAll(' ', '~')
+		this.flowName = URLEncoder.encode( this.workFlow.flowName, 'UTF-8') 
 		def formArgs = [];
-		this.allForms.each{ formArgs << it.replaceAll(' ', '~') }
-		this.formArguments = formArgs.join(' ')
+		this.allForms.each{ formArgs << URLEncoder.encode(it , 'UTF-8') }
+		this.formArguments = formArgs
 
 		def actionArgs = [];
-		this.allActions.each{ actionArgs << it.replaceAll(' ', '~') }
-		this.actionArguments = actionArgs.join(' ')
+		this.allActions.each{ actionArgs << URLEncoder.encode(it, 'UTF-8') }
+		this.actionArguments = actionArgs
 	}
 }

@@ -43,7 +43,7 @@ class Event {
 
 	public printEventPage(File outputFile){
 
-	
+
 		def writer = new FileWriter(outputFile)
 		def markup = new MarkupBuilder(writer)
 		def thisCondition

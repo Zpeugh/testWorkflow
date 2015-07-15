@@ -1,14 +1,15 @@
 //globally defined username and password for logging in.
 var USERNAME = 'admin@spidasoftware.com';
 var PASSWORD = 'defaultADMIN321';
-var WEBSITE = 'www.spidasoftware';
+//var WEBSITE = 'www.spidasoftware';
+var WEBSITE = 'demo.spidastudio';
 var START_ON_TAB = 0; //tab to begin looking for forms on.
 
 //Array of form names to be screencaptured
 var formNameArray = [];
 
 var fs = require('fs');
-var re = new RegExp('~', 'g');
+var re = /\+/g
 
 //Set up the Casper object for the page
 var casper = require('casper').create({
@@ -60,7 +61,6 @@ while (casper.cli.has(counter)){
 if(formNameArray.length === 0){
     casper.exit();
 };
-
 
 
 /*************************************SCRIPT FUNCTIONS**********************************/
@@ -147,6 +147,8 @@ casper.matchFormNames = function(childNumber){
 
             //store form screenshot as 'formName.png'
             casper.then(function() {
+                var fName = formName.replace(/\"/g,'');
+                fName = fName.replace(/:/g, '-');
                 var html = this.getHTML('#wrap>div.wide-body');
                 //console.log(formName + ':\n\n' + html);
                 var selectRE = new RegExp('<select name=','g');
@@ -156,7 +158,7 @@ casper.matchFormNames = function(childNumber){
                 urlRE = new RegExp('/projectmanager/plugins/layout-3.7/images/16', 'g');
                 html = html.replace(urlRE, '../../../src/Resources/images');
 
-                fs.write('build/Resources/formHtmls/' + formName + '.html', html, 'w');
+                fs.write('build/Resources/formHtmls/' + fName + '.html', html, 'w');
             });
             //navigate back to the form list page
             casper.then( function() {
@@ -193,15 +195,15 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/', function afterL
 
 
 casper.waitForSelector('#mainnav>ul>li>div>div', function(){
-    if (companyName !== 'SPIDA'){
+    if ( !(companyName == 'SPIDA' || companyName == '' || companyName == 'spida') ){
         this.clickLabel(companyName);
     }
 }, function(){
     this.reload();
     this.wait(4000, function(){
-        if (companyName !== 'SPIDA'){
-            this.clickLabel(companyName);
-        }
+    if ( !(companyName == 'SPIDA' || companyName == '' || companyName == 'spida') ){
+        this.clickLabel(companyName);
+    }
     });
 }, 6000);
 

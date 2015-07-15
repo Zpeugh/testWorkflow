@@ -16,6 +16,7 @@ import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.control.Label
 import javafx.scene.shape.Rectangle
+import java.net.URLEncoder
 
 public class GUI{
 
@@ -65,19 +66,23 @@ public class GUI{
 		def ant = new AntBuilder()
 		def resources = ant.fileScanner {
 			fileset(dir:"build/Resources") {
-				exclude(name: '.DS_Store')
+				include(name: '**/*.html')
+				include(name: '**/*.txt')
+				include(name: '**/*.png')
 				exclude(name: '**/*.json')
+				exclude(name: 'eventIndex.html')
 			}
 		}
 
 		ant.delete(dir: googleDriveFolder,failonerror:false)
 		ant.mkdir(dir: folderString)
+		ant.copy(file: 'src/Resources/SpidaEmblem.png', toFile: folderString + '/Resources/SpidaEmblem.png' )
 		def workingDir = System.getProperty("user.dir")
 		String noColonFileString, fileString
 
 		resources.each() { file ->
 			fileString = file.toString()
-			noColonFileString = folderString + (fileString - workingDir) - 'build/'
+			noColonFileString = folderString + (fileString - workingDir) - 'build/' - '\\build'
 			ant.copy(file: file, toFile: noColonFileString , includeEmptyDirs: false, )
 		}
 	}
@@ -85,7 +90,6 @@ public class GUI{
 	private static void cleanWorkspace(){
 		def ant = new AntBuilder()
 		ant.delete(failonerror: false, dir: 'build/Resources/')
-
 	}
 
 	private static void openGoogleDrive(){
@@ -97,12 +101,13 @@ public class GUI{
 		}
 	}
 
-	private static void captureActionsAndUpdateActionTable(def mainScene, def sampleFlow, def companyName, def actionTable, def companyPopup, def loginPopup){
+	private static void captureActionsAndUpdateActionTable(Thread fxThread, def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
 
 		Map<String, LoadItem> actionMap = new HashMap()
 		def actionNames = sampleFlow.allActions
 		actionNames.each() { action ->
 			actionMap << [ (action.toString()) : ( new LoadItem(name: action.toString(), status: 'Unfinished', color: RED) )]
+
 		}
 
 		int row = 3
@@ -110,128 +115,170 @@ public class GUI{
 		actionMap.each {k,v ->
 			String key = k.replaceAll(' ', '~')
 			key = key.replaceAll(':','+')
-			actionTable.add(new Label( text: k, id: key + 'Status', textFill: Color.web('#800000')), 0, row)
+			key = key.replaceAll('"', 'q')
+
+			actionTable.add(new Label( text: k, id: key + 'Status', style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
 			row++
 		}
 
 		Closure getActions = {
 
 			println "Starting script"
-			def getActions = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true actiontohtml.js ' + companyName + ' ' + sampleFlow.flowName + ' ' + sampleFlow.actionArguments).execute()
+			def flowName = URLEncoder.encode(sampleFlow.flowName, "UTF-8")
+			companyName = URLEncoder.encode(companyName, "UTF-8")
+			String[] actionArgsArray = ['casperjs', '--ssl-protocol=\"any\"', '--ignore-ssl-errors=true', 'actiontohtml.js', companyName, flowName] as String[]
+			actionArgsArray = actionArgsArray + (sampleFlow.actionArguments as String[])
+
+			def getActions = actionArgsArray.execute()
 			getActions.in.eachLine { line ->
 				if (line.contains('CasperError: Errors encountered while filling form: form not found')){
+					println line
 					getForms.destroy()
-					loginPopup.show()
+					//loginPopup.show()
 				} else if (line.contains('Stored screenshot of action: ')) {
 					println line
 					String tempName = line.replace('Stored screenshot of action: ', '')
 					def key = tempName.replaceAll(' ', '~')
 					key = key.replaceAll(':','+')
+					key = key.replaceAll('"', 'q')
+
 					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
-					actionStatus.setTextFill( Color.web('#FF7519') )
+					if (!actionStatus.is(null)){
+						actionStatus.setTextFill( Color.web('#FF7519') )
+					}
 				} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
-					companyPopup.show()
+					println line
 					getForms.destroy()
+					companyPopup.show()
 				} else {
 					println line
 				}
 			}
+			createEventDocuments(fileName, companyName)
 
-			def formatActionHtml = ('casperjs generateactionhtml.js ' + sampleFlow.actionArguments).execute()
+			String[] genActionArray = ['casperjs', 'generateactionhtml.js'] as String[]
+			genActionArray = genActionArray + sampleFlow.actionArguments
+			def formatActionHtml = genActionArray.execute()
 			formatActionHtml.in.eachLine { line ->
 				if (line.contains('Created PNG of: ')) {
 					println line
 					String tempName = line.replace('Created PNG of: ', '')
 					def key = tempName.replaceAll(' ', '~')
 					key = key.replaceAll(':','+')
+					key = key.replaceAll('"', 'q')
+
 					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
-					actionStatus.setTextFill( Color.web('#004700') )
+					if (!actionStatus.is(null)){
+						actionStatus.setTextFill( Color.web('#004700') )
+					}
 				} else if (line.contains('Could not find action: ')){
 					println line
 					String tempName = line.replace('Could not find action: ', '')
 					def key = tempName.replaceAll(' ', '~')
 					key = key.replaceAll(':','+')
+					key = key.replaceAll('"', 'q')
+
 					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
-					actionStatus.setTextFill( Color.web('#800000') )
+					if (!actionStatus.is(null)){
+						actionStatus?.setTextFill( Color.web('#800000') )
+					}
 				} else {
 					println line
 				}
 			}
 		}
-
-		Thread actionThread = new Thread(getActions as Runnable);
-		actionThread.setDaemon(true);
-		actionThread.start();
+		Thread actionThread = new Thread(getActions as Runnable)
+		actionThread.setDaemon(true)
+		actionThread.start()
 	}
 
-	private static void captureFormsAndUpdateFormTable(def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup){
+	private static void captureFormsAndUpdateFormTable(Thread fxThread, def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup){
 
-		HashMap<String, LoadItem> formMap = new HashMap()
-		def formNames = sampleFlow.allForms
-		formNames.each() { form ->
-			formMap << [ (form.toString()) : ( new LoadItem(name: form.toString(), status: 'Unfinished', color: RED) )]
-		}
+			HashMap<String, LoadItem> formMap = new HashMap()
+			def formNames = sampleFlow.allForms
+			formNames.each() { form ->
+				formMap << [ (form.toString()) : ( new LoadItem(name: form.toString(), status: 'Unfinished', color: RED) )]
+			}
 
-		int row = 3
-		Rectangle rect
-		formMap.each {k,v ->
-			String key = k.replaceAll(' ', '~')
-			key = key.replaceAll(':','+')
-			formTable.add(new Label( text: k, id: key + 'Status', textFill: Color.web('#800000')), 0, row)
-			row++
-		}
+			int row = 3
+			Rectangle rect
+			formMap.each {k,v ->
+				String key = k.replaceAll(' ', '~')
+				key = key.replaceAll(':','+')
+				key = key.replaceAll('"', 'q')
 
-		Closure getForms = {
+				formTable.add(new Label( text: k, id: key + 'Status', style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
+				row++
+			}
 
-			println "Starting script"
-			def getForms = ('casperjs --ssl-protocol="any" --ignore-ssl-errors=true formtohtml.js ' + companyName + ' ' + sampleFlow.formArguments).execute()
-			getForms.in.eachLine { line ->
-				if (line.contains('CasperError: Errors encountered while filling form: form not found')){
-					getForms.destroy()
-					loginPopup.show()
-				} else if (line.contains('Stored screenshot of form: ')) {
-					println line
-					String tempName = line.replace('Stored screenshot of form: ', '')
-					def key = tempName.replaceAll(' ', '~')
-					key = key.replaceAll(':','+')
-					Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
-					formStatus.setTextFill( Color.web('#FF7519') )
-				} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
-					companyPopup.show()
-					getForms.destroy()
-				} else {
-					println line
+			Closure getForms = {
+
+				println "Starting script"
+
+				def flowName = URLEncoder.encode(sampleFlow.flowName, "UTF-8")
+				companyName = URLEncoder.encode(companyName, "UTF-8")
+				String[] formArgsArray = ['casperjs', '--ssl-protocol=\"any\"', '--ignore-ssl-errors=true', 'formtohtml.js', companyName] as String[]
+				formArgsArray = formArgsArray + (sampleFlow.formArguments as String[])
+
+				def getForms = formArgsArray.execute()
+				getForms.in.eachLine { line ->
+					if (line.contains('CasperError: Errors encountered while filling form: form not found')){
+						println line
+						getForms.destroy()
+						loginPopup.show()
+					} else if (line.contains('Stored screenshot of form: ')) {
+						println line
+						String tempName = line.replace('Stored screenshot of form: ', '')
+						def key = tempName.replaceAll(' ', '~')
+						key = key.replaceAll(':','+')
+						key = key.replaceAll('"', 'q')
+
+						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
+	                    formStatus?.setTextFill( Color.web('#FF7519') )
+					} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
+						companyPopup.show()
+						getForms.destroy()
+						println line
+					} else {
+						println line
+					}
+				}
+
+				String[] genFormArray = ['casperjs', 'generateformhtml.js'] as String[]
+				genFormArray = genFormArray + sampleFlow.formArguments
+				def formatFormHtml = genFormArray.execute()
+				formatFormHtml.in.eachLine { line ->
+					if (line.contains('Created PNG of: ')) {
+						println line
+						String tempName = line.replace('Created PNG of: ', '')
+						def key = tempName.replaceAll(' ', '~')
+						key = key.replaceAll(':','+')
+						key = key.replaceAll('"', 'q')
+						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
+	                    formStatus?.setTextFill( Color.web('#004700') )
+					} else if (line.contains('Could not find form: ')){
+						println line
+						String tempName = line.replace('Could not find form: ', '')
+						def key = tempName.replaceAll(' ', '~')
+						key = key.replaceAll(':','+')
+						key = key.replaceAll('"', 'q')
+
+						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
+	                    formStatus?.setTextFill( Color.web('#800000') )
+					} else {
+						println line
+					}
 				}
 			}
 
-			def formatFormHtml = ('casperjs generateformhtml.js ' +  sampleFlow.formArguments).execute()
-			formatFormHtml.in.eachLine { line ->
-				if (line.contains('Created PNG of: ')) {
-					println line
-					String tempName = line.replace('Created PNG of: ', '')
-					def key = tempName.replaceAll(' ', '~')
-					key = key.replaceAll(':','+')
-					Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
-					formStatus.setTextFill( Color.web('#004700') )
-				} else if (line.contains('Could not find form: ')){
-					println line
-					String tempName = line.replace('Could not find form: ', '')
-					def key = tempName.replaceAll(' ', '~')
-					key = key.replaceAll(':','+')
-					Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
-					formStatus.setTextFill( Color.web('#800000') )
-				} else {
-					println line
-				}
-			}
-		}
-
-		Thread formThread = new Thread(getForms as Runnable);
-		formThread.setDaemon(true);
-		formThread.start();
+		Thread formThread = new Thread(getForms as Runnable)
+		formThread.setDaemon(true)
+		formThread.start()
+		//return formThread
 	}
 
 	private static void createEventDocuments(fileName, companyName){
+
 		WorkFlow newFlow = new WorkFlow(fileName)
 		File flowInfo = new File('build/Resources/flowInfo.txt')
 		new File('build/Resources/Events/texts').mkdir()
@@ -247,7 +294,6 @@ public class GUI{
 
 		flowInfo.write(newFlow.flowName + '\n')
 		flowInfo.append(companyName.replaceAll('~', ' '))
-
 	}
 
 	public static void main(args){
@@ -256,20 +302,23 @@ public class GUI{
 		final HashMap<String, LoadItem> actions = ['None' : new LoadItem(name: "No actions yet", status: 'N/A', color: RED)]
 
 		start {
-		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 650, height: 400, visible: true) {
+		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 800, height: 450, visible: true) {
 				scene(id: 'mainScene'){
-					mainScene.getStylesheets().add( 'file://' + System.getProperty("user.dir") + '/src/main/groovy/flow/resources/gui.css' )
+					File css = new File("src/main/groovy/flow/resources/gui.css")
+					mainScene.getStylesheets().clear()
+					mainScene.getStylesheets().add("file:///" + css.getAbsolutePath().replace("\\", "/"))
 					tabPane (id: 'tabPane') {
 		                tab('Main', id: 'mainTab', closable: false) {
-		                    gridPane(id: 'gridPane', hgap: 10, vgap: 10, padding: 10, alignment: "top_center", style: '-fx-background-color: #2B2726') {
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
-								columnConstraints(minWidth: 75, prefWidth: 75, hgrow: 'never')
+		                    gridPane(id: 'gridPane', hgap: 5, vgap: 15, padding: 5, alignment: "top_center", style: '-fx-background-color: #2B2726') {
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+
 
 								label("Enter Workflow Parameters", id: 'titleLabel', row: 0, column: 0, columnSpan: 8, halignment: "center",
 									margin: [0, 0, 10] )
@@ -282,7 +331,7 @@ public class GUI{
 
 								label(" ", id: 'filler', row: 4, column: 7)
 
-								button("Clean Workspace", id: 'cleanButton',  minWidth: 150, prefWidth: 150, row: 7, column: 1, columnSpan: 2, halignment: "center",
+								button("Clean Workspace", id: 'cleanButton',  minWidth: 175, prefWidth: 175, row: 7, column: 1, columnSpan: 2, halignment: "center",
 								, onAction: {
 									cleanWorkspace()
 									browserButton.setDisable(true)
@@ -295,7 +344,7 @@ public class GUI{
 
 
 
-								button("All Documents", id: 'genDocButton', minWidth: 150, prefWidth: 150, row: 5, column: 5, columnSpan: 2, halignment: "center", onAction: {
+								button("All Documents", id: 'genDocButton', minWidth: 175, prefWidth: 175, row: 5, column: 5, columnSpan: 2, halignment: "center", onAction: {
 
 									if(  unzipFile(nameOfFlowFile.text) ){
 
@@ -306,9 +355,9 @@ public class GUI{
 											def companyName = nameOfCompany.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(1)
-											captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-											captureActionsAndUpdateActionTable(mainScene, sampleFlow, companyName, actionTable, companyPopup, loginPopup)
-											createEventDocuments(fileName, companyName)
+											Thread fxThread = Thread.currentThread()
+											captureFormsAndUpdateFormTable(fxThread, mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+											captureActionsAndUpdateActionTable(fxThread, mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 
 											browserButton.setDisable(false)
 											exportButton.setDisable(false)
@@ -316,6 +365,19 @@ public class GUI{
 
 										} else {
 											cleanFirstPopup.show()
+											def fileName = nameOfFlowFile.text + '.json'
+											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
+											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+
+											tabPane.getSelectionModel().select(1)
+											Thread fxThread = Thread.currentThread()
+											captureFormsAndUpdateFormTable(fxThread, mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+											captureActionsAndUpdateActionTable(fxThread, mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+
+
+											browserButton.setDisable(false)
+											exportButton.setDisable(false)
+											cleanButton.setDisable(false)
 										}
 
 									}else {
@@ -323,7 +385,7 @@ public class GUI{
 									}
 								})
 
-								button("Forms", id: 'genFormsButton',  minWidth: 150, prefWidth: 150, row: 5, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Forms", id: 'genFormsButton',  minWidth: 175, prefWidth: 175, row: 5, column: 3, columnSpan: 2, halignment: "center", onAction: {
 
 									if(  unzipFile(nameOfFlowFile.text) ){
 
@@ -332,8 +394,8 @@ public class GUI{
 										def companyName = nameOfCompany.text.replaceAll(' ', '~')
 
 										tabPane.getSelectionModel().select(1)
-										captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-										createEventDocuments(fileName, companyName)
+										Thread fxThread = Thread.currentThread()
+										captureFormsAndUpdateFormTable(fxThread, mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
 
 										browserButton.setDisable(false)
 										exportButton.setDisable(false)
@@ -345,7 +407,7 @@ public class GUI{
 
 								})
 
-								button("Actions", id: 'genActionsButton', minWidth: 150, prefWidth: 150, row: 5, column: 1, columnSpan: 2, halignment: "center", onAction: {
+								button("Actions", id: 'genActionsButton', minWidth: 175, prefWidth: 175, row: 5, column: 1, columnSpan: 2, halignment: "center", onAction: {
 										if(  unzipFile(nameOfFlowFile.text) ){
 
 											def fileName = nameOfFlowFile.text + '.json'
@@ -353,8 +415,8 @@ public class GUI{
 											def companyName = nameOfCompany.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(2)
-											captureActionsAndUpdateActionTable(mainScene, sampleFlow, companyName, actionTable, companyPopup, loginPopup)
-											createEventDocuments(fileName, companyName)
+											Thread fxThread = Thread.currentThread()
+											captureActionsAndUpdateActionTable(fxThread, mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 
 											browserButton.setDisable(false)
 											exportButton.setDisable(false)
@@ -365,20 +427,19 @@ public class GUI{
 										}
 								})
 
-								button("Create Export Folder", id: 'exportButton',  minWidth: 150, prefWidth: 150, row: 6, column: 1, columnSpan: 2, halignment: "center", onAction: {
+								button("Create Export Folder", id: 'exportButton',  minWidth: 175, prefWidth: 175, row: 6, column: 1, columnSpan: 2, halignment: "center", onAction: {
 									exportWorkflow()
 								})
 
-								button("Open in browser", id: 'browserButton',  minWidth: 150, prefWidth: 150, row: 6, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Open in browser", id: 'browserButton',  minWidth: 175, prefWidth: 175, row: 6, column: 3, columnSpan: 2, halignment: "center", onAction: {
 									if ( (new File('build/Resources/Events/eventIndex.html')).exists() ) {
 										showInBrowser()
 									} else {
 										noBrowserPopup.show()
 									}
 								})
-								if ( !(new File('build/Resources/Events/eventIndex.html')).exists() ) {browserButton.setDisable(true)}
 
-								button("Go to Google drive", minWidth: 150, prefWidth: 150, row: 7, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Go to Google drive", minWidth: 175, prefWidth: 175, row: 7, column: 3, columnSpan: 2, halignment: "center", onAction: {
 									openGoogleDrive()
 								})
 
@@ -392,8 +453,8 @@ public class GUI{
 
 								gridPane(id: 'formTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #E8DDCB') {
 									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Forms", row: 0, column: 0, style: '-fx-font-size: 18pt', textFill: Color.web('#0A516D') )
-									rectangle(width: 575, height: 4, fill: Color.web('#2B2726'), halignment: 'center', valignment: 'top', row: 1, column: 0)
+									label(text: "Forms", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;', textFill: Color.web('#0A516D') )
+									rectangle(width: 650, height: 4, fill: Color.web('#2B2726'), halignment: 'center', valignment: 'top', row: 1, column: 0)
 									label(" ", row: 2, column: 0)
 								}
 							}
@@ -404,8 +465,8 @@ public class GUI{
 
 								gridPane(id: 'actionTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #E8DDCB') {
 									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Actions", row: 0, column: 0, style: '-fx-font-size: 18pt', textFill: Color.web('#0A516D') )
-									rectangle(width: 575, height: 4, fill: Color.web('#2B2726'), halignment: 'center', valignment: 'top', row: 1, column: 0)
+									label(text: "Actions", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;', textFill: Color.web('#0A516D') )
+									rectangle(width: 650, height: 4, fill: Color.web('#2B2726'), halignment: 'center', valignment: 'top', row: 1, column: 0)
 									label(" ", row: 2, column: 0)
 								}
 							}
