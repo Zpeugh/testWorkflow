@@ -34,13 +34,14 @@ casper.on('remote.message', function(msg) {
 var counter = 0;
 var formNameArray = [];
 var fs = require('fs');
-var re = /\+/g
+var re = /\+/g;
+var temp;
 
 console.log('Forms to generate: ');
 
 while (casper.cli.has(counter)) {
-
-    formNameArray[counter] = casper.cli.get(counter).replace(re, ' ');
+    temp = decodeURIComponent( casper.cli.get(counter) );
+    formNameArray[counter] = temp.replace(re, ' ');
     console.log(counter + ': ' + formNameArray[counter] );
     counter++;
 };
@@ -55,6 +56,8 @@ if (formNameArray.length === 0) {
 casper.capturePNG = function(formName){
     var fName = formName.replace(/\"/g,'');
     fName = fName.replace(/:/g, '[colon]');
+    fName = fName.replace(/\//g,'[fslash]');
+    fName = fName.replace(/\\/g,'[bslash]');
     this.waitForSelector('#tabs', function(){
         var formSnip = this.getElementBounds('#tabs');
         this.capture('build/Resources/formHtmls/formPNGs/' + fName + '.png', {
@@ -74,6 +77,8 @@ casper.createFormHTML = function(formName, formValues) {
   this.then(function() {
     var fName = formName.replace(/\"/g,'');
     fName = fName.replace(/:/g, '[colon]');
+    fName = fName.replace(/\//g,'[fslash]');
+    fName = fName.replace(/\\/g,'[bslash]');
 
     var fileName = fs.workingDirectory + '/build/Resources/formHtmls/' + fName + '.html';
 
@@ -122,6 +127,8 @@ casper.start();
 casper.each(formNameArray, function(casper, formName) {
     var fName = formName.replace(/\"/g,'');
     fName = fName.replace(/:/g, '[colon]');
+    fName = fName.replace(/\//g,'[fslash]');
+    fName = fName.replace(/\\/g,'[bslash]');
     var fileString =  'build/Resources/formHtmls/' + fName + '.html';
     fileString = fileString.replace(/\"/g,'');
 

@@ -46,7 +46,7 @@ class Event {
 
 		def writer = new FileWriter(outputFile)
 		def markup = new MarkupBuilder(writer)
-		def thisCondition
+		def thisCondition, eventString
 		def posEvents = new ArrayList()
 		def sActions = new ArrayList()
 		def pActions = new ArrayList()
@@ -98,7 +98,6 @@ class Event {
 			posEvents = "None"
 		}
 
-
 		markup.html{
 			link(href : "../../../src/Resources/events.css", rel : 'stylesheet', type : "text/css"){}
 			center {
@@ -126,64 +125,70 @@ class Event {
 		}
 	}
 
+	public printEventInfoPage(File outputFile, HashMap<Integer, Event> eventMap){
 
+		def thisCondition, posEvents = "None"
+		def eventString = "Next Possible Events:"
+		def nextEventType = ""
+		String sActions = ""
+		String pActions = ""
+		String fActions = ""
+		String forms = ""
 
-	public printEventInfoPage(File outputFile){
-
-			def thisCondition
-			String posEvents = ""
-			String sActions = ""
-			String pActions = ""
-			String fActions = ""
-			String forms = ""
-
-			if (this.eventClass == "Conditional"){
-				thisCondition = this.condition.conditionName
-			} else {
-				thisCondition = "Non-Conditional Event"
-			}
-			if (this.startActions.size() != 0){
-				this.startActions.each { sActions += "~${it.toString()}" }
-				sActions = sActions.substring(1) //remove initial ~
-			} else {
-				sActions = "None for this event"
-			}
-			if (this.plannedActions.size() != 0){
-				this.plannedActions.each { pActions += "~${it.toString()}" }
-				pActions = pActions.substring(1)
-			} else {
-				pActions = "None for this event"
-			}
-			if (this.finishActions.size() != 0){
-				this.finishActions.each { fActions += "~${it.toString()}" }
-				fActions = fActions.substring(1)
-			} else {
-				fActions = "None for this event"
-			}
-			if (this.formTemplates.size() != 0){
-				this.formTemplates.each { forms += "~${it.toString()}" }
-				forms = forms.substring(1)
-			}
-			else {
-				forms = "No forms for this event"
-			}
-			if (this.possibleNextEvents.size() != 0){
-				this.possibleNextEvents.each { posEvents += "~${it.eventName.toString()}" }
-				posEvents = posEvents.substring(1)
-			} else{
-				posEvents = "None"
-			}
-
-			outputFile.write "Event: ${this.eventName.toUpperCase()}\n"
-			outputFile.append "Type: ${this.eventClass}\n"
-			outputFile.append "Level: ${this.projectLevel}\n"
-			outputFile.append "Condition: ${thisCondition}\n"
-			outputFile.append "Next Possible Events: ${posEvents}\n"
-			outputFile.append "On start: ${sActions}\n"
-			outputFile.append "Planned: ${pActions}\n"
-			outputFile.append "On finish: ${fActions}\n"
-			outputFile.append forms
+		if (this.eventClass == "Conditional"){
+			thisCondition = this.condition.conditionName
+		} else {
+			thisCondition = "Non-Conditional Event"
+		}
+		if (this.startActions.size() != 0){
+			this.startActions.each { sActions += "~${it.toString()}" }
+			sActions = sActions.substring(1) //remove initial ~
+		} else {
+			sActions = "None for this event"
+		}
+		if (this.plannedActions.size() != 0){
+			this.plannedActions.each { pActions += "~${it.toString()}" }
+			pActions = pActions.substring(1)
+		} else {
+			pActions = "None for this event"
+		}
+		if (this.finishActions.size() != 0){
+			this.finishActions.each { fActions += "~${it.toString()}" }
+			fActions = fActions.substring(1)
+		} else {
+			fActions = "None for this event"
+		}
+		if (this.formTemplates.size() != 0){
+			this.formTemplates.each { forms += "~${it.toString()}" }
+			forms = forms.substring(1)
+		}
+		else {
+			forms = "No forms for this event"
+		}
+		if (this.possibleNextEvents.size() != 0){
+			posEvents = ""
+			this.possibleNextEvents.each { posEvents += "~${it.eventName.toString()}" }
+			eventString = "Next Possible Events:"
+			posEvents = posEvents.substring(1)
+		} else if(this.eventClass == 'Automatic'){
+			Integer ID = this.nextEvent.toInteger()
+			posEvents = eventMap.getAt(ID)
+			nextEventType = '~' + posEvents?.eventClass
+			posEvents = posEvents?.eventName
+			eventString = "Next Event:"
 
 		}
+
+		outputFile.write "Event: ${this.eventName.toUpperCase()}\n"
+		outputFile.append "Type: ${this.eventClass}\n"
+		outputFile.append "Level: ${this.projectLevel}\n"
+		outputFile.append "Condition: ${thisCondition}\n"
+		outputFile.append "${eventString} ${posEvents}${nextEventType}\n"
+		outputFile.append "On start: ${sActions}\n"
+		outputFile.append "Planned: ${pActions}\n"
+		outputFile.append "On finish: ${fActions}\n"
+		outputFile.append forms
+
+	}
 
 }

@@ -56,7 +56,6 @@ console.log("flow Name: " + FLOW_NAME);
 while (casper.cli.has(counter)){
     temp = decodeURIComponent(casper.cli.get(counter));
     actionNameArray[counter - 2] = temp.replace(re, ' ');
-
     console.log(counter + ': ' + actionNameArray[counter - 2]);
     counter++;
 };
@@ -98,6 +97,8 @@ casper.getAction = function(j, actionName, actionValue){
         this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){
             var aName = actionName.replace(/\"/g,'');
             aName = aName.replace(/:/g, '[colon]');
+            aName = aName.replace(/\\/g, '[bslash]');
+            aName = aName.replace(/\//g, '[fslash]');
             var html = this.getHTML('#action');
             html = html.replace("<form", "<html><link href=\"../../../src/Resources/actionflow.css\" rel=\"stylesheet\" " +
             "type=\"text/css\" /><div class=\"row\"><div id=\"action\" class=\"small-12 columns\"><form" );

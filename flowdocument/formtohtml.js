@@ -50,12 +50,14 @@ casper.on('resource.received', function(resource) {
 //Take the arguments from the commandline and store them as the names of the forms
 //in the formName array
 var counter = 1;
-var companyName = casper.cli.get(0).replace(re,' ');
+var companyName = decodeURIComponent( casper.cli.get(0) );
+companyName = companyName.replace(re,' ');
+var temp;
 console.log("Forms to capture: ");
 
 while (casper.cli.has(counter)){
-
-    formNameArray[counter - 1] = casper.cli.get(counter).replace(re,' ');
+    temp = decodeURIComponent( casper.cli.get(counter) );
+    formNameArray[counter - 1] = temp.replace(re,' ');
     console.log(counter++ + ': ' + formNameArray[counter - 2]);
 };
 if(formNameArray.length === 0){
@@ -64,7 +66,6 @@ if(formNameArray.length === 0){
 
 
 /*************************************SCRIPT FUNCTIONS**********************************/
-
 casper.logIntoSpida = function(){
 
     this.fillSelectors('form#fm1', {
@@ -148,7 +149,9 @@ casper.matchFormNames = function(childNumber){
             //store form screenshot as 'formName.png'
             casper.then(function() {
                 var fName = formName.replace(/\"/g,'');
-                fName = fName.replace(/:/g, '-');
+                fName = fName.replace(/\//g, '[fslash]');
+                fName = fName.replace(/\\/g, '[bslash]');
+                fName = fName.replace(/:/g, '[colon]');
                 var html = this.getHTML('#wrap>div.wide-body');
                 //console.log(formName + ':\n\n' + html);
                 var selectRE = new RegExp('<select name=','g');

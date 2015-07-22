@@ -2,8 +2,9 @@
 var FONT_CHOICE = "TIMES NEW ROMAN";
 var FONT_SIZE = 11;
 var SPIDA_RED = '#800000';
-var colon = /[colon]/;
-var quote = /\"/;
+var colon = /\[colon\]/g;
+var fslash = /\//g;
+var bslash = /\\/g;
 
 //ALL LIST STYLES
 var LIST_STYLE = {};
@@ -198,10 +199,7 @@ function putFooters(company){
   hrStyle[DocumentApp.Attribute.UNDERLINE] = false;
 
   hr.setAttributes(hrStyle);
-
-  hr.appendText('⎼').setAttributes(hrStyle);
-  hr.appendText('⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼').setAttributes(hrStyle).setUnderline(true);
-  hr.appendText('⎼').setAttributes(hrStyle);
+  hr.appendText('__________________________________________________________________').setAttributes(hrStyle).setUnderline(true);
 
   var footerText = footer.appendParagraph("© SPIDAWeb LLC ◆ CONFIDENTIAL ◆ " + company + " ONLY\n");
 
@@ -218,7 +216,7 @@ function putFooters(company){
 };
 
 
-//Returns MyDrive/workFlowName/Resources/formHtmls (class Folder)
+//Returns actionHtmls or formHtmls or Events folder inside MyDrive/workFlowName/Resources/ (class Folder)
 function getHtmlFolder(workFlowName, type) {
 
   var myDrive = DriveApp.getFoldersByName(workFlowName);
@@ -255,10 +253,14 @@ function createHtmlMap(folder){
     var newFileName = fileName.replace('.html','');
 
     if (fileName !== newFileName){
-      htmlMap[newFileName] = file.getBlob().getDataAsString();
+      if (file !== null){
+        htmlMap[newFileName] = file.getBlob().getDataAsString();
+      } else{
+        htmlMap[newFileName] = "Missing Information";
+      };
     };
   };
-  return  htmlMap;
+  return htmlMap;
 };
 
 
@@ -492,9 +494,13 @@ function createIndexPage(map, type){
   indexHeader.setAttributes(headerStyle);
 
   body.appendHorizontalRule();
+  var tempItem;
 
   for (var item in map){
-    var listElement = body.appendListItem(item)
+    tempItem = item.replace(colon, ':');
+    tempItem = tempItem.replace(fslash, '/');
+    tempItem = tempItem.replace(bslash, '\\');
+    var listElement = body.appendListItem(tempItem);
     listElement.setAttributes(LIST_STYLE).setItalic(true);
   };
 };
@@ -504,17 +510,20 @@ function createIndexPage(map, type){
 function putHeader(name, body, type){
 
   name = name.replace(colon, ':');
+  name = name.replace(bslash, '\\');
+  name = name.replace(fslash, '/');
   body.appendPageBreak();
   var header
-  var topDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');
+  //var topDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');
+  body.appendHorizontalRule();
   if (type === 'event'){
     header = body.appendParagraph(name);
   } else{
-    header = body.appendParagraph(type.toUpperCase() + ": " + name.toUpperCase());
+    header = body.appendParagraph(name.toUpperCase());
   };
 
   var headerStyle = {};
-  headerStyle[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.LEFT;
+  headerStyle[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.CENTER;
   headerStyle[DocumentApp.Attribute.FONT_FAMILY] = FONT_CHOICE;
   headerStyle[DocumentApp.Attribute.FONT_SIZE] = FONT_SIZE;
   headerStyle[DocumentApp.Attribute.BOLD] = false;
@@ -526,11 +535,11 @@ function putHeader(name, body, type){
   headerStyle[DocumentApp.Attribute.UNDERLINE] = false;
   headerStyle[DocumentApp.Attribute.ITALIC] = false;
 
-  var bottomDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');
-
+  //var bottomDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');
+  body.appendHorizontalRule();
   header.setAttributes(headerStyle);
-  bottomDashedLine.setAttributes(headerStyle);
-  topDashedLine.setAttributes(headerStyle);
+  //bottomDashedLine.setAttributes(headerStyle);
+  //topDashedLine.setAttributes(headerStyle);
 };
 
 
@@ -539,33 +548,51 @@ function putScreenshot(url,body){
 
   var image = UrlFetchApp.fetch(url);
 
-  var name = image.getBlob().getName();
-  Logger.log(name);
+  if (image){
+    var name = image.getBlob().getName();
+    Logger.log(name);
 
-  if (name === 'Untitled'){
+    if (name === 'Untitled' ){
+      Logger.log('missed an image')
+      body.appendParagraph('Missing image, sorry.');
+
+    }else {
+
+      var imgWrapper = body.appendParagraph("");
+      var img = imgWrapper.appendInlineImage(image.getBlob())
+
+      var height = img.getHeight();
+      Logger.log('height: ' + height);
+      var width = img.getWidth();
+      Logger.log('width: ' + width);
+      var ratio = width / height;
+      if (height > 700){
+        img.setHeight(700);
+        img.setWidth(ratio * 700);
+      };
+      if (width > 600){
+        img.setHeight(600 / ratio);
+        img.setWidth(600);
+      };
+      var height = img.getHeight();
+      Logger.log('new height: ' + height);
+      var width = img.getWidth();
+      Logger.log('new width: ' + width);
+
+      var imageStyle = {};
+      imageStyle[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.CENTER;
+      imageStyle[DocumentApp.Attribute.PADDING_TOP] = 0;
+      imageStyle[DocumentApp.Attribute.PADDING_BOTTOM] = 0;
+      imageStyle[DocumentApp.Attribute.MARGIN_BOTTOM] = 0;
+      imageStyle[DocumentApp.Attribute.MARGIN_TOP] = 0;
+      imageStyle[DocumentApp.Attribute.UNDERLINE] = false;
+      imageStyle[DocumentApp.Attribute.ITALIC] = false;
+
+      imgWrapper.setAttributes(imageStyle);
+    };
+  } else {
     Logger.log('missed an image')
     body.appendParagraph('Missing image, sorry.');
-
-  }else {
-
-    var imgWrapper = body.appendParagraph("");
-    var img = imgWrapper.appendInlineImage(image.getBlob())
-
-    var height = img.getHeight()
-    if (img.getHeight() > 700){
-      img.setHeight(700);
-    };
-
-    var imageStyle = {};
-    imageStyle[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.CENTER;
-    imageStyle[DocumentApp.Attribute.PADDING_TOP] = 0;
-    imageStyle[DocumentApp.Attribute.PADDING_BOTTOM] = 0;
-    imageStyle[DocumentApp.Attribute.MARGIN_BOTTOM] = 0;
-    imageStyle[DocumentApp.Attribute.MARGIN_TOP] = 0;
-    imageStyle[DocumentApp.Attribute.UNDERLINE] = false;
-    imageStyle[DocumentApp.Attribute.ITALIC] = false;
-
-    imgWrapper.setAttributes(imageStyle);
   };
 };
 
@@ -595,7 +622,6 @@ function putFieldValues(fields, body){
       var listElement = body.appendListItem(fields[i]);
       listElement.setAttributes(LIST_STYLE);
     };
-
   };
 };
 
@@ -619,11 +645,7 @@ function alphabetizeMap(map){
 };
 
 
-
-
-
 //*****************************************EVENT FUNCTIONS********************************************//
-//----------------------------------------------------------------------------------------------------//
 
 //returns the Resources/Events/texts folder
 function getEventTexts(eventHtmls){
@@ -662,9 +684,13 @@ function createEventIndexPage(eventOrder){
   indexHeader.setAttributes(headerStyle);
 
   body.appendHorizontalRule();
+  var tempItem;
 
   for (var i=0; i < eventOrder.length; i++){
-    var listElement = body.appendListItem(eventOrder[i])
+    tempItem = eventOrder[i].replace(colon, ':');
+    tempItem = tempItem.replace(fslash, '/');
+    tempItem = tempItem.replace(bslash, '\\');
+    var listElement = body.appendListItem(tempItem)
     listElement.setAttributes(LIST_STYLE).setItalic(true);
   };
 };
@@ -688,8 +714,6 @@ function createEventPage(eventTexts, eventOrder){
   };
 
   for (var i = 0; i < eventOrder.length; i++){
-    Logger.log(eventOrder[i].toString());
-
     body.appendPageBreak();
     putEventHeader(dataMap[eventOrder[i]], body);
     putEventInfo(dataMap[eventOrder[i]], body);
@@ -744,9 +768,20 @@ function putEventHeader(dataArray, body){
 //**********************************************putEventInfo()********************************************
 function putEventInfo(dataArray, body){
 
+
+
   var type = body.appendParagraph('Type: ').setAttributes(PLAIN_TEXT).setBold(true);
   type.appendText( dataArray[1].replace('Type: ', '') ).setBold(false);
 
+  var nextEvent = [];
+  var nextEventName = 'N/A', nextEventType = 'N/A';
+  if (dataArray[4].indexOf('Next Event: ') > -1){
+    nextEvent = dataArray[4].replace('Next Event: ', '').split('~')
+    nextEventName = nextEvent[0];
+    nextEventType = nextEvent[1];
+    var nextType = body.appendParagraph('Next Type: ' ).setAttributes(PLAIN_TEXT).setBold(true);
+    nextType.appendText(nextEventType).setBold(false);
+  };
 
   var eventLevel = body.appendParagraph('Level: ').setAttributes(PLAIN_TEXT).setBold(true);
   eventLevel.appendText(dataArray[2].replace('Level: ', '')).setBold(false);
@@ -760,9 +795,15 @@ function putEventInfo(dataArray, body){
   };
 
   var pEvents = new Array();
+  var nextEvent;
+
+
   pEvents = dataArray[4].replace('Next Possible Events: ', '').split('~');
 
-  if (pEvents[0] !== 'None'){
+  if (dataArray[4].indexOf('Next Event: ') > -1) {
+    var posEvents = body.appendParagraph('Next Event: ').setAttributes(PLAIN_TEXT).setBold(true);
+    posEvents.appendText(nextEventName).setBold(false);
+  } else if (pEvents[0] !== 'None'){
     var posEvents = body.appendParagraph('Next possible events: ').setAttributes(PLAIN_TEXT).setBold(true);
     for (var i = 0; i < pEvents.length; i++){
       body.appendListItem(pEvents[i]).setAttributes(LIST_STYLE);

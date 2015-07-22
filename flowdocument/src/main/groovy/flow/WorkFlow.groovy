@@ -86,7 +86,7 @@ public class WorkFlow {
 
 		//instantiate the Events map inside the workflow data structure and
 		//store the json files events in allEvents
-		this.events = new HashMap()
+		this.events = new HashMap<Integer, Event>()
 		def allEvents = jsonObject.events
 
 		//enter all data for each event in the work flow
@@ -151,7 +151,7 @@ public class WorkFlow {
 //	Given a JSON event from the workflow, fill in the appropriate data sections in
 //	a single "Event" node.
 //
-	private static Event setEventData(def singleEvent, HashMap<Integer, Action> actionMap, HashMap<Integer, Action> conditionMap, HashMap<Integer, Action> formMap){
+	private static Event setEventData(def singleEvent, HashMap<Integer, Action> actionMap, def conditionMap, HashMap<Integer, Action> formMap){
 
 		Event node = new Event() //create a new flow.Event to put into the work flow data structure
 
@@ -192,7 +192,6 @@ public class WorkFlow {
 	}
 
 
-
 	public void printEventIndexPage(File outputFile){
 
 		def writer = new FileWriter(outputFile)
@@ -202,7 +201,7 @@ public class WorkFlow {
 		if (eventFile.exists()){
 			eventList = eventFile.text
 		} else {
-			println "MISSING order.txt, generating arbitrary order for events. "
+			System.err << "MISSING order.txt, generating arbitrary order for events. "
 			eventList = this.events.keySet()
 		}
 

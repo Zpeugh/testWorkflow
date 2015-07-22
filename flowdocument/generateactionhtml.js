@@ -48,6 +48,8 @@ if(actionNameArray.length === 0){
 casper.getActionLabels = function(actionName){
     var aName = actionName.replace(/\"/g,'');
     aName = aName.replace(/:/g, '[colon]');
+    aName = aName.replace(/\//g,'[fslash]');
+    aName = aName.replace(/\\/g,'[bslash]');
     this.thenOpen('build/Resources/actionHtmls/' + aName + '.html', function(){
 
           var actionFormValues = this.getElementsAttribute('div>label', 'for');
@@ -68,6 +70,9 @@ casper.getActionLabels = function(actionName){
 casper.createActionHTML = function(actionName, actionFormValues){
     var aName = actionName.replace(/\"/g,'');
     aName = aName.replace(/:/g,'[colon]');
+    aName = aName.replace(/\//g,'[fslash]');
+    aName = aName.replace(/\\/g,'[bslash]');
+
     this.thenOpen('build/Resources/actionHtmls/' + aName + '.html', function(){
 
         var fileName = fs.workingDirectory + '/build/Resources/actionHtmls/' + aName + '.html';
@@ -84,6 +89,8 @@ casper.createActionHTML = function(actionName, actionFormValues){
 casper.createPageHeader = function(fileName, actionName, actionFormValues){
 var aName = actionName.replace(/\"/g,'');
 aName = aName.replace(/:/g, '[colon]');
+aName = aName.replace(/\//g,'[fslash]');
+aName = aName.replace(/\\/g,'[bslash]');
     var headerString = '<html>\n\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../src/Resources/action.css\"/>' +
     '\n\t<div class=\"header\">\n\t\t<hr>\n\t\t<h2>ACTION: ' + actionName.toUpperCase() +
     '</h2>\n\t\t<hr>\n\t</div>\n\t<div class=\"action\"><p>Description: </p>\n\t<center>\n\t\t<img src=\"file://' +
@@ -100,6 +107,8 @@ aName = aName.replace(/:/g, '[colon]');
 casper.makeActionPNG = function(actionName) {
     var aName = actionName.replace(/\"/g,'');
     aName = aName.replace(/:/g, '[colon]');
+    aName = aName.replace(/\//g,'[fslash]');
+    aName = aName.replace(/\\/g,'[bslash]');
     this.thenOpen('build/Resources/actionHtmls/' + aName + '.html', function(){
         this.waitForSelector('#actionForm>fieldset', function(){
 

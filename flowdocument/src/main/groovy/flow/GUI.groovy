@@ -70,6 +70,7 @@ public class GUI{
 				include(name: '**/*.txt')
 				include(name: '**/*.png')
 				exclude(name: '**/*.json')
+				exclude(name: '.DS_STORE')
 				exclude(name: 'eventIndex.html')
 			}
 		}
@@ -220,6 +221,7 @@ public class GUI{
 				String[] formArgsArray = ['casperjs', '--ssl-protocol=\"any\"', '--ignore-ssl-errors=true', 'formtohtml.js', companyName] as String[]
 				formArgsArray = formArgsArray + (sampleFlow.formArguments as String[])
 
+
 				def getForms = formArgsArray.execute()
 				getForms.in.eachLine { line ->
 					if (line.contains('CasperError: Errors encountered while filling form: form not found')){
@@ -280,16 +282,21 @@ public class GUI{
 	private static void createEventDocuments(fileName, companyName){
 
 		WorkFlow newFlow = new WorkFlow(fileName)
+		HashMap<Integer, Event> eventMap = newFlow.events.clone()
 		File flowInfo = new File('build/Resources/flowInfo.txt')
 		new File('build/Resources/Events/texts').mkdir()
 
-		newFlow.events.each{k,v -> v.printEventPage(new File('build/Resources/Events/' + v.eventName + '.html'))}
+		newFlow.events.each{ k,v ->
+			File file = new File('build/Resources/Events/' + v.eventName + '.html')
+			v.printEventPage(file)
+		}
 
 		newFlow.printEventIndexPage(new File('build/Resources/Events/EventIndex.html') )
 
 		newFlow.events.each{k,v ->
 			File eventPage = new File('build/Resources/Events/texts/' + v.eventName + '.txt')
-			v.printEventInfoPage(eventPage)
+
+			v.printEventInfoPage(eventPage, eventMap)
 		}
 
 		flowInfo.write(newFlow.flowName + '\n')
@@ -338,9 +345,9 @@ public class GUI{
 									exportButton.setDisable(true)
 								})
 
-								label("Gather: ",  textFill: SMOOTHBLUE, style: '-fx-font-size: 14', row: 5, column: 0, columnSpan: 1, halignment: "right" )
-								label("Produce: ",  textFill: SMOOTHBLUE, style: '-fx-font-size: 14', row: 6, column: 0, columnSpan: 1, halignment: "right" )
-								label("Utilities: ", textFill: SMOOTHBLUE, style: '-fx-font-size: 14', row: 7, column: 0, columnSpan: 1, halignment: "right" )
+								label("Gather: ",  textFill: SMOOTHBLUE, style: '-fx-font-size: 16', row: 5, column: 0, columnSpan: 1, halignment: "right" )
+								label("Produce: ",  textFill: SMOOTHBLUE, style: '-fx-font-size: 15', row: 6, column: 0, columnSpan: 1, halignment: "right" )
+								label("Utilities: ", textFill: SMOOTHBLUE, style: '-fx-font-size: 15', row: 7, column: 0, columnSpan: 1, halignment: "right" )
 
 
 
