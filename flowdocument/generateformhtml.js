@@ -53,11 +53,17 @@ if (formNameArray.length === 0) {
 
 //*****************************SCRIPT FUNCTIONS*******************************//
 
+casper.changeSyntax = function(formName){
+    var fName = formName.toString().replace(/\'/g, '[squote]');
+    fName = fName.replace(/\\\\/g, '[bslash]');
+    fName = fName.replace(/\"/g, '[dquote]');
+    fName = fName.replace(/\//g, '[fslash]');
+    return fName;
+};
+
+
 casper.capturePNG = function(formName){
-    var fName = formName.replace(/\"/g,'');
-    fName = fName.replace(/:/g, '[colon]');
-    fName = fName.replace(/\//g,'[fslash]');
-    fName = fName.replace(/\\/g,'[bslash]');
+    var fName = this.changeSyntax(formName);
     this.waitForSelector('#tabs', function(){
         var formSnip = this.getElementBounds('#tabs');
         this.capture('build/Resources/formHtmls/formPNGs/' + fName + '.png', {
@@ -75,10 +81,7 @@ casper.capturePNG = function(formName){
 casper.createFormHTML = function(formName, formValues) {
 
   this.then(function() {
-    var fName = formName.replace(/\"/g,'');
-    fName = fName.replace(/:/g, '[colon]');
-    fName = fName.replace(/\//g,'[fslash]');
-    fName = fName.replace(/\\/g,'[bslash]');
+    var fName = this.changeSyntax(formName);
 
     var fileName = fs.workingDirectory + '/build/Resources/formHtmls/' + fName + '.html';
 
@@ -125,12 +128,8 @@ casper.start();
 
 //Gets all of the fields in the action form and stores them in an array
 casper.each(formNameArray, function(casper, formName) {
-    var fName = formName.replace(/\"/g,'');
-    fName = fName.replace(/:/g, '[colon]');
-    fName = fName.replace(/\//g,'[fslash]');
-    fName = fName.replace(/\\/g,'[bslash]');
+    var fName = this.changeSyntax(formName);
     var fileString =  'build/Resources/formHtmls/' + fName + '.html';
-    fileString = fileString.replace(/\"/g,'');
 
     casper.thenOpen(fileString, function(){
         this.capturePNG(formName);

@@ -5,7 +5,6 @@ import groovy.json.JsonSlurper
 import groovy.xml.MarkupBuilder
 import groovy.util.AntBuilder
 import static groovy.json.JsonParserType.INDEX_OVERLAY
-
 /**
  * Created by zpeugh on 5/22/15.
  */
@@ -209,7 +208,11 @@ public class WorkFlow {
 		def order = eventList.tokenize('~');
 
 		for (int i = 0; i < order.size(); i++){
-			events << ('\n\t\t<li><a href=\"' + "${order[i]}" +
+			def name = order[i].replaceAll('\'', '[squote]')
+			name = name.replaceAll('\\\\', '[bslash]')
+			name = name.replaceAll('\"', '[dquote]')
+			name = name.replaceAll('/', '[fslash]')
+			events << ('\n\t\t<li><a href=\"' + "${name}" +
 				'.html\">' + "${order[i]}" + '</a></li>')
 		}
 		events = events.join("").toString()

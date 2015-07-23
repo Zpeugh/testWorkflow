@@ -56,34 +56,59 @@ class Event {
 
 
 		if (this.eventClass == "Conditional"){
-			thisCondition = this.condition.conditionName
+			thisCondition = this.condition?.conditionName
 		} else {
 			thisCondition = "Non-Conditional Event"
 			conditionClass = "hidden"
 		}
 		if (this.startActions.size() != 0){
-			this.startActions.each { sActions << '<a href=\"' + '../actionHtmls/' + "${it.toString()}" + '.html\">' + "${it.toString()}" + '</a>' }
+			this.startActions.each {
+				def name = it.toString().replaceAll('\'', '[squote]')
+				name = name.replaceAll('\\\\', '[bslash]')
+				name = name.replaceAll('\"', '[dquote]')
+				name = name.replaceAll('/', '[fslash]')
+				sActions << '<a href=\"' + '../actionHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
+			}
 			sActions = sActions.toString()
 			sActions = sActions.substring(1, sActions.length()- 1) //remove brackets
 		} else {
 			sActions = "None for this event"
 		}
 		if (this.plannedActions.size() != 0){
-			this.plannedActions.each { pActions << '<a href=\"' + '../actionHtmls/' + "${it.toString()}" + '.html\">' + "${it.toString()}" + '</a>' }
+			this.plannedActions.each {
+				def name = it.toString().replaceAll('\'', '[squote]')
+				name = name.replaceAll('\\\\', '[bslash]')
+				name = name.replaceAll('\"', '[dquote]')
+				name = name.replaceAll('/', '[fslash]')
+				pActions << '<a href=\"' + '../actionHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
+			}
 			pActions = pActions.toString()
 			pActions = pActions.substring(1, pActions.length()- 1)
 		} else {
 			pActions = "None for this event"
 		}
 		if (this.finishActions.size() != 0){
-			this.finishActions.each { fActions << '<a href=\"' + '../actionHtmls/' + "${it.toString()}" + '.html\">' + "${it.toString()}" + '</a>' }
+
+			this.finishActions.each {
+				def name = it.toString().replaceAll('\'', '[squote]')
+				name = name.replaceAll('\\\\', '[bslash]')
+				name = name.replaceAll('\"', '[dquote]')
+				name = name.replaceAll('/', '[fslash]')
+				fActions << '<a href=\"' + '../actionHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
+			}
 			fActions = fActions.toString()
 			fActions = fActions.substring(1, fActions.length()- 1)
 		} else {
 			fActions = "None for this event"
 		}
 		if (this.formTemplates.size() != 0){
-			this.formTemplates.each { forms << '<a href=\"' + '../formHtmls/' + "${it.toString()}" + '.html\">' + "${it.toString()}" + '</a>' }
+			this.formTemplates.each {
+				def name = it.toString().replaceAll('\'', '[squote]')
+				name = name.replaceAll('\\\\', '[bslash]')
+				name = name.replaceAll('\"', '[dquote]')
+				name = name.replaceAll('/', '[fslash]')
+				forms << '<a href=\"' + '../formHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
+			}
 			forms = forms.toString()
 			forms = forms.substring(1, forms.length() - 1)
 		}
@@ -91,7 +116,14 @@ class Event {
 			forms = "No forms for this event"
 		}
 		if (this.possibleNextEvents.size() != 0){
-			this.possibleNextEvents.each { posEvents << '<a href=\"' + "${it.eventName.toString()}" + '.html\">' + "${it.eventName.toString()}" + '</a>' }
+
+			this.possibleNextEvents.each {
+				def name = it.eventName.toString().replaceAll('\'', '[squote]')
+				name = name.replaceAll('\\\\', '[bslash]')
+				name = name.replaceAll('\"', '[dquote]')
+				name = name.replaceAll('/', '[fslash]')
+				posEvents << '<a href=\"' + "${name}" + '.html\">' + "${it.eventName.toString()}" + '</a>'
+			}
 			posEvents = posEvents.toString()
 			posEvents = posEvents.substring(1, posEvents.length() - 1)
 		} else{
@@ -136,7 +168,7 @@ class Event {
 		String forms = ""
 
 		if (this.eventClass == "Conditional"){
-			thisCondition = this.condition.conditionName
+			thisCondition = this.condition?.conditionName
 		} else {
 			thisCondition = "Non-Conditional Event"
 		}
@@ -170,7 +202,7 @@ class Event {
 			this.possibleNextEvents.each { posEvents += "~${it.eventName.toString()}" }
 			eventString = "Next Possible Events:"
 			posEvents = posEvents.substring(1)
-		} else if(this.eventClass == 'Automatic'){
+		} else if (this.eventClass == 'Automatic' && this.nextEvent){
 			Integer ID = this.nextEvent.toInteger()
 			posEvents = eventMap.getAt(ID)
 			nextEventType = '~' + posEvents?.eventClass

@@ -3,8 +3,10 @@ var FONT_CHOICE = "TIMES NEW ROMAN";
 var FONT_SIZE = 11;
 var SPIDA_RED = '#800000';
 var colon = /\[colon\]/g;
-var fslash = /\//g;
-var bslash = /\\/g;
+var fslash = /\[fslash\]/g;
+var bslash = /\[bslash\]/g;
+var squote = /\[squote\]/g;
+var dquote = /\[dquote\]/g;
 
 //ALL LIST STYLES
 var LIST_STYLE = {};
@@ -497,9 +499,11 @@ function createIndexPage(map, type){
   var tempItem;
 
   for (var item in map){
-    tempItem = item.replace(colon, ':');
-    tempItem = tempItem.replace(fslash, '/');
-    tempItem = tempItem.replace(bslash, '\\');
+    var tempItem = item.replace(fslash, '/');
+    tempItem = tempItem.replace(bslash, '\\\\');
+    //tempItem = tempItem.replace(colon, ':');
+    tempItem = tempItem.replace(dquote, '\"');
+    tempItem = tempItem.replace(squote, '\'');
     var listElement = body.appendListItem(tempItem);
     listElement.setAttributes(LIST_STYLE).setItalic(true);
   };
@@ -508,14 +512,13 @@ function createIndexPage(map, type){
 
 //creates a header at the top of each action/form page with the name of the action/form
 function putHeader(name, body, type){
-
-  name = name.replace(colon, ':');
-  name = name.replace(bslash, '\\');
   name = name.replace(fslash, '/');
+  name = name.replace(bslash, '\\\\');
+  name = name.replace(dquote, '\"');
+  name = name.replace(squote, '\'');
   body.appendPageBreak();
   var header
-  //var topDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');
-  body.appendHorizontalRule();
+  var topDashedLine = body.appendParagraph('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
   if (type === 'event'){
     header = body.appendParagraph(name);
   } else{
@@ -525,7 +528,7 @@ function putHeader(name, body, type){
   var headerStyle = {};
   headerStyle[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.CENTER;
   headerStyle[DocumentApp.Attribute.FONT_FAMILY] = FONT_CHOICE;
-  headerStyle[DocumentApp.Attribute.FONT_SIZE] = FONT_SIZE;
+  headerStyle[DocumentApp.Attribute.FONT_SIZE] = 12;
   headerStyle[DocumentApp.Attribute.BOLD] = false;
   headerStyle[DocumentApp.Attribute.PADDING_TOP] = 0;
   headerStyle[DocumentApp.Attribute.PADDING_BOTTOM] = 0;
@@ -535,11 +538,10 @@ function putHeader(name, body, type){
   headerStyle[DocumentApp.Attribute.UNDERLINE] = false;
   headerStyle[DocumentApp.Attribute.ITALIC] = false;
 
-  //var bottomDashedLine = body.appendParagraph('---------------------------------------------------------------------------------------------------------------------');
-  body.appendHorizontalRule();
+  var bottomDashedLine = body.appendParagraph('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
   header.setAttributes(headerStyle);
-  //bottomDashedLine.setAttributes(headerStyle);
-  //topDashedLine.setAttributes(headerStyle);
+  bottomDashedLine.setAttributes(headerStyle).setFontSize(8);
+  topDashedLine.setAttributes(headerStyle).setFontSize(8);
 };
 
 
@@ -547,6 +549,8 @@ function putHeader(name, body, type){
 function putScreenshot(url,body){
 
   var image = UrlFetchApp.fetch(url);
+
+  Logger.log(image.toString());
 
   if (image){
     var name = image.getBlob().getName();
@@ -687,9 +691,11 @@ function createEventIndexPage(eventOrder){
   var tempItem;
 
   for (var i=0; i < eventOrder.length; i++){
-    tempItem = eventOrder[i].replace(colon, ':');
-    tempItem = tempItem.replace(fslash, '/');
-    tempItem = tempItem.replace(bslash, '\\');
+     var tempItem = eventOrder[i].replace(fslash, '/');
+    tempItem = tempItem.replace(bslash, '\\\\');
+    tempItem = tempItem.replace(dquote, '\"');
+    tempItem = tempItem.replace(squote, '\'');
+
     var listElement = body.appendListItem(tempItem)
     listElement.setAttributes(LIST_STYLE).setItalic(true);
   };
@@ -714,6 +720,9 @@ function createEventPage(eventTexts, eventOrder){
   };
 
   for (var i = 0; i < eventOrder.length; i++){
+
+    Logger.log(eventOrder[i]);
+    Logger.log(dataMap[eventOrder[i]]);
     body.appendPageBreak();
     putEventHeader(dataMap[eventOrder[i]], body);
     putEventInfo(dataMap[eventOrder[i]], body);
@@ -729,9 +738,6 @@ function createEventPage(eventTexts, eventOrder){
 
 //**********************************************putEventHeader()***************************************
 function putEventHeader(dataArray, body){
-
-  Logger.log (typeof dataArray);
-  Logger.log(dataArray.toString());
 
   var titleStyle = {};
   titleStyle[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.CENTER;
@@ -768,8 +774,6 @@ function putEventHeader(dataArray, body){
 //**********************************************putEventInfo()********************************************
 function putEventInfo(dataArray, body){
 
-
-
   var type = body.appendParagraph('Type: ').setAttributes(PLAIN_TEXT).setBold(true);
   type.appendText( dataArray[1].replace('Type: ', '') ).setBold(false);
 
@@ -803,7 +807,7 @@ function putEventInfo(dataArray, body){
   if (dataArray[4].indexOf('Next Event: ') > -1) {
     var posEvents = body.appendParagraph('Next Event: ').setAttributes(PLAIN_TEXT).setBold(true);
     posEvents.appendText(nextEventName).setBold(false);
-  } else if (pEvents[0] !== 'None'){
+  } else if (pEvents !== 'undefined' && pEvents[0] !== 'None'){
     var posEvents = body.appendParagraph('Next possible events: ').setAttributes(PLAIN_TEXT).setBold(true);
     for (var i = 0; i < pEvents.length; i++){
       body.appendListItem(pEvents[i]).setAttributes(LIST_STYLE);
@@ -890,7 +894,6 @@ function getEventOrder(eventHtmls){
     i++;
     order = orderText.next();
     var orderString = order.getBlob().getDataAsString();
-    Logger.log(orderString.toString());
     eventOrder = orderString.split('~');
   };
 

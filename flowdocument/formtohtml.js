@@ -94,16 +94,13 @@ casper.nextTab = function(tab) {
         }, function() {
 
             this.reload();
-            this.wait(5000, function(){
-                //find number of forms on the tab
-                var numberOfChildren = this.evaluate(function() {
-                    return document.querySelector('tbody').childNodes.length;
-                });
-                numberOfChildren = (numberOfChildren - 1) / 2;
-                for (var j = 1; j <= numberOfChildren; j++){
-                    casper.matchFormNames(j);
-                };
+            var numberOfChildren = this.evaluate(function() {
+                return document.querySelector('tbody').childNodes.length;
             });
+            numberOfChildren = (numberOfChildren - 1) / 2;
+            for (var j = 1; j <= numberOfChildren; j++){
+                casper.matchFormNames(j);
+            };
 
         }, 6000);
     });
@@ -148,10 +145,10 @@ casper.matchFormNames = function(childNumber){
 
             //store form screenshot as 'formName.png'
             casper.then(function() {
-                var fName = formName.replace(/\"/g,'');
+                var fName = formName.toString().replace(/\'/g, '[squote]');
+                fName = fName.replace(/\\\\/g, '[bslash]');
+                fName = fName.replace(/\"/g, '[dquote]');
                 fName = fName.replace(/\//g, '[fslash]');
-                fName = fName.replace(/\\/g, '[bslash]');
-                fName = fName.replace(/:/g, '[colon]');
                 var html = this.getHTML('#wrap>div.wide-body');
                 //console.log(formName + ':\n\n' + html);
                 var selectRE = new RegExp('<select name=','g');
@@ -241,12 +238,14 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/formTemplate/list'
 *from the given array (formNameArray) on each page.
 */
 casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrough() {
-    var numberOfTabs = this.evaluate(function() {
-      return document.querySelector('#wrap>div.body>div.paginate_buttons').childNodes.length;
-    },6000);
-
-    //set tabs to number of children minus the current, previous, and next children
-    numberOfTabs = numberOfTabs - 3;
+    var i = 1;
+    while (this.fetchText('#wrap>div.body>div.paginate_buttons>a:nth-child(' + i + ')') !== 'Next'){
+        i++
+    };
+    var numberOfChildren = this.fetchText('#wrap > div.body > div.paginate_buttons > a:nth-child(' + (i-1) + ')');
+    //});
+    var numberOfTabs = parseInt(numberOfChildren);
+    console.log("Tabs: " + numberOfTabs);
 
     if (numberOfTabs < 1){
         this.nextTab(0);
@@ -259,12 +258,14 @@ casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrou
 
     this.reload();
     this.wait(5000, function(){
-        var numberOfTabs = this.evaluate(function() {
-          return document.querySelector('#wrap>div.body>div.paginate_buttons').childNodes.length;
-        },6000);
-
-        //set tabs to number of children minus the current, previous, and next children
-        numberOfTabs = numberOfTabs - 3;
+        var i = 1;
+        while (this.fetchText('#wrap>div.body>div.paginate_buttons>a:nth-child(' + i + ')') !== 'Next'){
+            i++
+        };
+        var numberOfChildren = this.fetchText('#wrap > div.body > div.paginate_buttons > a:nth-child(' + (i-1) + ')');
+        //});
+        var numberOfTabs = parseInt(numberOfChildren);
+        console.log("Tabs: " + numberOfTabs);
 
         if (numberOfTabs < 1){
             this.nextTab(0);

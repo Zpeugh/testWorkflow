@@ -47,9 +47,9 @@ casper.on('page.error', function (msg, trace) {
 var counter = 2;
 var companyName = decodeURIComponent(casper.cli.get(0));
 companyName = companyName.replace(re, ' ');
-var FLOW_NAME =  decodeURIComponent(casper.cli.get(1));
-FLOW_NAME = FLOW_NAME.replace(re, ' ');
+var FLOW_NAME =  decodeURIComponent(casper.cli.get(1)).replace(re, ' ');
 var temp;
+
 console.log("company name: " + companyName);
 console.log("flow Name: " + FLOW_NAME);
 
@@ -68,8 +68,9 @@ casper.on('resource.received', function(resource) {
     if (resource.url.indexOf('Atmosphere-tracking-') > -1) {
         // console.log("ATMOSPHERE CANCELLED");
         this.loadInProgress = false;
-    } else {
-        // console.log("Requested Url: " + resource.url);
+    } else if (resource.url.indexOf('getSessionStatus') > -1){
+        this.loadInProgress = false;
+        console.log('Cancelled session update');
 
     };
 });
@@ -95,9 +96,9 @@ casper.getAction = function(j, actionName, actionValue){
 
     casper.wait(2000, function printPage(){
         this.waitForSelector('#actionForm>fieldset', function waitedForJavascript(){
-            var aName = actionName.replace(/\"/g,'');
-            aName = aName.replace(/:/g, '[colon]');
-            aName = aName.replace(/\\/g, '[bslash]');
+            var aName = actionName.toString().replace(/\'/g, '[squote]');
+            aName = aName.replace(/\\\\/g, '[bslash]');
+            aName = aName.replace(/\"/g, '[dquote]');
             aName = aName.replace(/\//g, '[fslash]');
             var html = this.getHTML('#action');
             html = html.replace("<form", "<html><link href=\"../../../src/Resources/actionflow.css\" rel=\"stylesheet\" " +
@@ -188,6 +189,10 @@ casper.waitForSelector('#events_table>table>tbody>tr:nth-child(1)>td:nth-child(5
     fs.write('build/Resources/Events/order.txt', 'Start', 'w');
     while (this.exists('#events_table>table>tbody>tr:nth-child(' + i + ')>td:nth-child(7)>div>a')){
         text = this.fetchText('#events_table>table>tbody>tr:nth-child(' + i + ')>td:nth-child(7)>div>a');
+        text = text.replace(/\'/g, '[squote]');
+        text = text.replace(/\\\\/g, '[bslash]');
+        text = text.replace(/\"/g, '[dquote]');
+        text = text.replace(/\//g, '[fslash]');
         fs.write('build/Resources/Events/order.txt', '~' + text, 'a');
         i++;
     };

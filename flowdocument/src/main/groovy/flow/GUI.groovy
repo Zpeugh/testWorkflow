@@ -20,12 +20,8 @@ import java.net.URLEncoder
 
 public class GUI{
 
-	private static final Color RED = Color.web("#800000")
-	private static final Color GREEN = Color.web("#00B800")
-	private static final Color TERRA = Color.web("#CDB380")
-	private static final Color SMOOTHBLUE = Color.web("#0A516D")
-	private static final Color DARK = Color.web("#2B2726")
-	private static final Color TERRATERRA = Color.web("#E8DDCB")
+	private static final Color SPIDARED = Color.web("#800000")
+	private static final Color SPIDAGREY = Color.web("#7C8180")
 
 
 	private static boolean unzipFile(flowName){
@@ -88,9 +84,15 @@ public class GUI{
 		}
 	}
 
-	private static void cleanWorkspace(){
+	private static void cleanWorkspace(def deleteJson){
 		def ant = new AntBuilder()
-		ant.delete(failonerror: false, dir: 'build/Resources/')
+		if (deleteJson){
+			ant.delete(failonerror: false, dir: 'build/Resources/'){
+				exclude(name: '**/*.json')
+			}
+		} else {
+			ant.delete(failonerror: false, dir: 'build/Resources/')
+		}
 	}
 
 	private static void openGoogleDrive(){
@@ -102,12 +104,12 @@ public class GUI{
 		}
 	}
 
-	private static void captureActionsAndUpdateActionTable(Thread fxThread, def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
+	private static void captureActionsAndUpdateActionTable(def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
 
 		Map<String, LoadItem> actionMap = new HashMap()
 		def actionNames = sampleFlow.allActions
 		actionNames.each() { action ->
-			actionMap << [ (action.toString()) : ( new LoadItem(name: action.toString(), status: 'Unfinished', color: RED) )]
+			actionMap << [ (action.toString()) : ( new LoadItem(name: action.toString(), status: 'Unfinished', color: SPIDARED) )]
 
 		}
 
@@ -117,6 +119,7 @@ public class GUI{
 			String key = k.replaceAll(' ', '~')
 			key = key.replaceAll(':','+')
 			key = key.replaceAll('"', 'q')
+			key = key.replaceAll('\'', 'q')
 
 			actionTable.add(new Label( text: k, id: key + 'Status', style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
 			row++
@@ -142,10 +145,11 @@ public class GUI{
 					def key = tempName.replaceAll(' ', '~')
 					key = key.replaceAll(':','+')
 					key = key.replaceAll('"', 'q')
+					key = key.replaceAll('\'', 'q')
 
 					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
 					if (!actionStatus.is(null)){
-						actionStatus.setTextFill( Color.web('#FF7519') )
+						actionStatus.setTextFill( Color.web('#D48600') )
 					}
 				} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
 					println line
@@ -167,10 +171,11 @@ public class GUI{
 					def key = tempName.replaceAll(' ', '~')
 					key = key.replaceAll(':','+')
 					key = key.replaceAll('"', 'q')
+					key = key.replaceAll('\'', 'q')
 
 					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
 					if (!actionStatus.is(null)){
-						actionStatus.setTextFill( Color.web('#004700') )
+						actionStatus.setTextFill( Color.web('#037D08') )
 					}
 				} else if (line.contains('Could not find action: ')){
 					println line
@@ -178,6 +183,7 @@ public class GUI{
 					def key = tempName.replaceAll(' ', '~')
 					key = key.replaceAll(':','+')
 					key = key.replaceAll('"', 'q')
+					key = key.replaceAll('\'', 'q')
 
 					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
 					if (!actionStatus.is(null)){
@@ -193,12 +199,12 @@ public class GUI{
 		actionThread.start()
 	}
 
-	private static void captureFormsAndUpdateFormTable(Thread fxThread, def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup){
+	private static void captureFormsAndUpdateFormTable(def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup){
 
 			HashMap<String, LoadItem> formMap = new HashMap()
 			def formNames = sampleFlow.allForms
 			formNames.each() { form ->
-				formMap << [ (form.toString()) : ( new LoadItem(name: form.toString(), status: 'Unfinished', color: RED) )]
+				formMap << [ (form.toString()) : ( new LoadItem(name: form.toString(), status: 'Unfinished', color: SPIDARED) )]
 			}
 
 			int row = 3
@@ -207,7 +213,7 @@ public class GUI{
 				String key = k.replaceAll(' ', '~')
 				key = key.replaceAll(':','+')
 				key = key.replaceAll('"', 'q')
-
+				key = key.replaceAll('\'', 'q')
 				formTable.add(new Label( text: k, id: key + 'Status', style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
 				row++
 			}
@@ -234,9 +240,10 @@ public class GUI{
 						def key = tempName.replaceAll(' ', '~')
 						key = key.replaceAll(':','+')
 						key = key.replaceAll('"', 'q')
+						key = key.replaceAll('\'', 'q')
 
 						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
-	                    formStatus?.setTextFill( Color.web('#FF7519') )
+	                    formStatus?.setTextFill( Color.web('#D48600') )
 					} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
 						companyPopup.show()
 						getForms.destroy()
@@ -256,14 +263,16 @@ public class GUI{
 						def key = tempName.replaceAll(' ', '~')
 						key = key.replaceAll(':','+')
 						key = key.replaceAll('"', 'q')
+						key = key.replaceAll('\'', 'q')
 						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
-	                    formStatus?.setTextFill( Color.web('#004700') )
+	                    formStatus?.setTextFill( Color.web('#037D08') )
 					} else if (line.contains('Could not find form: ')){
 						println line
 						String tempName = line.replace('Could not find form: ', '')
 						def key = tempName.replaceAll(' ', '~')
 						key = key.replaceAll(':','+')
 						key = key.replaceAll('"', 'q')
+						key = key.replaceAll('\'', 'q')
 
 						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
 	                    formStatus?.setTextFill( Color.web('#800000') )
@@ -276,7 +285,6 @@ public class GUI{
 		Thread formThread = new Thread(getForms as Runnable)
 		formThread.setDaemon(true)
 		formThread.start()
-		//return formThread
 	}
 
 	private static void createEventDocuments(fileName, companyName){
@@ -287,14 +295,23 @@ public class GUI{
 		new File('build/Resources/Events/texts').mkdir()
 
 		newFlow.events.each{ k,v ->
-			File file = new File('build/Resources/Events/' + v.eventName + '.html')
+			def name =v.eventName.replaceAll('\'', '[squote]')
+			name = name.replaceAll('\\\\', '[bslash]')
+			name = name.replaceAll('\"', '[dquote]')
+			name = name.replaceAll('/', '[fslash]')
+			File file = new File('build/Resources/Events/' + name + '.html')
 			v.printEventPage(file)
 		}
 
 		newFlow.printEventIndexPage(new File('build/Resources/Events/EventIndex.html') )
 
 		newFlow.events.each{k,v ->
-			File eventPage = new File('build/Resources/Events/texts/' + v.eventName + '.txt')
+
+			def name =v.eventName.replaceAll('\'', '[squote]')
+			name = name.replaceAll('\\\\', '[bslash]')
+			name = name.replaceAll('\"', '[dquote]')
+			name = name.replaceAll('/', '[fslash]')
+			File eventPage = new File('build/Resources/Events/texts/' + name + '.txt')
 
 			v.printEventInfoPage(eventPage, eventMap)
 		}
@@ -305,8 +322,8 @@ public class GUI{
 
 	public static void main(args){
 
-		final HashMap<String, LoadItem> forms =  ['None' : new LoadItem(name: "No forms yet", status: 'N/A', color: RED)]
-		final HashMap<String, LoadItem> actions = ['None' : new LoadItem(name: "No actions yet", status: 'N/A', color: RED)]
+		final HashMap<String, LoadItem> forms =  ['None' : new LoadItem(name: "No forms yet", status: 'N/A', color: SPIDARED)]
+		final HashMap<String, LoadItem> actions = ['None' : new LoadItem(name: "No actions yet", status: 'N/A', color: SPIDARED)]
 
 		start {
 		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 800, height: 450, visible: true) {
@@ -314,9 +331,9 @@ public class GUI{
 					File css = new File("src/main/groovy/flow/resources/gui.css")
 					mainScene.getStylesheets().clear()
 					mainScene.getStylesheets().add("file:///" + css.getAbsolutePath().replace("\\", "/"))
-					tabPane (id: 'tabPane') {
-		                tab('Main', id: 'mainTab', closable: false) {
-		                    gridPane(id: 'gridPane', hgap: 5, vgap: 15, padding: 5, alignment: "top_center", style: '-fx-background-color: #2B2726') {
+					tabPane (id: 'tabPane', style: '-fx-background-color: #000000;-fx-border-color: #7C8180;-fx-border-width: 0px 1px 1px 1px;') {
+		                tab(' Main ', id: 'mainTab', closable: false) {
+		                    gridPane(id: 'gridPane', hgap: 5, vgap: 15, padding: 0, alignment: "top_center", style: '-fx-background-color: #000000') {
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
@@ -327,27 +344,32 @@ public class GUI{
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 
 
-								label("Enter Workflow Parameters", id: 'titleLabel', row: 0, column: 0, columnSpan: 8, halignment: "center",
+								label("Enter Workflow Parameters", valignment: 'bottom', id: 'titleLabel', row: 0, column: 2, columnSpan: 6, halignment: "center",
 									margin: [0, 0, 10] )
 
-								label("Flow Name", id: 'flowNameField', hgrow: "never", style: '-fx-font-size: 14', row: 1, column: 2, columnSpan: 1, halignment: "right", textFill: TERRA)
-								textField(promptText: ".flow file name", id: 'nameOfFlowFile', row: 1, column: 3, columnSpan: 3, halignment: "left")
+								imageView(row: 0, column: 0, columnSpan: 2, rowSpan: 3, fitWidth: 275, preserveRatio: true){
+									def img = new File('src/Resources/SpidaLogo.png')
+									image('file:///' + img.getAbsolutePath().replace("\\", "/"))
+								}
+								label("Flow Name ", id: 'flowNameField', hgrow: "never", style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 1, column: 3, columnSpan: 1, valignment: 'bottom', halignment: "center", textFill: SPIDAGREY)
+								textField(promptText: ".flow file name", id: 'nameOfFlowFile', row: 1, column: 4, columnSpan: 3, halignment: "left", valignment: 'bottom')
 
-								label("Company", row: 2, column: 2, columnSpan: 1, textFill: TERRA, style: '-fx-font-size: 14', halignment: "right")
-								textField(promptText: "Company Name", id: 'nameOfCompany', row: 2, column: 3, columnSpan: 3, halignment: "left")
+								label("Company ", row: 2, column: 3, columnSpan: 1, textFill: SPIDAGREY, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "center", valignment: 'top')
+								textField(promptText: "Company Name", id: 'nameOfCompany', row: 2, column: 4, columnSpan: 3, halignment: "left", valignment: 'top')
 
-								label(" ", id: 'filler', row: 4, column: 7)
+
+								rectangle(width: 2500, height: 1, fill: SPIDAGREY, halignment: 'center', translateY: 10, row: 3, column: 0, columnSpan: 8)
 
 								button("Clean Workspace", id: 'cleanButton',  minWidth: 175, prefWidth: 175, row: 7, column: 1, columnSpan: 2, halignment: "center",
 								, onAction: {
-									cleanWorkspace()
+									cleanWorkspace(false)
 									browserButton.setDisable(true)
 									exportButton.setDisable(true)
 								})
 
-								label("Gather: ",  textFill: SMOOTHBLUE, style: '-fx-font-size: 16', row: 5, column: 0, columnSpan: 1, halignment: "right" )
-								label("Produce: ",  textFill: SMOOTHBLUE, style: '-fx-font-size: 15', row: 6, column: 0, columnSpan: 1, halignment: "right" )
-								label("Utilities: ", textFill: SMOOTHBLUE, style: '-fx-font-size: 15', row: 7, column: 0, columnSpan: 1, halignment: "right" )
+								label("Gather: ",  textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 5, column: 0, columnSpan: 1, halignment: "right" )
+								label("Produce: ",  textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 6, column: 0, columnSpan: 1, halignment: "right" )
+								label("Utilities: ", textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 7, column: 0, columnSpan: 1, halignment: "right" )
 
 
 
@@ -357,18 +379,18 @@ public class GUI{
 
 										if ( !( new File('build/Resources/Events/eventIndex.html') ).exists()  ){
 
+
 											def fileName = nameOfFlowFile.text + '.json'
 											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
 											def companyName = nameOfCompany.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(1)
-											Thread fxThread = Thread.currentThread()
-											captureFormsAndUpdateFormTable(fxThread, mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-											captureActionsAndUpdateActionTable(fxThread, mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
-
 											browserButton.setDisable(false)
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
+
+											captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+											captureActionsAndUpdateActionTable(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 
 										} else {
 											cleanFirstPopup.show()
@@ -377,16 +399,13 @@ public class GUI{
 											def companyName = nameOfCompany.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(1)
-											Thread fxThread = Thread.currentThread()
-											captureFormsAndUpdateFormTable(fxThread, mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-											captureActionsAndUpdateActionTable(fxThread, mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
-
-
 											browserButton.setDisable(false)
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
-										}
 
+											captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+											captureActionsAndUpdateActionTable(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+										}
 									}else {
 										flowPopup.show()
 									}
@@ -401,17 +420,15 @@ public class GUI{
 										def companyName = nameOfCompany.text.replaceAll(' ', '~')
 
 										tabPane.getSelectionModel().select(1)
-										Thread fxThread = Thread.currentThread()
-										captureFormsAndUpdateFormTable(fxThread, mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-
 										browserButton.setDisable(false)
 										exportButton.setDisable(false)
 										cleanButton.setDisable(false)
+
+										captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+
 									}else {
 										flowPopup.show()
 									}
-
-
 								})
 
 								button("Actions", id: 'genActionsButton', minWidth: 175, prefWidth: 175, row: 5, column: 1, columnSpan: 2, halignment: "center", onAction: {
@@ -422,12 +439,11 @@ public class GUI{
 											def companyName = nameOfCompany.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(2)
-											Thread fxThread = Thread.currentThread()
-											captureActionsAndUpdateActionTable(fxThread, mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
-
 											browserButton.setDisable(false)
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
+
+											captureActionsAndUpdateActionTable(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 
 										}else {
 											flowPopup.show()
@@ -450,30 +466,29 @@ public class GUI{
 									openGoogleDrive()
 								})
 
-
 							}
 						}
-
 
 						tab('Forms', id: 'formTab', closable: false) {
 							scrollPane(fitToWidth: true, fitToHeight: true) {
 
-								gridPane(id: 'formTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #E8DDCB') {
+								gridPane(id: 'formTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #000000') {
 									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Forms", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;', textFill: Color.web('#0A516D') )
-									rectangle(width: 650, height: 4, fill: Color.web('#2B2726'), halignment: 'center', valignment: 'top', row: 1, column: 0)
+									label(text: "Forms", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: Color.web('#800000') )
+									rectangle(width: 2500, height: 1, fill: SPIDAGREY, halignment: 'center', valignment: 'top', row: 1, column: 0)
 									label(" ", row: 2, column: 0)
 								}
 							}
 						}
 
 						tab('Actions', id: 'actionTab', closable: false) {
-							scrollPane(style: '-fx-background-color: #E8DDCB', fitToWidth: true, fitToHeight: true) {
+							scrollPane(style: '-fx-background-color: #000000', fitToWidth: true, fitToHeight: true) {
 
-								gridPane(id: 'actionTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #E8DDCB') {
+								gridPane(id: 'actionTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #000000') {
 									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Actions", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;', textFill: Color.web('#0A516D') )
-									rectangle(width: 650, height: 4, fill: Color.web('#2B2726'), halignment: 'center', valignment: 'top', row: 1, column: 0)
+									label(text: "Actions", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: Color.web('#800000') )
+									//separator(minHeight: 2, maxHeight: 2, minWidth: 2500, translateY: 20, style: '-fx-background-color: #7C8180')
+									rectangle(width: 2500, height: 1, fill: SPIDAGREY, halignment: 'center', valignment: 'top', row: 1, column: 0)
 									label(" ", row: 2, column: 0)
 								}
 							}
@@ -518,10 +533,9 @@ public class GUI{
 						columnConstraints(minWidth: 250, prefWidth: 250, hgrow: 'never')
 						label("Did you want to clean the old workflow resources before gathering new?", halignment: 'center', row: 0, column: 0, columnSpan: 2)
 						button("Clean", id: 'popupClean', minWidth: 100, prefWidth: 100, row: 1, column: 0, halignment: "right", onAction: {
-							cleanWorkspace()
+							cleanWorkspace(true)
 							browserButton.setDisable(true)
 							exportButton.setDisable(true)
-							cleanButton.setDisable(true)
 							cleanFirstPopup.hide()
 						})
 						button("Nope", minWidth: 100, prefWidth: 100, row: 1, column: 1, halignment: "left", onAction: {
