@@ -58,6 +58,8 @@ casper.changeSyntax = function(formName){
     fName = fName.replace(/\\\\/g, '[bslash]');
     fName = fName.replace(/\"/g, '[dquote]');
     fName = fName.replace(/\//g, '[fslash]');
+    fName = fName.replace(new RegExp("\\?", "g"), '[question]');
+    fName = fName.replace(/:/g, '[colon]');
     return fName;
 };
 

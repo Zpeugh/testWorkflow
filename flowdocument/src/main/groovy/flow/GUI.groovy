@@ -104,6 +104,15 @@ public class GUI{
 		}
 	}
 
+
+	private static String makeID(def name){
+		return URLEncoder.encode(name)
+	}
+
+
+
+
+
 	private static void captureActionsAndUpdateActionTable(def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
 
 		Map<String, LoadItem> actionMap = new HashMap()
@@ -116,12 +125,8 @@ public class GUI{
 		int row = 3
 		Rectangle rect
 		actionMap.each {k,v ->
-			String key = k.replaceAll(' ', '~')
-			key = key.replaceAll(':','+')
-			key = key.replaceAll('"', 'q')
-			key = key.replaceAll('\'', 'q')
-
-			actionTable.add(new Label( text: k, id: key + 'Status', style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
+			String key = makeID(k)
+			actionTable.add(new Label( text: k, id: 'Action' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
 			row++
 		}
 
@@ -142,12 +147,9 @@ public class GUI{
 				} else if (line.contains('Stored screenshot of action: ')) {
 					println line
 					String tempName = line.replace('Stored screenshot of action: ', '')
-					def key = tempName.replaceAll(' ', '~')
-					key = key.replaceAll(':','+')
-					key = key.replaceAll('"', 'q')
-					key = key.replaceAll('\'', 'q')
+					String key = makeID(tempName)
 
-					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
+					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
 					if (!actionStatus.is(null)){
 						actionStatus.setTextFill( Color.web('#D48600') )
 					}
@@ -168,12 +170,9 @@ public class GUI{
 				if (line.contains('Created PNG of: ')) {
 					println line
 					String tempName = line.replace('Created PNG of: ', '')
-					def key = tempName.replaceAll(' ', '~')
-					key = key.replaceAll(':','+')
-					key = key.replaceAll('"', 'q')
-					key = key.replaceAll('\'', 'q')
+					String key = makeID(tempName)
 
-					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
+					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
 					if (!actionStatus.is(null)){
 						actionStatus.setTextFill( Color.web('#037D08') )
 					}
@@ -185,7 +184,7 @@ public class GUI{
 					key = key.replaceAll('"', 'q')
 					key = key.replaceAll('\'', 'q')
 
-					Label actionStatus = (Label) mainScene.lookup('#' + key + 'Status')
+					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
 					if (!actionStatus.is(null)){
 						actionStatus?.setTextFill( Color.web('#800000') )
 					}
@@ -210,11 +209,8 @@ public class GUI{
 			int row = 3
 			Rectangle rect
 			formMap.each {k,v ->
-				String key = k.replaceAll(' ', '~')
-				key = key.replaceAll(':','+')
-				key = key.replaceAll('"', 'q')
-				key = key.replaceAll('\'', 'q')
-				formTable.add(new Label( text: k, id: key + 'Status', style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
+				String key = makeID(k)
+				formTable.add(new Label( text: k, id: 'Form' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
 				row++
 			}
 
@@ -237,12 +233,9 @@ public class GUI{
 					} else if (line.contains('Stored screenshot of form: ')) {
 						println line
 						String tempName = line.replace('Stored screenshot of form: ', '')
-						def key = tempName.replaceAll(' ', '~')
-						key = key.replaceAll(':','+')
-						key = key.replaceAll('"', 'q')
-						key = key.replaceAll('\'', 'q')
+						def key = makeID(tempName)
 
-						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
+						Label formStatus = (Label) mainScene.lookup('#' + 'Form' + key)
 	                    formStatus?.setTextFill( Color.web('#D48600') )
 					} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
 						companyPopup.show()
@@ -260,21 +253,15 @@ public class GUI{
 					if (line.contains('Created PNG of: ')) {
 						println line
 						String tempName = line.replace('Created PNG of: ', '')
-						def key = tempName.replaceAll(' ', '~')
-						key = key.replaceAll(':','+')
-						key = key.replaceAll('"', 'q')
-						key = key.replaceAll('\'', 'q')
-						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
+						def key = makeID(tempName)
+						Label formStatus = (Label) mainScene.lookup('#' + 'Form' + key)
 	                    formStatus?.setTextFill( Color.web('#037D08') )
 					} else if (line.contains('Could not find form: ')){
 						println line
 						String tempName = line.replace('Could not find form: ', '')
-						def key = tempName.replaceAll(' ', '~')
-						key = key.replaceAll(':','+')
-						key = key.replaceAll('"', 'q')
-						key = key.replaceAll('\'', 'q')
+						def key = makeID(tempName)
 
-						Label formStatus = (Label) mainScene.lookup('#' + key + 'Status')
+						Label formStatus = (Label) mainScene.lookup('#' + 'Form' + key)
 	                    formStatus?.setTextFill( Color.web('#800000') )
 					} else {
 						println line
@@ -299,6 +286,8 @@ public class GUI{
 			name = name.replaceAll('\\\\', '[bslash]')
 			name = name.replaceAll('\"', '[dquote]')
 			name = name.replaceAll('/', '[fslash]')
+			name = name.replaceAll(':', '[colon]')
+			name = name.replaceAll('\\?', '[question]')
 			File file = new File('build/Resources/Events/' + name + '.html')
 			v.printEventPage(file)
 		}
@@ -311,6 +300,8 @@ public class GUI{
 			name = name.replaceAll('\\\\', '[bslash]')
 			name = name.replaceAll('\"', '[dquote]')
 			name = name.replaceAll('/', '[fslash]')
+			name = name.replaceAll(':', '[colon]')
+			name = name.replaceAll('\\?', '[question]')
 			File eventPage = new File('build/Resources/Events/texts/' + name + '.txt')
 
 			v.printEventInfoPage(eventPage, eventMap)
@@ -360,7 +351,7 @@ public class GUI{
 
 								rectangle(width: 2500, height: 1, fill: SPIDAGREY, halignment: 'center', translateY: 10, row: 3, column: 0, columnSpan: 8)
 
-								button("Clean Workspace", id: 'cleanButton',  minWidth: 175, prefWidth: 175, row: 7, column: 1, columnSpan: 2, halignment: "center",
+								button("Clean Workspace", id: 'cleanButton',  minWidth: 190, prefWidth: 190, row: 7, column: 1, columnSpan: 2, halignment: "center",
 								, onAction: {
 									cleanWorkspace(false)
 									browserButton.setDisable(true)
@@ -373,7 +364,7 @@ public class GUI{
 
 
 
-								button("All Documents", id: 'genDocButton', minWidth: 175, prefWidth: 175, row: 5, column: 5, columnSpan: 2, halignment: "center", onAction: {
+								button("All Documents", id: 'genDocButton', minWidth: 190, prefWidth: 190, row: 5, column: 5, columnSpan: 2, halignment: "center", onAction: {
 
 									if(  unzipFile(nameOfFlowFile.text) ){
 
@@ -411,7 +402,7 @@ public class GUI{
 									}
 								})
 
-								button("Forms", id: 'genFormsButton',  minWidth: 175, prefWidth: 175, row: 5, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Forms", id: 'genFormsButton',  minWidth: 190, prefWidth: 190, row: 5, column: 3, columnSpan: 2, halignment: "center", onAction: {
 
 									if(  unzipFile(nameOfFlowFile.text) ){
 
@@ -431,7 +422,7 @@ public class GUI{
 									}
 								})
 
-								button("Actions", id: 'genActionsButton', minWidth: 175, prefWidth: 175, row: 5, column: 1, columnSpan: 2, halignment: "center", onAction: {
+								button("Actions", id: 'genActionsButton', minWidth: 190, prefWidth: 190, row: 5, column: 1, columnSpan: 2, halignment: "center", onAction: {
 										if(  unzipFile(nameOfFlowFile.text) ){
 
 											def fileName = nameOfFlowFile.text + '.json'
@@ -450,11 +441,11 @@ public class GUI{
 										}
 								})
 
-								button("Create Export Folder", id: 'exportButton',  minWidth: 175, prefWidth: 175, row: 6, column: 1, columnSpan: 2, halignment: "center", onAction: {
+								button("Create Export Folder", id: 'exportButton',  minWidth: 190, prefWidth: 190, row: 6, column: 1, columnSpan: 2, halignment: "center", onAction: {
 									exportWorkflow()
 								})
 
-								button("Open in browser", id: 'browserButton',  minWidth: 175, prefWidth: 175, row: 6, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Open in browser", id: 'browserButton',  minWidth: 190, prefWidth: 190, row: 6, column: 3, columnSpan: 2, halignment: "center", onAction: {
 									if ( (new File('build/Resources/Events/eventIndex.html')).exists() ) {
 										showInBrowser()
 									} else {
@@ -462,7 +453,7 @@ public class GUI{
 									}
 								})
 
-								button("Go to Google drive", minWidth: 175, prefWidth: 175, row: 7, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Go to Google drive", minWidth: 190, prefWidth: 190, row: 7, column: 3, columnSpan: 2, halignment: "center", onAction: {
 									openGoogleDrive()
 								})
 
@@ -474,8 +465,8 @@ public class GUI{
 
 								gridPane(id: 'formTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #000000') {
 									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Forms", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: Color.web('#800000') )
-									rectangle(width: 2500, height: 1, fill: SPIDAGREY, halignment: 'center', valignment: 'top', row: 1, column: 0)
+									label(text: "Forms", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
+									rectangle(width: 2500, height: 1, fill: SPIDARED, halignment: 'center', valignment: 'top', row: 1, column: 0)
 									label(" ", row: 2, column: 0)
 								}
 							}
@@ -486,9 +477,8 @@ public class GUI{
 
 								gridPane(id: 'actionTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #000000') {
 									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Actions", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: Color.web('#800000') )
-									//separator(minHeight: 2, maxHeight: 2, minWidth: 2500, translateY: 20, style: '-fx-background-color: #7C8180')
-									rectangle(width: 2500, height: 1, fill: SPIDAGREY, halignment: 'center', valignment: 'top', row: 1, column: 0)
+									label(text: "Actions", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
+									rectangle(width: 2500, height: 1, fill: SPIDARED, halignment: 'center', valignment: 'top', row: 1, column: 0)
 									label(" ", row: 2, column: 0)
 								}
 							}
@@ -496,17 +486,17 @@ public class GUI{
 		            }
 		        }
 		    }
-			stage(primary: false, id: 'flowPopup', title: "ERROR: Invalid flow file", width: 400, height: 150, visible: false) {
+			stage(primary: false, id: 'flowPopup', title: "ERROR: Invalid flow file", width: 850, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center" ) {
-						label("Invalid .flow file name.  Make sure you downloaded the \nfile and it is in your user home directory/Downloads/ folder", row: 0, column: 0)
-						button("Ok", minWidth: 50, prefWidth: 100, row: 1, column: 0, halignment: "center", onAction: {
+						label("Invalid .flow file name.  Make sure you downloaded the file and it is in your user home directory/Downloads/ folder", row: 0, column: 0, wrapText: true)
+						button("Ok", minWidth: 50, prefWidth: 100, row: 2, column: 0, halignment: "center", onAction: {
 							flowPopup.hide()
 						})
 					}
 				}
 			}
-			stage(primary: false, id: 'companyPopup', title: "ERROR: Invalid company name", width: 400, height: 150, visible: false) {
+			stage(primary: false, id: 'companyPopup', title: "ERROR: Invalid company name", width: 600, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center" ) {
 						label("Invalid company name.  Check your syntax and try again.", row: 0, column: 0)
@@ -516,10 +506,10 @@ public class GUI{
 					}
 				}
 			}
-			stage(primary: false, id: 'noBrowserPopup', title: "ERROR: Cannot show browser", width: 400, height: 150, visible: false) {
+			stage(primary: false, id: 'noBrowserPopup', title: "ERROR: Cannot show browser", width: 650, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center" ) {
-						label("Cannot open eventIndex.html, Have you generated \nforms/actions/both?", row: 0, column: 0)
+						label("Cannot open eventIndex.html, Have you generated forms/actions/both?", row: 0, column: 0)
 						button("Ok", minWidth: 50, prefWidth: 100, row: 1, column: 0, halignment: "center", onAction: {
 							noBrowserPopup.hide()
 						})
@@ -544,7 +534,7 @@ public class GUI{
 					}
 				}
 			}
-			stage(primary: false, id: 'loginPopup', title: "ERROR: Could not log in to spidasoftware", width: 500, height: 150, visible: false) {
+			stage(primary: false, id: 'loginPopup', title: "ERROR: Could not log in to spidasoftware", width: 850, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 10, vgap: 10, padding: 25, alignment: "top_center" ) {
 						columnConstraints(minWidth: 250, prefWidth: 250, hgrow: 'never')

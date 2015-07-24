@@ -149,6 +149,8 @@ casper.matchFormNames = function(childNumber){
                 fName = fName.replace(/\\\\/g, '[bslash]');
                 fName = fName.replace(/\"/g, '[dquote]');
                 fName = fName.replace(/\//g, '[fslash]');
+                fName = fName.replace(new RegExp("\\?", "g"), '[question]');
+                fName = fName.replace(/:/g, '[colon]');
                 var html = this.getHTML('#wrap>div.wide-body');
                 //console.log(formName + ':\n\n' + html);
                 var selectRE = new RegExp('<select name=','g');

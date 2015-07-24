@@ -100,6 +100,8 @@ casper.getAction = function(j, actionName, actionValue){
             aName = aName.replace(/\\\\/g, '[bslash]');
             aName = aName.replace(/\"/g, '[dquote]');
             aName = aName.replace(/\//g, '[fslash]');
+            aName = aName.replace(new RegExp("\\?", "g"), '[question]');
+            aName = aName.replace(/:/g, '[colon]');
             var html = this.getHTML('#action');
             html = html.replace("<form", "<html><link href=\"../../../src/Resources/actionflow.css\" rel=\"stylesheet\" " +
             "type=\"text/css\" /><div class=\"row\"><div id=\"action\" class=\"small-12 columns\"><form" );

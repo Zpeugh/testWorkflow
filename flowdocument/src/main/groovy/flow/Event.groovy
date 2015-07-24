@@ -41,6 +41,17 @@ class Event {
 	}
 
 
+	private static String changeSyntax(def name){
+		def safeName = name.toString().replaceAll('\'', '[squote]')
+		safeName = safeName.replaceAll('\\\\', '[bslash]')
+		safeName = safeName.replaceAll('\"', '[dquote]')
+		safeName = safeName.replaceAll('/', '[fslash]')
+		safeName = safeName.replaceAll(':', '[colon]')
+		safeName = safeName.replaceAll('\\?', '[question]')
+
+		return safeName
+	}
+
 	public printEventPage(File outputFile){
 
 
@@ -63,10 +74,7 @@ class Event {
 		}
 		if (this.startActions.size() != 0){
 			this.startActions.each {
-				def name = it.toString().replaceAll('\'', '[squote]')
-				name = name.replaceAll('\\\\', '[bslash]')
-				name = name.replaceAll('\"', '[dquote]')
-				name = name.replaceAll('/', '[fslash]')
+				def name = changeSyntax(it.toString())
 				sActions << '<a href=\"' + '../actionHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
 			}
 			sActions = sActions.toString()
@@ -76,10 +84,7 @@ class Event {
 		}
 		if (this.plannedActions.size() != 0){
 			this.plannedActions.each {
-				def name = it.toString().replaceAll('\'', '[squote]')
-				name = name.replaceAll('\\\\', '[bslash]')
-				name = name.replaceAll('\"', '[dquote]')
-				name = name.replaceAll('/', '[fslash]')
+				def name = changeSyntax(it.toString())
 				pActions << '<a href=\"' + '../actionHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
 			}
 			pActions = pActions.toString()
@@ -90,10 +95,7 @@ class Event {
 		if (this.finishActions.size() != 0){
 
 			this.finishActions.each {
-				def name = it.toString().replaceAll('\'', '[squote]')
-				name = name.replaceAll('\\\\', '[bslash]')
-				name = name.replaceAll('\"', '[dquote]')
-				name = name.replaceAll('/', '[fslash]')
+				def name = changeSyntax(it.toString())
 				fActions << '<a href=\"' + '../actionHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
 			}
 			fActions = fActions.toString()
@@ -103,10 +105,7 @@ class Event {
 		}
 		if (this.formTemplates.size() != 0){
 			this.formTemplates.each {
-				def name = it.toString().replaceAll('\'', '[squote]')
-				name = name.replaceAll('\\\\', '[bslash]')
-				name = name.replaceAll('\"', '[dquote]')
-				name = name.replaceAll('/', '[fslash]')
+				def name = changeSyntax(it.toString())
 				forms << '<a href=\"' + '../formHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
 			}
 			forms = forms.toString()
@@ -118,10 +117,7 @@ class Event {
 		if (this.possibleNextEvents.size() != 0){
 
 			this.possibleNextEvents.each {
-				def name = it.eventName.toString().replaceAll('\'', '[squote]')
-				name = name.replaceAll('\\\\', '[bslash]')
-				name = name.replaceAll('\"', '[dquote]')
-				name = name.replaceAll('/', '[fslash]')
+				def name = changeSyntax(it.eventName.toString())
 				posEvents << '<a href=\"' + "${name}" + '.html\">' + "${it.eventName.toString()}" + '</a>'
 			}
 			posEvents = posEvents.toString()

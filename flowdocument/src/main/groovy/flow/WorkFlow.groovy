@@ -212,6 +212,8 @@ public class WorkFlow {
 			name = name.replaceAll('\\\\', '[bslash]')
 			name = name.replaceAll('\"', '[dquote]')
 			name = name.replaceAll('/', '[fslash]')
+			name = name.replaceAll('\\?', '[question]')
+			name = name.replaceAll(':', '[colon]')
 			events << ('\n\t\t<li><a href=\"' + "${name}" +
 				'.html\">' + "${order[i]}" + '</a></li>')
 		}
