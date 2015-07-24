@@ -119,7 +119,9 @@ casper.getAction = function(j, actionName, actionValue){
 
 
 //*****************************BEGINNING OF SCRIPT*******************************//
-casper.start('https://' + WEBSITE + '.com/projectmanager/');
+casper.start('https://' + WEBSITE + '.com/projectmanager/', function(){
+    console.log("Checkpoint reached");
+});
 
 
 /*
@@ -135,6 +137,7 @@ casper.then(function login(){
 */
 casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/', function afterLogin(){
     console.log('Logged in successfully');
+    console.log("Checkpoint reached");
     //this.capture('loggedIn.png');
 }, function onUrlTimeout(){
     //casper.capture('NoForm.png');
@@ -155,8 +158,10 @@ casper.waitForSelector('#mainnav>ul>li>div>div', function(){
 
 casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', function(){
     console.log("Logged in as: " + companyName);
+    console.log("Checkpoint reached");
 }, function() {
     console.log("Should only see this message if the company is SPIDA.");
+    console.log("Checkpoint reached");
 }, 7000);
 
 
@@ -192,9 +197,11 @@ casper.waitForSelector('#events_table>table>tbody>tr:nth-child(1)>td:nth-child(5
     while (this.exists('#events_table>table>tbody>tr:nth-child(' + i + ')>td:nth-child(7)>div>a')){
         text = this.fetchText('#events_table>table>tbody>tr:nth-child(' + i + ')>td:nth-child(7)>div>a');
         text = text.replace(/\'/g, '[squote]');
-        text = text.replace(/\\\\/g, '[bslash]');
+        text = text.replace(/\\/g, '[bslash]');
         text = text.replace(/\"/g, '[dquote]');
         text = text.replace(/\//g, '[fslash]');
+        text = text.replace(new RegExp("\\?", "g"), '[question]');
+        text = text.replace(/:/g, '[colon]');
         fs.write('build/Resources/Events/order.txt', '~' + text, 'a');
         i++;
     };
@@ -205,6 +212,7 @@ casper.waitForSelector('#events_table>table>tbody>tr:nth-child(1)>td:nth-child(5
 
 casper.wait(2000, function clickEdit(){
     console.log("Currently at: " + this.getCurrentUrl() );
+    console.log("Checkpoint reached");
     this.click('#events_table>table>tbody>tr:nth-child(1)>td:nth-child(5)>a');
 });
 

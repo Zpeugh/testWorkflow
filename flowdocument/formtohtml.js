@@ -146,7 +146,7 @@ casper.matchFormNames = function(childNumber){
             //store form screenshot as 'formName.png'
             casper.then(function() {
                 var fName = formName.toString().replace(/\'/g, '[squote]');
-                fName = fName.replace(/\\\\/g, '[bslash]');
+                fName = fName.replace(/\\/g, '[bslash]');
                 fName = fName.replace(/\"/g, '[dquote]');
                 fName = fName.replace(/\//g, '[fslash]');
                 fName = fName.replace(new RegExp("\\?", "g"), '[question]');
@@ -179,7 +179,9 @@ casper.matchFormNames = function(childNumber){
 /*
 * Login to SpidaMin
 */
-casper.start('https://' + WEBSITE + '.com/projectmanager/');
+casper.start('https://' + WEBSITE + '.com/projectmanager/', function(){
+    console.log("Checkpoint reached");
+});
 
 
 /*
@@ -191,6 +193,7 @@ casper.then(function login(){
 
 
 casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/', function afterLogin(){
+    console.log("Checkpoint reached");
 }, function onUrlTimeout(){
     casper.logIntoSpida();
 }, 6000);
@@ -212,8 +215,10 @@ casper.waitForSelector('#mainnav>ul>li>div>div', function(){
 
 casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', function(){
     console.log("Logged in as: " + companyName);
+    console.log("Checkpoint reached");
 }, function() {
     console.log('Should only see this message if company is SPIDA.')
+    console.log("Checkpoint reached");
 }, 6000);
 
 
@@ -221,7 +226,7 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', 
 * Navigate to the flow list
 */
 casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/formTemplate/list', function openFormList(){
-    console.log("Navigating to Flow Form List");
+    console.log("Checkpoint reached");
 });
 
 
@@ -230,8 +235,10 @@ casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/formTemplate/list', 
 */
 casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/formTemplate/list',function waitForFormList(){
     console.log("Currently at: " + this.getCurrentUrl() );
+    console.log("Checkpoint reached");
 }, function() {
     console.log("Currently at: " + this.getCurrentUrl() + " (timed out)" );
+    console.log("Checkpoint reached");
 }, 6000);
 
 
@@ -247,7 +254,6 @@ casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrou
     var numberOfChildren = this.fetchText('#wrap > div.body > div.paginate_buttons > a:nth-child(' + (i-1) + ')');
     //});
     var numberOfTabs = parseInt(numberOfChildren);
-    console.log("Tabs: " + numberOfTabs);
 
     if (numberOfTabs < 1){
         this.nextTab(0);
@@ -267,7 +273,6 @@ casper.waitForSelector('#wrap>div.body>div.paginate_buttons', function loopThrou
         var numberOfChildren = this.fetchText('#wrap > div.body > div.paginate_buttons > a:nth-child(' + (i-1) + ')');
         //});
         var numberOfTabs = parseInt(numberOfChildren);
-        console.log("Tabs: " + numberOfTabs);
 
         if (numberOfTabs < 1){
             this.nextTab(0);

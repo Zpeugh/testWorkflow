@@ -208,14 +208,14 @@ public class WorkFlow {
 		def order = eventList.tokenize('~');
 
 		for (int i = 0; i < order.size(); i++){
-			def name = order[i].replaceAll('\'', '[squote]')
-			name = name.replaceAll('\\\\', '[bslash]')
-			name = name.replaceAll('\"', '[dquote]')
-			name = name.replaceAll('/', '[fslash]')
-			name = name.replaceAll('\\?', '[question]')
-			name = name.replaceAll(':', '[colon]')
-			events << ('\n\t\t<li><a href=\"' + "${name}" +
-				'.html\">' + "${order[i]}" + '</a></li>')
+			def name = order[i].replaceAll('\\[squote\\]', '\'')
+			name = name.replaceAll('\\[bslash\\]','\\\\')
+			name = name.replaceAll('\\[dquote\\]', '\\"')
+			name = name.replaceAll('\\[fslash\\]','\\/')
+			name = name.replaceAll('\\[question\\]', '\\?')
+			name = name.replaceAll('\\[colon\\]', ':')
+			events << ('\n\t\t<li><a href=\"' + "${order[i]}" +
+				'.html\">' + "${name}" + '</a></li>')
 		}
 		events = events.join("").toString()
 		markup.html{

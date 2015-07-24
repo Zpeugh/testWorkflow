@@ -55,7 +55,7 @@ if (formNameArray.length === 0) {
 
 casper.changeSyntax = function(formName){
     var fName = formName.toString().replace(/\'/g, '[squote]');
-    fName = fName.replace(/\\\\/g, '[bslash]');
+    fName = fName.replace(/\\/g, '[bslash]');
     fName = fName.replace(/\"/g, '[dquote]');
     fName = fName.replace(/\//g, '[fslash]');
     fName = fName.replace(new RegExp("\\?", "g"), '[question]');

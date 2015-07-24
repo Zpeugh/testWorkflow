@@ -52,12 +52,13 @@ class Event {
 		return safeName
 	}
 
-	public printEventPage(File outputFile){
+	public printEventPage(File outputFile, HashMap<Integer, Event> eventMap){
 
 
 		def writer = new FileWriter(outputFile)
 		def markup = new MarkupBuilder(writer)
-		def thisCondition, eventString
+		def thisCondition
+		def eventString = "Next Possible Events:"
 		def posEvents = new ArrayList()
 		def sActions = new ArrayList()
 		def pActions = new ArrayList()
@@ -106,7 +107,9 @@ class Event {
 		if (this.formTemplates.size() != 0){
 			this.formTemplates.each {
 				def name = changeSyntax(it.toString())
-				forms << '<a href=\"' + '../formHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
+				if (!name.matches("[0-9]+")){
+					forms << '<a href=\"' + '../formHtmls/' + "${name}" + '.html\">' + "${it.toString()}" + '</a>'
+				}
 			}
 			forms = forms.toString()
 			forms = forms.substring(1, forms.length() - 1)
@@ -122,7 +125,12 @@ class Event {
 			}
 			posEvents = posEvents.toString()
 			posEvents = posEvents.substring(1, posEvents.length() - 1)
-		} else{
+		} else if (this.eventClass == 'Automatic' && this.nextEvent){
+			Integer ID = this.nextEvent.toInteger()
+			def name = eventMap.getAt(ID)?.eventName
+			posEvents = '<a href=\"' + "${changeSyntax(name)}" + '.html\">' + "${name}" + '</a>'
+			eventString = "Next Event:"
+		} else {
 			posEvents = "None"
 		}
 
@@ -135,7 +143,7 @@ class Event {
 				p { mkp.yield("Type: ${this.eventClass} ") }
 				p { mkp.yield("Level: ${this.projectLevel}") }
 				p (class : "${conditionClass}" ){ mkp.yield("Condition: ${thisCondition}") }
-				p {mkp.yieldUnescaped("Next Possible Events: ${posEvents}")}
+				p {mkp.yieldUnescaped("${eventString} ${posEvents}")}
 			}
 			div(class: "actions"){
 				hr(class: "break") {}
@@ -187,8 +195,13 @@ class Event {
 			fActions = "None for this event"
 		}
 		if (this.formTemplates.size() != 0){
-			this.formTemplates.each { forms += "~${it.toString()}" }
-			forms = forms.substring(1)
+			this.formTemplates.each {
+				def formName = it.toString()
+				if (!formName.matches("[0-9]+")){
+					forms += "~${formName}"
+				}
+			}
+				forms = forms.substring(1)
 		}
 		else {
 			forms = "No forms for this event"

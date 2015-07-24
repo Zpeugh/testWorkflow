@@ -9,6 +9,7 @@ import javafx.collections.*
 import groovyx.javafx.SceneGraphBuilder
 import javafx.scene.paint.Color
 import javafx.scene.text.Font
+import javafx.scene.layout.ColumnConstraints
 import java.util.concurrent.FutureTask
 import javafx.concurrent.Task
 import javafx.application.Platform
@@ -46,7 +47,7 @@ public class GUI{
 
 	private static void showInBrowser(){
 		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-            'cmd /c start build/Resources/Events/eventIndex.html'.execute()
+            'start build/Resources/Events/eventIndex.html'.execute()
         } else {
             def thisDirectory = System.getProperty("user.dir")
             java.awt.Desktop.desktop.browse( ('File://' + thisDirectory + '/build/Resources/Events/eventIndex.html').toURI() )
@@ -104,14 +105,11 @@ public class GUI{
 		}
 	}
 
-
 	private static String makeID(def name){
-		return URLEncoder.encode(name)
+		def newName = URLEncoder.encode(name)
+		newName = newName.replaceAll('\\.', 'p')
+		return newName
 	}
-
-
-
-
 
 	private static void captureActionsAndUpdateActionTable(def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
 
@@ -123,10 +121,18 @@ public class GUI{
 		}
 
 		int row = 3
-		Rectangle rect
+		int rectNum = 0;
+		def numOfRects = actionMap.size() * 2 + 4
+		def rectWidth = (620 / numOfRects)
+
+		actionMap.each { actionTable.getColumnConstraints().add( new ColumnConstraints(minWidth: rectWidth, prefWidth: rectWidth) ) }
+		for (int i = 0; i < numOfRects; i++){
+			actionTable.add(new Rectangle( width: rectWidth, id: 'actionRect' + i,  height: 15, fill: SPIDAGREY ), i, 1)
+		}
+
 		actionMap.each {k,v ->
 			String key = makeID(k)
-			actionTable.add(new Label( text: k, id: 'Action' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
+			actionTable.add(new Label( text: k, id: 'Action' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000'), alignment: 'CENTER' ), 0, row, numOfRects, 1)
 			row++
 		}
 
@@ -139,23 +145,29 @@ public class GUI{
 			actionArgsArray = actionArgsArray + (sampleFlow.actionArguments as String[])
 
 			def getActions = actionArgsArray.execute()
+			rectNum = 0;
 			getActions.in.eachLine { line ->
 				if (line.contains('CasperError: Errors encountered while filling form: form not found')){
 					println line
-					getForms.destroy()
+					getActions.destroy()
 					//loginPopup.show()
-				} else if (line.contains('Stored screenshot of action: ')) {
+				} else if (line.contains('Checkpoint reached')) {
+					println line
+					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
+					rectFill?.setFill( Color.web('#037D08') )
+				}else if (line.contains('Stored screenshot of action: ')) {
 					println line
 					String tempName = line.replace('Stored screenshot of action: ', '')
 					String key = makeID(tempName)
 
 					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
-					if (!actionStatus.is(null)){
-						actionStatus.setTextFill( Color.web('#D48600') )
-					}
+					actionStatus?.setTextFill( Color.web('#D48600') )
+					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
+					rectFill?.setFill( Color.web('#037D08') )
+
 				} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
 					println line
-					getForms.destroy()
+					getActions.destroy()
 					companyPopup.show()
 				} else {
 					println line
@@ -173,21 +185,20 @@ public class GUI{
 					String key = makeID(tempName)
 
 					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
-					if (!actionStatus.is(null)){
-						actionStatus.setTextFill( Color.web('#037D08') )
-					}
+					actionStatus?.setTextFill( Color.web('#037D08') )
+					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
+					rectFill?.setFill( Color.web('#037D08') )
+
 				} else if (line.contains('Could not find action: ')){
 					println line
 					String tempName = line.replace('Could not find action: ', '')
-					def key = tempName.replaceAll(' ', '~')
-					key = key.replaceAll(':','+')
-					key = key.replaceAll('"', 'q')
-					key = key.replaceAll('\'', 'q')
+					def key = makeID(tempName)
 
 					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
-					if (!actionStatus.is(null)){
-						actionStatus?.setTextFill( Color.web('#800000') )
-					}
+					actionStatus?.setTextFill( Color.web('#800000') )
+					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
+					rectFill?.setFill( Color.web('#037D08') )
+
 				} else {
 					println line
 				}
@@ -207,12 +218,21 @@ public class GUI{
 			}
 
 			int row = 3
-			Rectangle rect
+			int rectNum = 0;
+			def numOfRects = formMap.size() * 2 + 5
+			def rectWidth = (620 / numOfRects)
+
+			formMap.each { formTable.getColumnConstraints().add( new ColumnConstraints(minWidth: rectWidth, prefWidth: rectWidth) ) }
+			for (int i = 0; i < numOfRects; i++){
+				formTable.add(new Rectangle( width: rectWidth, id: 'formRect' + i,  height: 15, fill: SPIDAGREY ), i, 1)
+			}
+
 			formMap.each {k,v ->
 				String key = makeID(k)
-				formTable.add(new Label( text: k, id: 'Form' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000')), 0, row)
+				formTable.add(new Label( text: k, id: 'Form' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000'), alignment: 'CENTER' ), 0, row, numOfRects, 1)
 				row++
 			}
+
 
 			Closure getForms = {
 
@@ -225,18 +245,27 @@ public class GUI{
 
 
 				def getForms = formArgsArray.execute()
+				rectNum = 0;
 				getForms.in.eachLine { line ->
 					if (line.contains('CasperError: Errors encountered while filling form: form not found')){
 						println line
 						getForms.destroy()
 						loginPopup.show()
-					} else if (line.contains('Stored screenshot of form: ')) {
+					} else if (line.contains('Checkpoint reached')) {
+						println line
+						Rectangle rectFill = (Rectangle) mainScene.lookup('#formRect' + rectNum++)
+						rectFill?.setFill( Color.web('#037D08') )
+					}
+					else if (line.contains('Stored screenshot of form: ')) {
 						println line
 						String tempName = line.replace('Stored screenshot of form: ', '')
 						def key = makeID(tempName)
 
 						Label formStatus = (Label) mainScene.lookup('#' + 'Form' + key)
 	                    formStatus?.setTextFill( Color.web('#D48600') )
+						Rectangle rectFill = (Rectangle) mainScene.lookup('#formRect' + rectNum++)
+						rectFill?.setFill( Color.web('#037D08') )
+
 					} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
 						companyPopup.show()
 						getForms.destroy()
@@ -256,6 +285,8 @@ public class GUI{
 						def key = makeID(tempName)
 						Label formStatus = (Label) mainScene.lookup('#' + 'Form' + key)
 	                    formStatus?.setTextFill( Color.web('#037D08') )
+						Rectangle rectFill = (Rectangle) mainScene.lookup('#formRect' + rectNum++)
+						rectFill?.setFill( Color.web('#037D08') )
 					} else if (line.contains('Could not find form: ')){
 						println line
 						String tempName = line.replace('Could not find form: ', '')
@@ -282,21 +313,21 @@ public class GUI{
 		new File('build/Resources/Events/texts').mkdir()
 
 		newFlow.events.each{ k,v ->
-			def name =v.eventName.replaceAll('\'', '[squote]')
+			def name = v.eventName.replaceAll("'", '[squote]')
 			name = name.replaceAll('\\\\', '[bslash]')
 			name = name.replaceAll('\"', '[dquote]')
 			name = name.replaceAll('/', '[fslash]')
 			name = name.replaceAll(':', '[colon]')
 			name = name.replaceAll('\\?', '[question]')
 			File file = new File('build/Resources/Events/' + name + '.html')
-			v.printEventPage(file)
+			v.printEventPage(file, eventMap)
 		}
 
 		newFlow.printEventIndexPage(new File('build/Resources/Events/EventIndex.html') )
 
 		newFlow.events.each{k,v ->
 
-			def name =v.eventName.replaceAll('\'', '[squote]')
+			def name = v.eventName.replaceAll('\'', '[squote]')
 			name = name.replaceAll('\\\\', '[bslash]')
 			name = name.replaceAll('\"', '[dquote]')
 			name = name.replaceAll('/', '[fslash]')
@@ -368,7 +399,7 @@ public class GUI{
 
 									if(  unzipFile(nameOfFlowFile.text) ){
 
-										if ( !( new File('build/Resources/Events/eventIndex.html') ).exists()  ){
+										if ( !( new File('build/Resources/Events/' + nameOfFlowFile.text + '.json') ).exists()  ){
 
 
 											def fileName = nameOfFlowFile.text + '.json'
@@ -461,25 +492,31 @@ public class GUI{
 						}
 
 						tab('Forms', id: 'formTab', closable: false) {
-							scrollPane(fitToWidth: true, fitToHeight: true) {
-
-								gridPane(id: 'formTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #000000') {
-									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Forms", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
-									rectangle(width: 2500, height: 1, fill: SPIDARED, halignment: 'center', valignment: 'top', row: 1, column: 0)
-									label(" ", row: 2, column: 0)
+							scrollPane(style: '-fx-background-color: #000000', fitToWidth: true, fitToHeight: true) {
+								borderPane(style: '-fx-background-color: #000000'){
+									top(align: 'CENTER'){
+										label(text: "Forms", style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
+									}
+									center(align: 'CENTER'){
+										gridPane(id: 'formTable', gridLinesVisible: false, hgap: 0, vgap: 0, padding: 0, alignment: "top_center", style: '-fx-background-color: #000000') {
+											label(" ", row: 2, column: 0)
+										}
+									}
 								}
 							}
 						}
 
 						tab('Actions', id: 'actionTab', closable: false) {
 							scrollPane(style: '-fx-background-color: #000000', fitToWidth: true, fitToHeight: true) {
-
-								gridPane(id: 'actionTable', hgap: 0, vgap: 0, padding: 10, alignment: "top_center", style: '-fx-background-color: #000000') {
-									columnConstraints(minWidth: 640, prefWidth: 640, hgrow: 'never' , halignment: 'center')
-									label(text: "Actions", row: 0, column: 0, style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
-									rectangle(width: 2500, height: 1, fill: SPIDARED, halignment: 'center', valignment: 'top', row: 1, column: 0)
-									label(" ", row: 2, column: 0)
+								borderPane(style: '-fx-background-color: #000000'){
+									top(align: 'CENTER'){
+										label(text: "Actions", style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
+									}
+									center(align: 'CENTER'){
+										gridPane(id: 'actionTable', gridLinesVisible: false, hgap: 0, vgap: 0, padding: 0, alignment: "top_center", style: '-fx-background-color: #000000') {
+											label(" ", row: 2, column: 0)
+										}
+									}
 								}
 							}
 						}

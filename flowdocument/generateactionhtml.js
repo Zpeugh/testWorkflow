@@ -46,7 +46,7 @@ if(actionNameArray.length === 0){
 
 casper.changeSyntax = function(actionName){
     var aName = actionName.toString().replace(/\'/g, '[squote]');
-    aName = aName.replace(/\\\\/g, '[bslash]');
+    aName = aName.replace(/\\/g, '[bslash]');
     aName = aName.replace(/\"/g, '[dquote]');
     aName = aName.replace(/\//g, '[fslash]');
     aName = aName.replace(new RegExp("\\?", "g"), '[question]');
@@ -111,9 +111,11 @@ casper.makeActionPNG = function(actionName) {
 
             var actionSnip = this.getElementBounds('#actionForm>fieldset');
 
+            console.log('top: ' + actionSnip.top + ', height: ' + actionSnip.height + ',left: ' + actionSnip.left + ', width: ' +
+            actionSnip.width);
             this.capture('build/Resources/actionHtmls/actionPNGs/' + aName + '.png', {
                 top : actionSnip.top - 2,
-                height : actionSnip.height,
+                height : actionSnip.height + 3,
                 left : (actionSnip.left + 37),
                 width : actionSnip.width - 10
             });
