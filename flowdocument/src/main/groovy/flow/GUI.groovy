@@ -47,7 +47,10 @@ public class GUI{
 
 	private static void showInBrowser(){
 		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-            'start build/Resources/Events/eventIndex.html'.execute()
+			def scriptDir = new File('ReadMe.pdf')
+			String sDir = scriptDir.getAbsolutePath() - 'ReadMe.pdf'
+			println 'file:///' + sDir + 'build/Resources/Events/eventIndex.html'
+            ('cmd /c start file:\\\\\\' + sDir + 'build\\Resources\\Events\\eventIndex.html').execute()
         } else {
             def thisDirectory = System.getProperty("user.dir")
             java.awt.Desktop.desktop.browse( ('File://' + thisDirectory + '/build/Resources/Events/eventIndex.html').toURI() )
@@ -352,7 +355,7 @@ public class GUI{
 				scene(id: 'mainScene'){
 					File css = new File("src/main/groovy/flow/resources/gui.css")
 					mainScene.getStylesheets().clear()
-					mainScene.getStylesheets().add("file:///" + css.getAbsolutePath().replace("\\", "/"))
+					mainScene.getStylesheets().add("file:///" + css.getAbsolutePath().replaceAll('\\\\', "/"))
 					tabPane (id: 'tabPane', style: '-fx-background-color: #000000;-fx-border-color: #7C8180;-fx-border-width: 0px 1px 1px 1px;') {
 		                tab(' Main ', id: 'mainTab', closable: false) {
 		                    gridPane(id: 'gridPane', hgap: 5, vgap: 15, padding: 0, alignment: "top_center", style: '-fx-background-color: #000000') {
@@ -428,7 +431,7 @@ public class GUI{
 											captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
 											captureActionsAndUpdateActionTable(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 										}
-									}else {
+									} else {
 										flowPopup.show()
 									}
 								})
