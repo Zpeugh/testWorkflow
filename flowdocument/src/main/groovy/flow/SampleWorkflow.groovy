@@ -8,8 +8,6 @@ class SampleWorkFlow{
 	def jsonFileName
 	def allForms
 	def allActions
-	def formsMissed
-	def actionsMissed
 	def formArguments
 	def actionArguments
 	def flowName
@@ -18,7 +16,8 @@ class SampleWorkFlow{
 		this.workFlow = new WorkFlow(fileName)
 		this.allForms = this.workFlow.formNames
 		this.allActions = this.workFlow.actionNames
-		this.flowName = URLEncoder.encode( this.workFlow.flowName, 'UTF-8') 
+		this.flowName = URLEncoder.encode( this.workFlow.flowName, 'UTF-8')
+
 		def formArgs = [];
 		this.allForms.each{ formArgs << URLEncoder.encode(it , 'UTF-8') }
 		this.formArguments = formArgs

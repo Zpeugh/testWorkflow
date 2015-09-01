@@ -3,16 +3,11 @@ package flow
 import static groovyx.javafx.GroovyFX.*
 import groovy.util.AntBuilder
 import org.apache.tools.ant.taskdefs.condition.Os
-import groovy.transform.Canonical
-import groovyx.javafx.beans.FXBindable
 import javafx.collections.*
 import groovyx.javafx.SceneGraphBuilder
 import javafx.scene.paint.Color
 import javafx.scene.text.Font
 import javafx.scene.layout.ColumnConstraints
-import java.util.concurrent.FutureTask
-import javafx.concurrent.Task
-import javafx.application.Platform
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.control.Label
@@ -25,6 +20,7 @@ public class GUI{
 	private static final Color SPIDAGREY = Color.web("#7C8180")
 
 
+	//unzips the .flow file and pulls it into the working directory under build/Resources
 	private static boolean unzipFile(flowName){
 		def foundFile
 		def builder = new AntBuilder()
@@ -41,14 +37,14 @@ public class GUI{
 		} else {
 			foundFile = false;
 		}
-
 		return foundFile
 	}
 
+	//opens the build/Resources/EventIndex.html page in a local browser
 	private static void showInBrowser(){
 		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-			def scriptDir = new File('ReadMe.pdf')
-			String sDir = scriptDir.getAbsolutePath() - 'ReadMe.pdf'
+			def scriptDir = new File('formtohtml.js')
+			String sDir = scriptDir.getAbsolutePath() - 'formtohtml.js'
 			println 'file:///' + sDir + 'build/Resources/Events/eventIndex.html'
             ('cmd /c start file:\\\\\\' + sDir + 'build\\Resources\\Events\\eventIndex.html').execute()
         } else {
@@ -57,13 +53,13 @@ public class GUI{
         }
 	}
 
+	//exports the necessary files in the build/Resources folder to be put into google drive
 	private static void exportWorkflow(){
 		String homeDirectory = System.properties['user.home']
 	    def folderString = homeDirectory + '/Desktop/ExportToGoogleDrive'
         File googleDriveFolder = new File(folderString)
-
-
 		def ant = new AntBuilder()
+
 		def resources = ant.fileScanner {
 			fileset(dir:"build/Resources") {
 				include(name: '**/*.html')
@@ -88,6 +84,7 @@ public class GUI{
 		}
 	}
 
+	//deletes the build/Resources folder
 	private static void cleanWorkspace(def deleteJson){
 		def ant = new AntBuilder()
 		if (deleteJson){
@@ -99,6 +96,7 @@ public class GUI{
 		}
 	}
 
+	//opens up the google drive homescreen
 	private static void openGoogleDrive(){
 		if (Os.isFamily(Os.FAMILY_WINDOWS)) {
 			'cmd /c start https://www.google.com/drive/'.execute()
@@ -108,34 +106,33 @@ public class GUI{
 		}
 	}
 
+	//creates an proper alias for a string name given
 	private static String makeID(def name){
 		def newName = URLEncoder.encode(name)
 		newName = newName.replaceAll('\\.', 'p')
 		return newName
 	}
 
-	private static void captureActionsAndUpdateActionTable(def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
+	//starts a new background thread that calls actiontohtml.js with all the proper action arguments, and then
+	//calls generateactionhtml.js on the same thread. Updates the action tab to show a live progress bar and color changes.
+	private static void captureActionsAndLiveUpdateActionTab(def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
 
-		Map<String, LoadItem> actionMap = new HashMap()
-		def actionNames = sampleFlow.allActions
-		actionNames.each() { action ->
-			actionMap << [ (action.toString()) : ( new LoadItem(name: action.toString(), status: 'Unfinished', color: SPIDARED) )]
-
-		}
+		def actionNames = sampleFlow.allActions as String[]
 
 		int row = 3
 		int rectNum = 0;
-		def numOfRects = actionMap.size() * 2 + 4
+		def numOfRects = actionNames.size() * 2 + 4
 		def rectWidth = (620 / numOfRects)
 
-		actionMap.each { actionTable.getColumnConstraints().add( new ColumnConstraints(minWidth: rectWidth, prefWidth: rectWidth) ) }
+		actionNames.each { actionTable.getColumnConstraints().add( new ColumnConstraints(minWidth: rectWidth, prefWidth: rectWidth) ) }
+
 		for (int i = 0; i < numOfRects; i++){
-			actionTable.add(new Rectangle( width: rectWidth, id: 'actionRect' + i,  height: 15, fill: SPIDAGREY ), i, 1)
+			actionTable.add(new Rectangle( width: rectWidth, id: 'actionRect' + i,  arcWidth: 4, arcHeight: 4, height: 15, fill: SPIDAGREY ), i, 1)
 		}
 
-		actionMap.each {k,v ->
-			String key = makeID(k)
-			actionTable.add(new Label( text: k, id: 'Action' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000'), alignment: 'CENTER' ), 0, row, numOfRects, 1)
+		actionNames.each {action ->
+			String actionID = makeID(action)
+			actionTable.add(new Label( text: action, id: 'Action' + actionID, style: '-fx-font-weight: bold', textFill: Color.web('#800000'), alignment: 'CENTER' ), 0, row, numOfRects, 1)
 			row++
 		}
 
@@ -157,7 +154,7 @@ public class GUI{
 				} else if (line.contains('Checkpoint reached')) {
 					println line
 					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
-					rectFill?.setFill( Color.web('#037D08') )
+					rectFill?.setFill( Color.web('#007200') )
 				}else if (line.contains('Stored screenshot of action: ')) {
 					println line
 					String tempName = line.replace('Stored screenshot of action: ', '')
@@ -166,7 +163,7 @@ public class GUI{
 					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
 					actionStatus?.setTextFill( Color.web('#D48600') )
 					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
-					rectFill?.setFill( Color.web('#037D08') )
+					rectFill?.setFill( Color.web('#007200') )
 
 				} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
 					println line
@@ -188,9 +185,9 @@ public class GUI{
 					String key = makeID(tempName)
 
 					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
-					actionStatus?.setTextFill( Color.web('#037D08') )
+					actionStatus?.setTextFill( Color.web('#007200') )
 					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
-					rectFill?.setFill( Color.web('#037D08') )
+					rectFill?.setFill( Color.web('#007200') )
 
 				} else if (line.contains('Could not find action: ')){
 					println line
@@ -200,7 +197,7 @@ public class GUI{
 					Label actionStatus = (Label) mainScene.lookup('#' + 'Action' + key)
 					actionStatus?.setTextFill( Color.web('#800000') )
 					Rectangle rectFill = (Rectangle) mainScene.lookup('#actionRect' + rectNum++)
-					rectFill?.setFill( Color.web('#037D08') )
+					rectFill?.setFill( Color.web('#007200') )
 
 				} else {
 					println line
@@ -212,27 +209,25 @@ public class GUI{
 		actionThread.start()
 	}
 
-	private static void captureFormsAndUpdateFormTable(def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup){
-
-			HashMap<String, LoadItem> formMap = new HashMap()
-			def formNames = sampleFlow.allForms
-			formNames.each() { form ->
-				formMap << [ (form.toString()) : ( new LoadItem(name: form.toString(), status: 'Unfinished', color: SPIDARED) )]
-			}
+	//starts a new background thread that calls formtohtml.js with all the proper action arguments, and then
+	//calls generateformhtml.js on the same thread. Updates the form tab to show a live progress bar and color changes.
+	private static void captureFormsAndLiveUpdateFormTab(def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup){
+			def formNames = sampleFlow.allForms as String[]
 
 			int row = 3
 			int rectNum = 0;
-			def numOfRects = formMap.size() * 2 + 5
+			def numOfRects = formNames.size() * 2 + 5
 			def rectWidth = (620 / numOfRects)
 
-			formMap.each { formTable.getColumnConstraints().add( new ColumnConstraints(minWidth: rectWidth, prefWidth: rectWidth) ) }
+			formNames.each { formTable.getColumnConstraints().add( new ColumnConstraints(minWidth: rectWidth, prefWidth: rectWidth) ) }
+
 			for (int i = 0; i < numOfRects; i++){
-				formTable.add(new Rectangle( width: rectWidth, id: 'formRect' + i,  height: 15, fill: SPIDAGREY ), i, 1)
+				formTable.add(new Rectangle( width: rectWidth, id: 'formRect' + i, arcWidth: 4, arcHeight: 4, height: 15, fill: SPIDAGREY ), i, 1)
 			}
 
-			formMap.each {k,v ->
-				String key = makeID(k)
-				formTable.add(new Label( text: k, id: 'Form' + key, style: '-fx-font-weight: bold', textFill: Color.web('#800000'), alignment: 'CENTER' ), 0, row, numOfRects, 1)
+			formNames.each {form ->
+				String formID = makeID(form)
+				formTable.add(new Label( text: form, id: 'Form' + formID, style: '-fx-font-weight: bold', textFill: Color.web('#800000'), alignment: 'CENTER' ), 0, row, numOfRects, 1)
 				row++
 			}
 
@@ -257,7 +252,7 @@ public class GUI{
 					} else if (line.contains('Checkpoint reached')) {
 						println line
 						Rectangle rectFill = (Rectangle) mainScene.lookup('#formRect' + rectNum++)
-						rectFill?.setFill( Color.web('#037D08') )
+						rectFill?.setFill( Color.web('#007200') )
 					}
 					else if (line.contains('Stored screenshot of form: ')) {
 						println line
@@ -267,7 +262,7 @@ public class GUI{
 						Label formStatus = (Label) mainScene.lookup('#' + 'Form' + key)
 	                    formStatus?.setTextFill( Color.web('#D48600') )
 						Rectangle rectFill = (Rectangle) mainScene.lookup('#formRect' + rectNum++)
-						rectFill?.setFill( Color.web('#037D08') )
+						rectFill?.setFill( Color.web('#007200') )
 
 					} else if (line.contains('CasperError: Cannot dispatch mousedown event on nonexistent selector: xpath selector')) {
 						companyPopup.show()
@@ -287,9 +282,9 @@ public class GUI{
 						String tempName = line.replace('Created PNG of: ', '')
 						def key = makeID(tempName)
 						Label formStatus = (Label) mainScene.lookup('#' + 'Form' + key)
-	                    formStatus?.setTextFill( Color.web('#037D08') )
+	                    formStatus?.setTextFill( Color.web('#007200') )
 						Rectangle rectFill = (Rectangle) mainScene.lookup('#formRect' + rectNum++)
-						rectFill?.setFill( Color.web('#037D08') )
+						rectFill?.setFill( Color.web('#007200') )
 					} else if (line.contains('Could not find form: ')){
 						println line
 						String tempName = line.replace('Could not find form: ', '')
@@ -308,6 +303,7 @@ public class GUI{
 		formThread.start()
 	}
 
+	//creates the Event documentation and puts it inside of build/Resources/Events
 	private static void createEventDocuments(fileName, companyName){
 
 		WorkFlow newFlow = new WorkFlow(fileName)
@@ -345,20 +341,26 @@ public class GUI{
 		flowInfo.append(companyName.replaceAll('~', ' '))
 	}
 
+	//Builds the user interface with three tabs and multiple (currently) invisible popups
 	public static void main(args){
 
-		final HashMap<String, LoadItem> forms =  ['None' : new LoadItem(name: "No forms yet", status: 'N/A', color: SPIDARED)]
-		final HashMap<String, LoadItem> actions = ['None' : new LoadItem(name: "No actions yet", status: 'N/A', color: SPIDARED)]
-
 		start {
-		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 800, height: 450, visible: true) {
+		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 800, height: 450, visible: true, resizable: false) {
 				scene(id: 'mainScene'){
+
+					//add custom stylesheet for UI style overriding
 					File css = new File("src/main/groovy/flow/resources/gui.css")
 					mainScene.getStylesheets().clear()
 					mainScene.getStylesheets().add("file:///" + css.getAbsolutePath().replaceAll('\\\\', "/"))
+					//def jpg = new File('src/Resources/metallic.jpeg')
+					def metal = 'https://github.com/spidasoftware/min/blob/Full-app/scripts/flowdocument/src/Resources/metallic.jpeg?raw=true'
+					//def metal = 'file:///' + jpg.getAbsolutePath().replaceAll("\\\\", "/")
+
 					tabPane (id: 'tabPane', style: '-fx-background-color: #000000;-fx-border-color: #7C8180;-fx-border-width: 0px 1px 1px 1px;') {
-		                tab(' Main ', id: 'mainTab', closable: false) {
-		                    gridPane(id: 'gridPane', hgap: 5, vgap: 15, padding: 0, alignment: "top_center", style: '-fx-background-color: #000000') {
+
+						//Main tab in the user interface
+						tab(' Main ', id: 'mainTab', closable: false) {
+		                    gridPane(id: 'gridPane', hgap: 5, vgap: 15, padding: 0, alignment: "top_center", style: "-fx-background-image: url(${metal}); -fx-background-repeat: stretch;-fx-background-size: 800 450") {
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
@@ -376,14 +378,12 @@ public class GUI{
 									def img = new File('src/Resources/SpidaLogo.png')
 									image('file:///' + img.getAbsolutePath().replace("\\", "/"))
 								}
-								label("Flow Name ", id: 'flowNameField', hgrow: "never", style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 1, column: 3, columnSpan: 1, valignment: 'bottom', halignment: "center", textFill: SPIDAGREY)
+
+								label("Flow Name ", id: 'flowNameField', hgrow: "never", style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 1, column: 3, columnSpan: 1, valignment: 'bottom', halignment: "center", textFill: WHITE)
 								textField(promptText: ".flow file name", id: 'nameOfFlowFile', row: 1, column: 4, columnSpan: 3, halignment: "left", valignment: 'bottom')
 
-								label("Company ", row: 2, column: 3, columnSpan: 1, textFill: SPIDAGREY, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "center", valignment: 'top')
+								label("Company ", row: 2, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "center", valignment: 'top')
 								textField(promptText: "Company Name", id: 'nameOfCompany', row: 2, column: 4, columnSpan: 3, halignment: "left", valignment: 'top')
-
-
-								rectangle(width: 2500, height: 1, fill: SPIDAGREY, halignment: 'center', translateY: 10, row: 3, column: 0, columnSpan: 8)
 
 								button("Clean Workspace", id: 'cleanButton',  minWidth: 190, prefWidth: 190, row: 7, column: 1, columnSpan: 2, halignment: "center",
 								, onAction: {
@@ -396,15 +396,11 @@ public class GUI{
 								label("Produce: ",  textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 6, column: 0, columnSpan: 1, halignment: "right" )
 								label("Utilities: ", textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 7, column: 0, columnSpan: 1, halignment: "right" )
 
-
-
 								button("All Documents", id: 'genDocButton', minWidth: 190, prefWidth: 190, row: 5, column: 5, columnSpan: 2, halignment: "center", onAction: {
 
 									if(  unzipFile(nameOfFlowFile.text) ){
 
 										if ( !( new File('build/Resources/Events/' + nameOfFlowFile.text + '.json') ).exists()  ){
-
-
 											def fileName = nameOfFlowFile.text + '.json'
 											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
 											def companyName = nameOfCompany.text.replaceAll(' ', '~')
@@ -414,8 +410,8 @@ public class GUI{
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-											captureActionsAndUpdateActionTable(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 
 										} else {
 											cleanFirstPopup.show()
@@ -428,8 +424,8 @@ public class GUI{
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-											captureActionsAndUpdateActionTable(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 										}
 									} else {
 										flowPopup.show()
@@ -437,9 +433,7 @@ public class GUI{
 								})
 
 								button("Forms", id: 'genFormsButton',  minWidth: 190, prefWidth: 190, row: 5, column: 3, columnSpan: 2, halignment: "center", onAction: {
-
 									if(  unzipFile(nameOfFlowFile.text) ){
-
 										def fileName = nameOfFlowFile.text + '.json'
 										SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
 										def companyName = nameOfCompany.text.replaceAll(' ', '~')
@@ -449,7 +443,7 @@ public class GUI{
 										exportButton.setDisable(false)
 										cleanButton.setDisable(false)
 
-										captureFormsAndUpdateFormTable(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+										captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
 
 									}else {
 										flowPopup.show()
@@ -468,7 +462,7 @@ public class GUI{
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureActionsAndUpdateActionTable(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
 
 										}else {
 											flowPopup.show()
@@ -490,18 +484,18 @@ public class GUI{
 								button("Go to Google drive", minWidth: 190, prefWidth: 190, row: 7, column: 3, columnSpan: 2, halignment: "center", onAction: {
 									openGoogleDrive()
 								})
-
 							}
 						}
 
+						//The form tab definition
 						tab('Forms', id: 'formTab', closable: false) {
-							scrollPane(style: '-fx-background-color: #000000', fitToWidth: true, fitToHeight: true) {
-								borderPane(style: '-fx-background-color: #000000'){
+							scrollPane(fitToWidth: true, fitToHeight: true) {
+								borderPane(style: "-fx-background-color: #252525;"){
 									top(align: 'CENTER'){
 										label(text: "Forms", style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
 									}
 									center(align: 'CENTER'){
-										gridPane(id: 'formTable', gridLinesVisible: false, hgap: 0, vgap: 0, padding: 0, alignment: "top_center", style: '-fx-background-color: #000000') {
+										gridPane(id: 'formTable', gridLinesVisible: false, hgap: 0, vgap: 0, padding: 0, alignment: "top_center") {
 											label(" ", row: 2, column: 0)
 										}
 									}
@@ -509,14 +503,15 @@ public class GUI{
 							}
 						}
 
+						//The action tab definition
 						tab('Actions', id: 'actionTab', closable: false) {
-							scrollPane(style: '-fx-background-color: #000000', fitToWidth: true, fitToHeight: true) {
-								borderPane(style: '-fx-background-color: #000000'){
+							scrollPane(fitToWidth: true, fitToHeight: true) {
+								borderPane(style: "-fx-background-color: #252525;"){
 									top(align: 'CENTER'){
 										label(text: "Actions", style: '-fx-font-size: 24pt; fx-font-weight: bold;-fx-font-family: Verdana;', textFill: WHITE )
 									}
 									center(align: 'CENTER'){
-										gridPane(id: 'actionTable', gridLinesVisible: false, hgap: 0, vgap: 0, padding: 0, alignment: "top_center", style: '-fx-background-color: #000000') {
+										gridPane(id: 'actionTable', gridLinesVisible: false, hgap: 0, vgap: 0, padding: 0, alignment: "top_center") {
 											label(" ", row: 2, column: 0)
 										}
 									}
@@ -526,6 +521,8 @@ public class GUI{
 		            }
 		        }
 		    }
+
+			//popup for an invalid flow file name
 			stage(primary: false, id: 'flowPopup', title: "ERROR: Invalid flow file", width: 850, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center" ) {
@@ -536,6 +533,8 @@ public class GUI{
 					}
 				}
 			}
+
+			//popup for an invalid company name
 			stage(primary: false, id: 'companyPopup', title: "ERROR: Invalid company name", width: 600, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center" ) {
@@ -546,6 +545,8 @@ public class GUI{
 					}
 				}
 			}
+
+			//popup for a missing eventIndex.html file when pressing the "Open in Browser" button
 			stage(primary: false, id: 'noBrowserPopup', title: "ERROR: Cannot show browser", width: 650, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center" ) {
@@ -556,6 +557,8 @@ public class GUI{
 					}
 				}
 			}
+
+			//popup asking if the user forgot to clean the working directory before running a new flow
 			stage(primary: false, id: 'cleanFirstPopup', title: "WARNING: Clean Before Building", width: 500, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 10, vgap: 10, padding: 25, alignment: "top_center" ) {
@@ -574,12 +577,14 @@ public class GUI{
 					}
 				}
 			}
-			stage(primary: false, id: 'loginPopup', title: "ERROR: Could not log in to spidasoftware", width: 850, height: 150, visible: false) {
+
+			//popup telling the user that there was an error logging into demo.spidastudio
+			stage(primary: false, id: 'loginPopup', title: "ERROR: Could not log in to demo.spidastudio", width: 850, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 10, vgap: 10, padding: 25, alignment: "top_center" ) {
 						columnConstraints(minWidth: 250, prefWidth: 250, hgrow: 'never')
 						columnConstraints(minWidth: 250, prefWidth: 250, hgrow: 'never')
-						label("Error trying to log into https://www.spidasoftware.com/projectmanager/\nCheck internet connection and try again.", halignment: 'center', row: 0, column: 0, columnSpan: 2)
+						label("Error trying to log into https://demo.spidastudio.com/projectmanager/\nCheck internet connection and try again.", halignment: 'center', row: 0, column: 0, columnSpan: 2)
 						button("Ok", minWidth: 50, prefWidth: 100, row: 1, column: 0, halignment: "center", onAction: {
 							loginPopup.hide()
 						})

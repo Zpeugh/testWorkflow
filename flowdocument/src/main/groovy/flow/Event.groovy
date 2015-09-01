@@ -17,7 +17,7 @@ class Event {
 	String locationType
 	String nextEventLabel
 	ArrayList<Integer> possibleNextEventIDs = new ArrayList<>()
-	ArrayList<Event> possibleNextEvents = new ArrayList<>()
+	ArrayList<String> possibleNextEvents = new ArrayList<>()
 	ArrayList<Form> formTemplates = new ArrayList<>()
 	ArrayList<Action> startActions = new ArrayList<>()
 	ArrayList<Action> plannedActions = new ArrayList<>()
@@ -29,7 +29,7 @@ class Event {
 		String possibleEventString = ""
 		if (!this.possibleNextEvents.is(null)){
 			for (int i = 0 ; i < this.possibleNextEvents.size(); i++) {
-				possibleEventString += this.possibleNextEvents[i].eventName.toString() + ", "
+				possibleEventString += this.possibleNextEvents[i] + ", "
 			}
 		}
 
@@ -37,7 +37,7 @@ class Event {
 			"${this.projectLevel}\nID: ${this.eventID}\nActions:\n\t\tOn Start- ${this.startActions.toString()}\n" +
 			"\t\tOn Finish- ${this.finishActions.toString()}\n" +
 			"\t\tPlanned- ${this.plannedActions.toString()}\n" +
-			"Form: ${this.formTemplates.toString()}" + "\nNext possible events: " + possibleEventString
+			"Form: ${this.formTemplates.toString()}" + "\nNext possible events: " + this.possibleNextEventIDs
 	}
 
 
@@ -120,8 +120,8 @@ class Event {
 		if (this.possibleNextEvents.size() != 0){
 
 			this.possibleNextEvents.each {
-				def name = changeSyntax(it.eventName.toString())
-				posEvents << '<a href=\"' + "${name}" + '.html\">' + "${it.eventName.toString()}" + '</a>'
+				def name = changeSyntax(it)
+				posEvents << '<a href=\"' + "${name}" + '.html\">' + "${it}" + '</a>'
 			}
 			posEvents = posEvents.toString()
 			posEvents = posEvents.substring(1, posEvents.length() - 1)
@@ -208,7 +208,7 @@ class Event {
 		}
 		if (this.possibleNextEvents.size() != 0){
 			posEvents = ""
-			this.possibleNextEvents.each { posEvents += "~${it.eventName.toString()}" }
+			this.possibleNextEvents.each { posEvents += "~${it}" }
 			eventString = "Next Possible Events:"
 			posEvents = posEvents.substring(1)
 		} else if (this.eventClass == 'Automatic' && this.nextEvent){

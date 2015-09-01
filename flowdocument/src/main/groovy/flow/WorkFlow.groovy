@@ -25,12 +25,10 @@ public class WorkFlow {
 
 
 		//Define the JSON file parser
-
 		def jsonParser = new JsonSlurper().setType(INDEX_OVERLAY)
 
 
 		//Store the parsed contents of the file in jsonObject
-
 		File jsonFile = new File('build/Resources/' + fileName)
 		def jsonObject = jsonParser.parse(jsonFile)
 
@@ -97,7 +95,7 @@ public class WorkFlow {
 		this.events.values().each { event ->
 			def possibleEventIDArray = event.possibleNextEventIDs
 			event.possibleNextEventIDs.each { ID ->
-				event.possibleNextEvents.add(this.events.get(ID))
+				event.possibleNextEvents.add(this.events.get(ID).eventName)
 			}
 		}
 	}
@@ -166,7 +164,7 @@ public class WorkFlow {
 		node.projectLevel = singleEvent.projectLevel
 		node.version = singleEvent.version
 		node.locationType = singleEvent.locationType
-		node.formTemplates = singleEvent.formTemplates
+		//node.formTemplates = singleEvent.formTemplates
 		node.nextEvent = singleEvent.nextEvent
 		node.nextEventLabel = singleEvent.nextEventLabel
 
