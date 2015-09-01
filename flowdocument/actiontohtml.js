@@ -1,8 +1,6 @@
 //globally defined username and password for logging in.
 var USERNAME = 'admin@spidasoftware.com';
 var PASSWORD = 'defaultADMIN321';
-//var WEBSITE = 'www.spidasoftware';
-var WEBSITE = 'demo.spidastudio';
 var actionNameArray = [];
 var re = /\+/g
 var START_ON_TAB = 0; //tab to begin looking for forms on.
@@ -44,10 +42,11 @@ casper.on('page.error', function (msg, trace) {
 });
 
 //store the action names passed from the command line into actionNameArray
-var counter = 2;
-var companyName = decodeURIComponent(casper.cli.get(0));
+var counter = 3;
+var WEBSITE = decodeURIComponent(casper.cli.get(0));;
+var companyName = decodeURIComponent(casper.cli.get(1));
 companyName = companyName.replace(re, ' ');
-var FLOW_NAME =  decodeURIComponent(casper.cli.get(1)).replace(re, ' ');
+var FLOW_NAME =  decodeURIComponent(casper.cli.get(2)).replace(re, ' ');
 var temp;
 
 console.log("company name: " + companyName);
@@ -119,7 +118,7 @@ casper.getAction = function(j, actionName, actionValue){
 
 
 //*****************************BEGINNING OF SCRIPT*******************************//
-casper.start('https://' + WEBSITE + '.com/projectmanager/', function(){
+casper.start(WEBSITE + '/projectmanager/', function(){
     console.log("Checkpoint reached");
 });
 
@@ -135,7 +134,7 @@ casper.then(function login(){
 /*
 * Wait 8 seconds for the form to be submitted and the page is done redirecting
 */
-casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/', function afterLogin(){
+casper.waitForUrl(WEBSITE + '/projectmanager/', function afterLogin(){
     console.log('Logged in successfully');
     console.log("Checkpoint reached");
     //this.capture('loggedIn.png');
@@ -156,7 +155,7 @@ casper.waitForSelector('#mainnav>ul>li>div>div', function(){
     });
 }, 6000);
 
-casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', function(){
+casper.waitForUrl(WEBSITE + '/projectmanager/dashboard/index', function(){
     console.log("Logged in as: " + companyName);
     console.log("Checkpoint reached");
 }, function() {
@@ -168,7 +167,7 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', 
 /*
 * Navigate to the flow list
 */
-casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/flow/list', function openFlowList(){
+casper.thenOpen(WEBSITE + '/projectmanager/flow/list', function openFlowList(){
     console.log("Navigating to Flow List");
 });
 
@@ -183,7 +182,7 @@ casper.waitForSelector('#wrap>div.body>div.list>table>tbody', function clickFlow
 }, function FlowFailed(){
     //this.capture('failure.png');
     console.log("Resource failed to load, trying to reload page");
-    this.thenOpen('https://' + WEBSITE + '.com/projectmanager/flow/list', function reloadFlowPage(){
+    this.thenOpen(WEBSITE + '/projectmanager/flow/list', function reloadFlowPage(){
         this.wait(7000, function(){
             this.clickLabel(FLOW_NAME, 'a');
         });

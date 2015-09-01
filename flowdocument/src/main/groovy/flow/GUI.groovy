@@ -13,6 +13,10 @@ import javafx.event.EventHandler
 import javafx.scene.control.Label
 import javafx.scene.shape.Rectangle
 import java.net.URLEncoder
+// import javafx.scene.input.DragEvent
+// import javafx.scene.input.Dragboard
+// import javafx.scene.input.TransferMode
+// import javafx.scene.control.TextArea
 
 public class GUI{
 
@@ -115,7 +119,7 @@ public class GUI{
 
 	//starts a new background thread that calls actiontohtml.js with all the proper action arguments, and then
 	//calls generateactionhtml.js on the same thread. Updates the action tab to show a live progress bar and color changes.
-	private static void captureActionsAndLiveUpdateActionTab(def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup){
+	private static void captureActionsAndLiveUpdateActionTab(def mainScene, def sampleFlow, def fileName, def companyName, def actionTable, def companyPopup, def loginPopup, def website){
 
 		def actionNames = sampleFlow.allActions as String[]
 
@@ -141,7 +145,7 @@ public class GUI{
 			println "Starting script"
 			def flowName = URLEncoder.encode(sampleFlow.flowName, "UTF-8")
 			companyName = URLEncoder.encode(companyName, "UTF-8")
-			String[] actionArgsArray = ['casperjs', '--ssl-protocol=\"any\"', '--ignore-ssl-errors=true', 'actiontohtml.js', companyName, flowName] as String[]
+			String[] actionArgsArray = ['casperjs', '--ssl-protocol=\"any\"', '--ignore-ssl-errors=true', 'actiontohtml.js', website, companyName, flowName] as String[]
 			actionArgsArray = actionArgsArray + (sampleFlow.actionArguments as String[])
 
 			def getActions = actionArgsArray.execute()
@@ -211,7 +215,7 @@ public class GUI{
 
 	//starts a new background thread that calls formtohtml.js with all the proper action arguments, and then
 	//calls generateformhtml.js on the same thread. Updates the form tab to show a live progress bar and color changes.
-	private static void captureFormsAndLiveUpdateFormTab(def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup){
+	private static void captureFormsAndLiveUpdateFormTab(def mainScene, def sampleFlow, def companyName, def formTable, def companyPopup, def loginPopup, def website){
 			def formNames = sampleFlow.allForms as String[]
 
 			int row = 3
@@ -238,7 +242,7 @@ public class GUI{
 
 				def flowName = URLEncoder.encode(sampleFlow.flowName, "UTF-8")
 				companyName = URLEncoder.encode(companyName, "UTF-8")
-				String[] formArgsArray = ['casperjs', '--ssl-protocol=\"any\"', '--ignore-ssl-errors=true', 'formtohtml.js', companyName] as String[]
+				String[] formArgsArray = ['casperjs', '--ssl-protocol=\"any\"', '--ignore-ssl-errors=true', 'formtohtml.js', website, companyName] as String[]
 				formArgsArray = formArgsArray + (sampleFlow.formArguments as String[])
 
 
@@ -341,8 +345,61 @@ public class GUI{
 		flowInfo.append(companyName.replaceAll('~', ' '))
 	}
 
+
+ // 	private void mouseDragDropped(final DragEvent e) {
+    //     final Dragboard db = e.getDragboard();
+    //     boolean success = false;
+    //     if (db.hasFiles()) {
+    //         success = true;
+    //         // Only get the first file from the list
+    //         final File file = db.getFiles().get(0);
+    //         Platform.runLater(new Runnable() {
+    //             @Override
+    //             public void run() {
+    //                 System.out.println(file.getAbsolutePath());
+    //                 try {
+    //                     if(!contentPane.getChildren().isEmpty()){
+    //                         contentPane.getChildren().remove(0);
+    //                     }
+    //                     Image img = new Image(new FileInputStream(file.getAbsolutePath()));
+	//
+    //                     addImage(img, contentPane);
+    //                 } catch (FileNotFoundException ex) {
+    //                     Logger.getLogger(DragAndDropExample.class.getName()).log(Level.SEVERE, null, ex);
+    //                 }
+    //             }
+    //         });
+    //     }
+    //     e.setDropCompleted(success);
+    //     e.consume();
+    // }
+	//
+    // private  void mouseDragOver(final DragEvent e) {
+    //     final Dragboard db = e.getDragboard();
+	//
+    //     final boolean isAccepted = db.getFiles().get(0).getName().toLowerCase().endsWith(".png")
+    //             || db.getFiles().get(0).getName().toLowerCase().endsWith(".jpeg")
+    //             || db.getFiles().get(0).getName().toLowerCase().endsWith(".jpg");
+	//
+    //     if (db.hasFiles()) {
+    //         if (isAccepted) {
+    //             contentPane.setStyle("-fx-border-color: red;"
+    //           + "-fx-border-width: 5;"
+    //           + "-fx-background-color: #C6C6C6;"
+    //           + "-fx-border-style: solid;");
+    //             e.acceptTransferModes(TransferMode.COPY);
+    //         }
+    //     } else {
+    //         e.consume();
+    //     }
+    // }
+
+
+
 	//Builds the user interface with three tabs and multiple (currently) invisible popups
 	public static void main(args){
+
+
 
 		start {
 		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 800, height: 450, visible: true, resizable: false) {
@@ -360,7 +417,7 @@ public class GUI{
 
 						//Main tab in the user interface
 						tab(' Main ', id: 'mainTab', closable: false) {
-		                    gridPane(id: 'gridPane', hgap: 5, vgap: 15, padding: 0, alignment: "top_center", style: "-fx-background-image: url(${metal}); -fx-background-repeat: stretch;-fx-background-size: 800 450") {
+		                    gridPane(id: 'gridPane', hgap: 5, vgap: 10, padding: 0, alignment: "top_center", style: "-fx-background-image: url(${metal}); -fx-background-repeat: stretch;-fx-background-size: 800 450") {
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
@@ -374,29 +431,65 @@ public class GUI{
 								label("Enter Workflow Parameters", valignment: 'bottom', id: 'titleLabel', row: 0, column: 2, columnSpan: 6, halignment: "center",
 									margin: [0, 0, 10] )
 
-								imageView(row: 0, column: 0, columnSpan: 2, rowSpan: 3, fitWidth: 275, preserveRatio: true){
+								imageView(row: 0, column: 0, columnSpan: 2, rowSpan: 4, fitWidth: 275, preserveRatio: true){
 									def img = new File('src/Resources/SpidaLogo.png')
 									image('file:///' + img.getAbsolutePath().replace("\\", "/"))
 								}
 
-								label("Flow Name ", id: 'flowNameField', hgrow: "never", style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 1, column: 3, columnSpan: 1, valignment: 'bottom', halignment: "center", textFill: WHITE)
-								textField(promptText: ".flow file name", id: 'nameOfFlowFile', row: 1, column: 4, columnSpan: 3, halignment: "left", valignment: 'bottom')
+								// flowFile = textArea(text: "Drag .flow file here", width: 200, height: 50, row: 1, column: 4, columnSpan: 3)
+								//
+								// flowFile.setOnDragOver(new EventHandler() {
+						        //     @Override
+						        //     public void handle(final DragEvent event) {
+						        //         flowFile.setStyle("-fx-background-color: grey;");
+								// 		//mouseDragOver(event);
+						        //     }
+						        // });
+								//
+						        // flowFile.setOnDragDropped(new EventHandler() {
+						        //     @Override
+						        //     public void handle(final DragEvent event) {
+						        //         flowFile.setStyle("-fx-background-color: green;");
+								// 		//mouseDragDropped(event);
+						        //     }
+						        // });
+								//
+						        //  flowFile.setOnDragExited(new EventHandler() {
+						        //     @Override
+						        //     public void handle(final DragEvent event) {
+						        //         flowFile.setStyle("-fx-background-color: red;");
+						        //     }
+						        // });
 
-								label("Company ", row: 2, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "center", valignment: 'top')
-								textField(promptText: "Company Name", id: 'nameOfCompany', row: 2, column: 4, columnSpan: 3, halignment: "left", valignment: 'top')
+								label("Flow Name ", id: 'flowNameField', hgrow: "never", style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 1, column: 3, columnSpan: 1, valignment: 'center', halignment: "center", textFill: WHITE)
+								textField(promptText: ".flow file name", id: 'nameOfFlowFile', row: 1, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
 
-								button("Clean Workspace", id: 'cleanButton',  minWidth: 190, prefWidth: 190, row: 7, column: 1, columnSpan: 2, halignment: "center",
+								label("Company ", row: 2, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "center", valignment: 'center')
+								textField(promptText: "Company Name", id: 'nameOfCompany', row: 2, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
+
+								label("Website URL ", row: 3, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "left", valignment: 'center')
+								textField(promptText: "Website", id: 'website', row: 3, column: 4, columnSpan: 3, halignment: "left", valignment: 'center', onAction: {
+										String url = website.text
+										def dotComIndex = url.indexOf('.com')
+										website.text = url.substring(0,dotComIndex + 4)
+								})
+
+								button("Clean Workspace", id: 'cleanButton',  minWidth: 190, prefWidth: 190, row: 8, column: 1, columnSpan: 2, halignment: "center",
 								, onAction: {
 									cleanWorkspace(false)
 									browserButton.setDisable(true)
 									exportButton.setDisable(true)
 								})
 
-								label("Gather: ",  textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 5, column: 0, columnSpan: 1, halignment: "right" )
-								label("Produce: ",  textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 6, column: 0, columnSpan: 1, halignment: "right" )
-								label("Utilities: ", textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 7, column: 0, columnSpan: 1, halignment: "right" )
+								label("Gather: ",  textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 6, column: 0, columnSpan: 1, halignment: "right" )
+								label("Produce: ",  textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 7, column: 0, columnSpan: 1, halignment: "right" )
+								label("Utilities: ", textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 8, column: 0, columnSpan: 1, halignment: "right" )
 
-								button("All Documents", id: 'genDocButton', minWidth: 190, prefWidth: 190, row: 5, column: 5, columnSpan: 2, halignment: "center", onAction: {
+								button("All Documents", id: 'genDocButton', minWidth: 190, prefWidth: 190, row: 6, column: 5, columnSpan: 2, halignment: "center", onAction: {
+
+									String url = website.text
+									def dotComIndex = url.indexOf('.com')
+									website.text = url.substring(0, dotComIndex + 4)
 
 									if(  unzipFile(nameOfFlowFile.text) ){
 
@@ -410,8 +503,8 @@ public class GUI{
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website.text)
 
 										} else {
 											cleanFirstPopup.show()
@@ -424,15 +517,20 @@ public class GUI{
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
-											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website.text)
 										}
 									} else {
 										flowPopup.show()
 									}
 								})
 
-								button("Forms", id: 'genFormsButton',  minWidth: 190, prefWidth: 190, row: 5, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Forms", id: 'genFormsButton',  minWidth: 190, prefWidth: 190, row: 6, column: 3, columnSpan: 2, halignment: "center", onAction: {
+
+									String url = website.text
+									def dotComIndex = url.indexOf('.com')
+									website.text = url.substring(0, dotComIndex + 4)
+
 									if(  unzipFile(nameOfFlowFile.text) ){
 										def fileName = nameOfFlowFile.text + '.json'
 										SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
@@ -443,14 +541,19 @@ public class GUI{
 										exportButton.setDisable(false)
 										cleanButton.setDisable(false)
 
-										captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup)
+										captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
 
 									}else {
 										flowPopup.show()
 									}
 								})
 
-								button("Actions", id: 'genActionsButton', minWidth: 190, prefWidth: 190, row: 5, column: 1, columnSpan: 2, halignment: "center", onAction: {
+								button("Actions", id: 'genActionsButton', minWidth: 190, prefWidth: 190, row: 6, column: 1, columnSpan: 2, halignment: "center", onAction: {
+										String url = website.text
+										def dotComIndex = url.indexOf('.com')
+										website.text = url.substring(0, dotComIndex + 4)
+
+
 										if(  unzipFile(nameOfFlowFile.text) ){
 
 											def fileName = nameOfFlowFile.text + '.json'
@@ -462,18 +565,18 @@ public class GUI{
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website.text)
 
 										}else {
 											flowPopup.show()
 										}
 								})
 
-								button("Create Export Folder", id: 'exportButton',  minWidth: 190, prefWidth: 190, row: 6, column: 1, columnSpan: 2, halignment: "center", onAction: {
+								button("Create Export Folder", id: 'exportButton',  minWidth: 190, prefWidth: 190, row: 7, column: 1, columnSpan: 2, halignment: "center", onAction: {
 									exportWorkflow()
 								})
 
-								button("Open in browser", id: 'browserButton',  minWidth: 190, prefWidth: 190, row: 6, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Open in browser", id: 'browserButton',  minWidth: 190, prefWidth: 190, row: 7, column: 3, columnSpan: 2, halignment: "center", onAction: {
 									if ( (new File('build/Resources/Events/eventIndex.html')).exists() ) {
 										showInBrowser()
 									} else {
@@ -481,7 +584,7 @@ public class GUI{
 									}
 								})
 
-								button("Go to Google drive", minWidth: 190, prefWidth: 190, row: 7, column: 3, columnSpan: 2, halignment: "center", onAction: {
+								button("Go to Google drive", minWidth: 190, prefWidth: 190, row: 8, column: 3, columnSpan: 2, halignment: "center", onAction: {
 									openGoogleDrive()
 								})
 							}
@@ -578,8 +681,8 @@ public class GUI{
 				}
 			}
 
-			//popup telling the user that there was an error logging into demo.spidastudio
-			stage(primary: false, id: 'loginPopup', title: "ERROR: Could not log in to demo.spidastudio", width: 850, height: 150, visible: false) {
+			//popup telling the user that there was an error logging into the website
+			stage(primary: false, id: 'loginPopup', title: "ERROR: Could not log in to this website", width: 850, height: 150, visible: false) {
 				scene {
 					gridPane(hgap: 10, vgap: 10, padding: 25, alignment: "top_center" ) {
 						columnConstraints(minWidth: 250, prefWidth: 250, hgrow: 'never')

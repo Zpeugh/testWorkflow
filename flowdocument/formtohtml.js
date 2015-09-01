@@ -1,8 +1,6 @@
 //globally defined username and password for logging in.
 var USERNAME = 'admin@spidasoftware.com';
 var PASSWORD = 'defaultADMIN321';
-//var WEBSITE = 'www.spidasoftware';
-var WEBSITE = 'demo.spidastudio';
 var START_ON_TAB = 0; //tab to begin looking for forms on.
 
 //Array of form names to be screencaptured
@@ -49,8 +47,9 @@ casper.on('resource.received', function(resource) {
 
 //Take the arguments from the commandline and store them as the names of the forms
 //in the formName array
-var counter = 1;
-var companyName = decodeURIComponent( casper.cli.get(0) );
+var counter = 2;
+var WEBSITE = decodeURIComponent( casper.cli.get(0) );
+var companyName = decodeURIComponent( casper.cli.get(1) );
 companyName = companyName.replace(re,' ');
 var temp;
 console.log("Forms to capture: ");
@@ -80,9 +79,9 @@ casper.logIntoSpida = function(){
 * in the formNameArray that are found on this tab
 */
 casper.nextTab = function(tab) {
-    casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/formTemplate/list?offset=' + (tab * 10) + '&max=10&sort=name&order=asc', function(){
+    casper.thenOpen(WEBSITE + '/projectmanager/formTemplate/list?offset=' + (tab * 10) + '&max=10&sort=name&order=asc', function(){
 
-        this.waitForUrl('https://' + WEBSITE + '.com/projectmanager/formTemplate/list?offset=' + (tab * 10) + '&max=10&sort=name&order=asc', function(){
+        this.waitForUrl(WEBSITE + '/projectmanager/formTemplate/list?offset=' + (tab * 10) + '&max=10&sort=name&order=asc', function(){
             //find number of forms on the tab
             var numberOfChildren = this.evaluate(function() {
                 return document.querySelector('tbody').childNodes.length;
@@ -179,7 +178,7 @@ casper.matchFormNames = function(childNumber){
 /*
 * Login to SpidaMin
 */
-casper.start('https://' + WEBSITE + '.com/projectmanager/', function(){
+casper.start(WEBSITE + '/projectmanager/', function(){
     console.log("Checkpoint reached");
 });
 
@@ -192,7 +191,7 @@ casper.then(function login(){
 });
 
 
-casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/', function afterLogin(){
+casper.waitForUrl(WEBSITE + '/projectmanager/', function afterLogin(){
     console.log("Checkpoint reached");
 }, function onUrlTimeout(){
     casper.logIntoSpida();
@@ -213,7 +212,7 @@ casper.waitForSelector('#mainnav>ul>li>div>div', function(){
 }, 6000);
 
 
-casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', function(){
+casper.waitForUrl(WEBSITE + '/projectmanager/dashboard/index', function(){
     console.log("Logged in as: " + companyName);
     console.log("Checkpoint reached");
 }, function() {
@@ -225,7 +224,7 @@ casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/dashboard/index', 
 /*
 * Navigate to the flow list
 */
-casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/formTemplate/list', function openFormList(){
+casper.thenOpen(WEBSITE + '/projectmanager/formTemplate/list', function openFormList(){
     console.log("Checkpoint reached");
 });
 
@@ -233,7 +232,7 @@ casper.thenOpen('https://' + WEBSITE + '.com/projectmanager/formTemplate/list', 
 /*
 * Wait 7 seconds or until the url has changed
 */
-casper.waitForUrl('https://' + WEBSITE + '.com/projectmanager/formTemplate/list',function waitForFormList(){
+casper.waitForUrl(WEBSITE + '/projectmanager/formTemplate/list',function waitForFormList(){
     console.log("Currently at: " + this.getCurrentUrl() );
     console.log("Checkpoint reached");
 }, function() {
