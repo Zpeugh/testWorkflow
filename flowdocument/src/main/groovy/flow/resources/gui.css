@@ -61,6 +61,11 @@
 	-fx-top:1px;
 }
 
+#flowFile {
+	-fx-border-radius: 2px;
+	-fx-border-color: #000000;
+}
+
 
 #popupClean:hover{
 	-fx-cursor: HAND;

@@ -13,10 +13,12 @@ import javafx.event.EventHandler
 import javafx.scene.control.Label
 import javafx.scene.shape.Rectangle
 import java.net.URLEncoder
-// import javafx.scene.input.DragEvent
-// import javafx.scene.input.Dragboard
-// import javafx.scene.input.TransferMode
-// import javafx.scene.control.TextArea
+import javafx.scene.input.DragEvent
+import javafx.scene.input.Dragboard
+import javafx.event.EventHandler
+import javafx.scene.control.TextArea
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 
 public class GUI{
 
@@ -25,14 +27,12 @@ public class GUI{
 
 
 	//unzips the .flow file and pulls it into the working directory under build/Resources
-	private static boolean unzipFile(flowName){
+	private static boolean unzipFile(flowPath, flowName){
+
 		def foundFile
 		def builder = new AntBuilder()
-		def dir = System.properties['user.home'] + '/Downloads/'
-		flowName = flowName.replace('.flow', '')
-		dir = dir + flowName + '.flow'
-		if ( (new File(dir)).exists() ){
-			builder.unzip( src: dir,  dest: "build/Resources/", overwrite:true )
+		if ( (new File(flowName)).exists() ){
+			builder.unzip( src: flowPath,  dest: "build/Resources/", overwrite:true )
 			File jsonFile = new File('build/Resources/Flow.json')
 	        jsonFile.renameTo('build/Resources/' + flowName + '.json' )
 			builder.delete(dir: 'build/Resources/actions/', failonerror: false)
@@ -345,78 +345,165 @@ public class GUI{
 		flowInfo.append(companyName.replaceAll('~', ' '))
 	}
 
-
- // 	private void mouseDragDropped(final DragEvent e) {
-    //     final Dragboard db = e.getDragboard();
-    //     boolean success = false;
-    //     if (db.hasFiles()) {
-    //         success = true;
-    //         // Only get the first file from the list
-    //         final File file = db.getFiles().get(0);
-    //         Platform.runLater(new Runnable() {
-    //             @Override
-    //             public void run() {
-    //                 System.out.println(file.getAbsolutePath());
-    //                 try {
-    //                     if(!contentPane.getChildren().isEmpty()){
-    //                         contentPane.getChildren().remove(0);
-    //                     }
-    //                     Image img = new Image(new FileInputStream(file.getAbsolutePath()));
-	//
-    //                     addImage(img, contentPane);
-    //                 } catch (FileNotFoundException ex) {
-    //                     Logger.getLogger(DragAndDropExample.class.getName()).log(Level.SEVERE, null, ex);
-    //                 }
-    //             }
-    //         });
-    //     }
-    //     e.setDropCompleted(success);
-    //     e.consume();
-    // }
-	//
-    // private  void mouseDragOver(final DragEvent e) {
-    //     final Dragboard db = e.getDragboard();
-	//
-    //     final boolean isAccepted = db.getFiles().get(0).getName().toLowerCase().endsWith(".png")
-    //             || db.getFiles().get(0).getName().toLowerCase().endsWith(".jpeg")
-    //             || db.getFiles().get(0).getName().toLowerCase().endsWith(".jpg");
-	//
-    //     if (db.hasFiles()) {
-    //         if (isAccepted) {
-    //             contentPane.setStyle("-fx-border-color: red;"
-    //           + "-fx-border-width: 5;"
-    //           + "-fx-background-color: #C6C6C6;"
-    //           + "-fx-border-style: solid;");
-    //             e.acceptTransferModes(TransferMode.COPY);
-    //         }
-    //     } else {
-    //         e.consume();
-    //     }
-    // }
-
-
-
 	//Builds the user interface with three tabs and multiple (currently) invisible popups
 	public static void main(args){
 
-
+		def filePath, fileName
 
 		start {
 		    stage(id: 'mainStage', title: "Workflow Document Generator", width: 800, height: 450, visible: true, resizable: false) {
+
 				scene(id: 'mainScene'){
 
 					//add custom stylesheet for UI style overriding
 					File css = new File("src/main/groovy/flow/resources/gui.css")
 					mainScene.getStylesheets().clear()
 					mainScene.getStylesheets().add("file:///" + css.getAbsolutePath().replaceAll('\\\\', "/"))
-					//def jpg = new File('src/Resources/metallic.jpeg')
-					def metal = 'https://github.com/spidasoftware/min/blob/Full-app/scripts/flowdocument/src/Resources/metallic.jpeg?raw=true'
-					//def metal = 'file:///' + jpg.getAbsolutePath().replaceAll("\\\\", "/")
+					def jpg = new File('src/Resources/metallic.jpeg')
+					def metal = 'file:///' + jpg.getAbsolutePath().replaceAll("\\\\", "/")
 
 					tabPane (id: 'tabPane', style: '-fx-background-color: #000000;-fx-border-color: #7C8180;-fx-border-width: 0px 1px 1px 1px;') {
 
-						//Main tab in the user interface
-						tab(' Main ', id: 'mainTab', closable: false) {
+						//Straightforward tab for basic user
+						tab('Main', id: 'mainTab', closable: false) {
+							gridPane(id: 'gridPane', hgap: 5, vgap: 10, padding: 0, alignment: "top_center", style: "-fx-background-image: url(${metal}); -fx-background-repeat: stretch;-fx-background-size: 800 450") {
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
+
+
+								label("Enter Workflow Parameters", valignment: 'bottom', id: 'titleLabel', row: 0, column: 2, columnSpan: 6, halignment: "center",
+									margin: [0, 0, 10] )
+
+								imageView(row: 0, column: 0, columnSpan: 2, rowSpan: 4, fitWidth: 275, preserveRatio: true){
+									def img = new File('src/Resources/SpidaLogo.png')
+									image('file:///' + img.getAbsolutePath().replace("\\", "/"))
+								}
+
+
+
+								final flowFile = rectangle(fill: SPIDARED, width: 320, height: 35, row: 1, column: 4, columnSpan: 3)
+								final flowText = text(row: 1, column: 4, "Drag .flow file here")
+
+								flowFile.setOnDragOver(new EventHandler<DragEvent>() {
+						            @Override
+						            public void handle(DragEvent event) {
+										Dragboard db = event.getDragboard();
+						                if (db.hasFiles()) {
+						                    event.acceptTransferModes(TransferMode.ANY);
+											flowFile.setFill(Color.YELLOW)
+						                } else {
+						                    event.consume();
+						                }
+						            }
+						    	})
+
+								flowFile.setOnDragEntered(new EventHandler <DragEvent>() {
+						            public void handle(DragEvent event) {
+						                flowFile.setFill(Color.YELLOW);
+						                event.consume();
+						            }
+						        });
+
+								// flowFile.setOnDragExited(new EventHandler <DragEvent>() {
+							    //     public void handle(DragEvent event) {
+							    //         flowFile.setFill(SPIDARED);
+							    //         event.consume();
+							    //     }
+							    // });
+
+								flowFile.setOnDragDropped(new EventHandler<DragEvent>() {
+									@Override
+									public void handle(DragEvent event) {
+										Dragboard db = event.getDragboard();
+										boolean success = false;
+										if (db.hasFiles()) {
+											success = true											
+											for (File file:db.getFiles()) {
+												filePath = file.getAbsolutePath()
+												fileName = file.name
+												flowFile.setFill(Color.GREEN)
+												flowText.setText(fileName - '.flow')
+											}
+										}
+										event.setDropCompleted(success);
+										event.consume();
+									}
+								});
+
+
+								// label("Flow Name ", id: 'flowNameField1', hgrow: "never", style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 1, column: 3, columnSpan: 1, valignment: 'center', halignment: "center", textFill: WHITE)
+								// textField(promptText: ".flow file name", id: 'nameOfFlowFile', row: 1, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
+
+								label("Company ", row: 2, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "center", valignment: 'center')
+								textField(promptText: "Company Name", id: 'nameOfCompany', row: 2, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
+
+								label("Website URL ", row: 3, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "left", valignment: 'center')
+								textField(promptText: "Website", id: 'website', row: 3, column: 4, columnSpan: 3, halignment: "left", valignment: 'center', onAction: {
+										String url = website.text
+										def dotComIndex = url.indexOf('.com')
+										if (dotComIndex > 0){
+											website.text = url.substring(0, dotComIndex + 4)
+										}
+								})
+
+								button("Generate documents", id: 'genDocButton', minWidth: 250, prefWidth: 250, minHeight: 75, row: 6, column: 0, columnSpan: 4, halignment: "center", onAction: {
+
+									String url = website.text
+									def dotComIndex = url.indexOf('.com')
+									if (dotComIndex > 0){
+										website.text = url.substring(0, dotComIndex + 4)
+									}
+
+									cleanWorkspace()
+									if( unzipFile(nameOfFlowFile.text) ){
+
+										if ( !( new File('build/Resources/' + nameOfFlowFile.text + '.json') ).exists()  ){
+											def fileName = nameOfFlowFile.text + '.json'
+											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
+											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+
+
+											tabPane.getSelectionModel().select(2)
+
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website.text)
+
+										} else {
+											cleanFirstPopup.show()
+
+											def fileName = nameOfFlowFile.text + '.json'
+											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
+											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+
+											tabPane.getSelectionModel().select(2)
+
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website.text)
+										}
+									} else {
+										flowPopup.show()
+									}
+								})
+
+								button("Export Results", id: 'expResultsButton', minWidth: 250, prefWidth: 250, minHeight: 75, row: 6, column: 3, columnSpan: 4, halignment: "center", onAction: {
+
+									exportWorkflow()
+									showInBrowser()
+									openGoogleDrive()
+
+								})
+
+							}
+						}
+
+						//Advanced operations tab in the user interface
+						tab('Advanced', id: 'advancedTab', closable: false) {
 		                    gridPane(id: 'gridPane', hgap: 5, vgap: 10, padding: 0, alignment: "top_center", style: "-fx-background-image: url(${metal}); -fx-background-repeat: stretch;-fx-background-size: 800 450") {
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
 								columnConstraints(minWidth: 100, prefWidth: 100, hgrow: 'never')
@@ -436,42 +523,19 @@ public class GUI{
 									image('file:///' + img.getAbsolutePath().replace("\\", "/"))
 								}
 
-								// flowFile = textArea(text: "Drag .flow file here", width: 200, height: 50, row: 1, column: 4, columnSpan: 3)
-								//
-								// flowFile.setOnDragOver(new EventHandler() {
-						        //     @Override
-						        //     public void handle(final DragEvent event) {
-						        //         flowFile.setStyle("-fx-background-color: grey;");
-								// 		//mouseDragOver(event);
-						        //     }
-						        // });
-								//
-						        // flowFile.setOnDragDropped(new EventHandler() {
-						        //     @Override
-						        //     public void handle(final DragEvent event) {
-						        //         flowFile.setStyle("-fx-background-color: green;");
-								// 		//mouseDragDropped(event);
-						        //     }
-						        // });
-								//
-						        //  flowFile.setOnDragExited(new EventHandler() {
-						        //     @Override
-						        //     public void handle(final DragEvent event) {
-						        //         flowFile.setStyle("-fx-background-color: red;");
-						        //     }
-						        // });
-
 								label("Flow Name ", id: 'flowNameField', hgrow: "never", style: '-fx-font-size: 15;-fx-font-family: Verdana;', row: 1, column: 3, columnSpan: 1, valignment: 'center', halignment: "center", textFill: WHITE)
-								textField(promptText: ".flow file name", id: 'nameOfFlowFile', row: 1, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
+								textField(promptText: ".flow file name", id: 'nameOfFlowFile2', row: 1, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
 
 								label("Company ", row: 2, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "center", valignment: 'center')
-								textField(promptText: "Company Name", id: 'nameOfCompany', row: 2, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
+								textField(promptText: "Company Name", id: 'nameOfCompany2', row: 2, column: 4, columnSpan: 3, halignment: "left", valignment: 'center')
 
 								label("Website URL ", row: 3, column: 3, columnSpan: 1, textFill: WHITE, style: '-fx-font-size: 15;-fx-font-family: Verdana;', halignment: "left", valignment: 'center')
-								textField(promptText: "Website", id: 'website', row: 3, column: 4, columnSpan: 3, halignment: "left", valignment: 'center', onAction: {
-										String url = website.text
+								textField(promptText: "Website", id: 'website2', row: 3, column: 4, columnSpan: 3, halignment: "left", valignment: 'center', onAction: {
+										String url = website2.text
 										def dotComIndex = url.indexOf('.com')
-										website.text = url.substring(0,dotComIndex + 4)
+										if (dotComIndex > 0){
+											website2.text = url.substring(0, dotComIndex + 4)
+										}
 								})
 
 								button("Clean Workspace", id: 'cleanButton',  minWidth: 190, prefWidth: 190, row: 8, column: 1, columnSpan: 2, halignment: "center",
@@ -487,38 +551,40 @@ public class GUI{
 
 								button("All Documents", id: 'genDocButton', minWidth: 190, prefWidth: 190, row: 6, column: 5, columnSpan: 2, halignment: "center", onAction: {
 
-									String url = website.text
+									String url = website2.text
 									def dotComIndex = url.indexOf('.com')
-									website.text = url.substring(0, dotComIndex + 4)
+									if (dotComIndex > 0){
+										website2.text = url.substring(0, dotComIndex + 4)
+									}
 
-									if(  unzipFile(nameOfFlowFile.text) ){
+									if(  unzipFile(nameOfFlowFile2.text) ){
 
-										if ( !( new File('build/Resources/Events/' + nameOfFlowFile.text + '.json') ).exists()  ){
-											def fileName = nameOfFlowFile.text + '.json'
+										if ( !( new File('build/Resources/Events/' + nameOfFlowFile2.text + '.json') ).exists()  ){
+											def fileName = nameOfFlowFile2.text + '.json'
 											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
-											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+											def companyName = nameOfCompany2.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(1)
 											browserButton.setDisable(false)
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
-											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website.text)
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website2.text)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website2.text)
 
 										} else {
 											cleanFirstPopup.show()
-											def fileName = nameOfFlowFile.text + '.json'
+											def fileName = nameOfFlowFile2.text + '.json'
 											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
-											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+											def companyName = nameOfCompany2.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(1)
 											browserButton.setDisable(false)
 											exportButton.setDisable(false)
 											cleanButton.setDisable(false)
 
-											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
-											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website.text)
+											captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website2.text)
+											captureActionsAndLiveUpdateActionTab(mainScene, sampleFlow, fileName, companyName, actionTable, companyPopup, loginPopup, website2.text)
 										}
 									} else {
 										flowPopup.show()
@@ -527,21 +593,23 @@ public class GUI{
 
 								button("Forms", id: 'genFormsButton',  minWidth: 190, prefWidth: 190, row: 6, column: 3, columnSpan: 2, halignment: "center", onAction: {
 
-									String url = website.text
+									String url = website2.text
 									def dotComIndex = url.indexOf('.com')
-									website.text = url.substring(0, dotComIndex + 4)
+									if (dotComIndex > 0){
+										website2.text = url.substring(0, dotComIndex + 4)
+									}
 
-									if(  unzipFile(nameOfFlowFile.text) ){
-										def fileName = nameOfFlowFile.text + '.json'
+									if(  unzipFile(nameOfFlowFile2.text) ){
+										def fileName = nameOfFlowFile2.text + '.json'
 										SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
-										def companyName = nameOfCompany.text.replaceAll(' ', '~')
+										def companyName = nameOfCompany2.text.replaceAll(' ', '~')
 
 										tabPane.getSelectionModel().select(1)
 										browserButton.setDisable(false)
 										exportButton.setDisable(false)
 										cleanButton.setDisable(false)
 
-										captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website.text)
+										captureFormsAndLiveUpdateFormTab(mainScene, sampleFlow, companyName, formTable, companyPopup, loginPopup, website2.text)
 
 									}else {
 										flowPopup.show()
@@ -549,16 +617,18 @@ public class GUI{
 								})
 
 								button("Actions", id: 'genActionsButton', minWidth: 190, prefWidth: 190, row: 6, column: 1, columnSpan: 2, halignment: "center", onAction: {
-										String url = website.text
+										String url = website2.text
 										def dotComIndex = url.indexOf('.com')
-										website.text = url.substring(0, dotComIndex + 4)
+										if (dotComIndex > 0){
+											website2.text = url.substring(0, dotComIndex + 4)
+										}
 
 
-										if(  unzipFile(nameOfFlowFile.text) ){
+										if(  unzipFile(nameOfFlowFile2.text) ){
 
-											def fileName = nameOfFlowFile.text + '.json'
+											def fileName = nameOfFlowFile2.text + '.json'
 											SampleWorkFlow sampleFlow = new SampleWorkFlow(fileName)
-											def companyName = nameOfCompany.text.replaceAll(' ', '~')
+											def companyName = nameOfCompany2.text.replaceAll(' ', '~')
 
 											tabPane.getSelectionModel().select(2)
 											browserButton.setDisable(false)
