@@ -7,7 +7,7 @@
 }
 
 #formTab: selected{
-	-fx-background-color: #000000;
+	-fx-background-color: #252525;
 }
 
 #mainTab{
@@ -21,6 +21,16 @@
 	-fx-background-color: #000000;
 }
 
+#advancedTab:selected{
+	-fx-background-color: #000000;
+}
+
+#advancedTab{
+	-fx-effect: innershadow(two-pass-box, rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+	-fx-background-insets: 0, 1, 2;
+	-fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+	-fx-padding: 0.2em 0.5em 0.2em 0.5em;
+}
 
 #actionTab{
 
@@ -31,7 +41,7 @@
 }
 
 #actionTab: selected{
-	-fx-background-color: #000000;
+	-fx-background-color: #252525;
 	-fx-border-width: 1 1 0 1;
 }
 

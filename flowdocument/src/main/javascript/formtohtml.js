@@ -48,6 +48,7 @@ casper.on('resource.received', function(resource) {
 //Take the arguments from the commandline and store them as the names of the forms
 //in the formName array
 var counter = 2;
+console.log("ALL: " + casper.cli);
 var WEBSITE = decodeURIComponent( casper.cli.get(0) );
 var companyName = decodeURIComponent( casper.cli.get(1) );
 companyName = companyName.replace(re,' ');
