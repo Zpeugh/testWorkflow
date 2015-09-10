@@ -1,2 +1,2 @@
-CALL gradlew "run"
+CALL ./gradlew "run"
 pause
